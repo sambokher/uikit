@@ -1,2 +1,2 @@
-export { default as AppShell } from './components/AppShell.js';
-export { default as Main } from './components/Main.js';
+export { default as AppShell } from './AppShell.js';
+export { default as Main } from './Main.js';
