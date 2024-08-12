@@ -1,0 +1,48 @@
+
+/* Versatile style that overlays an extra subtle background that macthes text color to any element */
+/* Useful for hover effects on components where text color inherits and we want to maintain consistency */
+.juno-current-color-hover-bg {
+    position: relative;
+    transition: background-color 0.3s ease;
+    z-index: 0;
+}
+
+.juno-current-color-hover-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: currentColor;
+    opacity: 0;
+    transition: opacity 50ms ease; 
+    border-radius: inherit; 
+    pointer-events: none; 
+    z-index: -1; 
+}
+
+.juno-current-color-hover-bg:hover::after {
+    opacity: 0.08; 
+}
+
+.juno-current-color-bg {
+    position: relative;
+    transition: background-color 0.3s ease;
+    z-index: 0;
+}
+
+.juno-current-color-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: currentColor;
+    opacity: 0.08; 
+    transition: opacity 50ms ease; 
+    border-radius: inherit; 
+    pointer-events: none; 
+    z-index: -1; 
+}
