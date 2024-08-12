@@ -22,6 +22,7 @@
     "recharts": "2.12.7"
   },
   "devDependencies": {
+    "@babel/cli": "^7.24.8",
     "@babel/core": "^7.25.2",
     "@babel/preset-env": "^7.25.3",
     "@babel/preset-react": "^7.24.7"
