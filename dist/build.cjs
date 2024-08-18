@@ -1,2 +1,0 @@
-var e=require("react"),t=require("prop-types"),r=require("iconoir-react");function o(e){return e&&"object"==typeof e&&"default"in e?e:{default:e}}var n=/*#__PURE__*/o(e);function u(e){/*#__PURE__*/return n.default.createElement("div",{className:e.what},"The Hardest Button to Button")}u.propTypes={what:/*#__PURE__*/o(t).default.string},exports.Button=u,exports.Icon=function(){/*#__PURE__*/return n.default.createElement(r.Iconoir,{color:"red",height:36,width:36})};
-//# sourceMappingURL=build.cjs.map

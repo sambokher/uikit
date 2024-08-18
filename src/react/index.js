@@ -58,7 +58,6 @@ export { default as BarChart } from './BarChart';
 export { default as AreaChart } from './AreaChart';
 export { default as CodeSnippet } from './CodeSnippet';
 export { default as MiniSnippet } from './MiniSnippet';
-export { default as TableWidget } from './TableWidget';
 export { default as Divider } from './Divider';
 export { default as Dot } from './Dot';
 export { default as HeaderLink } from './HeaderLink';
