@@ -1,14 +1,13 @@
 {
   "type": "module",
   "name": "uikit",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "module": "./dist/index.js",
   "scripts": {
     "build": "rollup -c"
   },
   "peerDependencies": {
-    "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react": "18.3.1"
   },
   "dependencies": {
     "date-fns": "3.6.0",
