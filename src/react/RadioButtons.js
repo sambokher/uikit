@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react';
-import { RadioButton } from './index'
+import RadioButton from './RadioButton'
 
 const sampleOptions = [
     { label: 'Option 1', value: 'option1' },

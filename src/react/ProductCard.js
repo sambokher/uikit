@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Icon } from './index'
+import Icon  from './Icon'
 import { iconMap } from './iconMap'
 import { MediaImage } from 'iconoir-react';
 import { useMemo } from 'react';

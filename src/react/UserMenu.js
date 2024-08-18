@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types';
-import { Avatar, Tooltip, Heading } from './index.js';
-import { Icon } from './index'
+import Avatar from './Avatar';
+import Tooltip from './Tooltip';
+import Heading from './Heading';
+import Icon from './Icon'
 import { iconMap } from './iconMap'
 
 export default function UserMenu(props) {

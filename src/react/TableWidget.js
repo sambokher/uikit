@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { useState } from 'react';
 import * as UIKit from './index';
-import { Pagination } from './index';
+import Pagination from './Pagination';
 import { ArrowDown, ArrowUp, Square } from 'iconoir-react';
 
 const sampleColumns = [

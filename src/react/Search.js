@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react';
-import { ButtonIcon, Icon } from './index'
+import ButtonIcon from './ButtonIcon'
+import Icon from './Icon'
 
 export default function Search(props) {
     

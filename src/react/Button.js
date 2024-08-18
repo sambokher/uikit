@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import Loader from './Loader';
-import { Icon } from './index'
+import Icon from './Icon'
 import { iconMap } from './iconMap'
 
 const allIconNames = Object.keys(iconMap) || []

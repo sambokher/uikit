@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import * as IconoirIcons from 'iconoir-react';
-import { Button, Link } from './index'
+import Button from './Button';
+import Link from './Link';
 
 const allIconNames = Object.keys(IconoirIcons);
 

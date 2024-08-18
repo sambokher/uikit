@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
-import { UserMenu, Sidebar, SidebarLink, ButtonIcon, Logo } from './index';
+import UserMenu from './UserMenu';
+import Sidebar from './Sidebar';
+import SidebarLink from './SidebarLink';
+import ButtonIcon from './ButtonIcon';
+import Logo  from './Logo';
 
 const topLinks = [
     {text: 'Home', icon: 'home', onClick: ()=>{}},

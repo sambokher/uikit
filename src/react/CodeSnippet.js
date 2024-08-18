@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react';
-import { Button, Select } from './index';
+import Button from './Button';
+import Select from './Select';
 
 const sample = `function greet(name) {
     const greeting = "Hello, " + name + "!";

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react';
-import { Button, ButtonIcon } from './index';
+import Button from './Button';
+import ButtonIcon from './ButtonIcon';
 
 export default function Pagination(props) {
     

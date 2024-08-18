@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LabelList } from 'recharts';
-import { Icon } from './index'
+import Icon from './Icon';
 // Run 'npm install recharts' to install the recharts library
 
 const dummyData = {

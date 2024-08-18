@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import { Tooltip, Avatar } from './index';
+import Avatar from './Avatar';
+import Tooltip from './Tooltip';
 
 export default function AvatarCard(props) {
     

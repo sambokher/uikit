@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Icon } from './index'
+import Icon from './Icon';
 import { useMemo } from 'react';
 
 export default function MediaCard(props) {
