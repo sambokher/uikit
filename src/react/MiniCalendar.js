@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types'
 import * as IconoirIcons from 'iconoir-react';
-import { format, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addDays, isSameDay, addMonths, subMonths, setDate, isToday, isSameMonth } from 'date-fns';
+import { format, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addDays, isSameDay, addMonths, subMonths, isToday, isSameMonth } from 'date-fns';
 // run 'npm install date-fns' to install date-fns
 
 export default function MiniCalendar(props) {
