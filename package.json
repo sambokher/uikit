@@ -1,17 +1,10 @@
 {
   "type": "module",
   "name": "uikit",
-  "version": "0.1",
-  "source": "src/react/index.js",
-  "exports": {
-    "require": "./dist/build.cjs",
-    "default": "./dist/build.modern.js"
-  },
-  "main": "./dist/build.cjs",
-  "module": "./dist/build.module.js",
-  "unpkg": "./dist/build.umd.js",
+  "version": "0.1.0",
+  "module": "./dist/index.js",
   "scripts": {
-    "build": "rollup -c && microbundle --jsx React.createElement"
+    "build": "rollup -c"
   },
   "peerDependencies": {
     "react": "18.3.1",
@@ -25,9 +18,8 @@
     "recharts": "2.12.7"
   },
   "devDependencies": {
-    "@rollup/plugin-babel": "^6.0.4",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-url": "^8.0.2",
-    "microbundle": "^0.15.1"
+    "@rollup/plugin-image": "^3.0.3",
+    "@rollup/plugin-sucrase": "^5.0.2",
+    "rollup": "^4.21.0"
   }
 }
