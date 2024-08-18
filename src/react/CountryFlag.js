@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { allFlags } from './assets/flags/flags'
-import * as Flags from './assets/flags'
+import * as Flags from './assets/flags/index.js'
 
 const countryNames = allFlags.map(f => f.name); 
 
