@@ -1,4 +1,5 @@
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 import * as IconoirIcons from 'iconoir-react';
 import Button from './Button';
 import Link from './Link';

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import React from 'react';
 
 const dummyText = `This medium-length paragraph provides more detail, suitable for sections that require a bit more explanation. It's perfect for content areas where you need to elaborate on a topic without overwhelming the reader with text.`
 

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Bar, BarChart, LabelList } from 'recharts';
 import Icon from './Icon'
+import React from 'react';
 // Run 'npm install recharts' to install the recharts library
 
 

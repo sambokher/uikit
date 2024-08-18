@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Icon from './Icon'
 
 export default function Select(props) {

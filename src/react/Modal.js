@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import ButtonIcon from './ButtonIcon';
+import React from 'react';
 
 export default function Modal(props) {
     

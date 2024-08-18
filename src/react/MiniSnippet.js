@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import * as IconoirIcons from 'iconoir-react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 export default function MiniSnippet(props) {
 

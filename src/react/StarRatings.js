@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import * as IconoirIcons from 'iconoir-react';
+import React from 'react';
 
 export default function StarRatings(props) {
     

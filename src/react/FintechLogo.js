@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import * as FintechLogos from './assets/fintechs/index'
+import React from 'react';
 
 const allFintechs= ['alipay', 'amex', 'code-front', 'code', 'diners', 'discover', 'elo', 'generic', 'hiper', 'hipercard', 'jcb', 'maestro', 'mastercard', 'mir', 'paypal', 'unionpay', 'visa']
 

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState, useRef, useLayoutEffect, useEffect } from 'react';
+import React, { useState, useRef, useLayoutEffect, useEffect } from 'react';
 import Icon from './Icon'
 import { iconMap } from './iconMap'
 

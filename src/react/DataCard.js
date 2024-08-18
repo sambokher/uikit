@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import * as IconoirIcons from 'iconoir-react';
 import Icon from './Icon'
 import { iconMap } from './iconMap'
+import React from 'react';
 
 const allIconNames = Object.keys(iconMap) || []
 

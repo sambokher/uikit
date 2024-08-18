@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { iconMap } from './iconMap'
 import Button from './Button'
 import Icon from './Icon'
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 
 const allIconNames = Object.keys(iconMap) || []
 

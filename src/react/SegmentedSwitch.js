@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 export default function SegmentedSwitch(props) {
     

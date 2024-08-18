@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const getIconName = (preformattedName, library) => {
     const libraryName = iconMap[preformattedName]?.[library];
     

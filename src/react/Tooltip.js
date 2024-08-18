@@ -1,4 +1,5 @@
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import React from 'react';;
 
 export default function Tooltip(props) {
     const { text, direction, size, bgColor, attributes, listeners } = props

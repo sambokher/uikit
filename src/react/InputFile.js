@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import * as IconoirIcons from 'iconoir-react';
 import Loader from './Loader';
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 
 const iconNames = Object.keys(IconoirIcons);
 

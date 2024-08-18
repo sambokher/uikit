@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import React from 'react';
 import { allFlags } from './assets/flags/flags'
 import * as Flags from './assets/flags/index.js'
 

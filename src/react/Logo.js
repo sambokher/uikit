@@ -1,4 +1,5 @@
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import React from 'react';
 
 // Import the SVG files
 import sample_symbol from './assets/brand/symbol.svg';

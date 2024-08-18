@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import Icon from './Icon'
 import { iconMap } from './iconMap'
 import Loader from './Loader';
+import React from 'react';
 
 const allIconNames = Object.keys(iconMap) || []
 
