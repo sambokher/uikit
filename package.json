@@ -19,6 +19,7 @@
   "devDependencies": {
     "@rollup/plugin-image": "^3.0.3",
     "@rollup/plugin-sucrase": "^5.0.2",
-    "rollup": "^4.21.0"
+    "rollup": "^4.21.0",
+    "rollup-plugin-css-only": "^4.5.2"
   }
 }

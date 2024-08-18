@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-//import "./styles/junoCss.css";
+import "./styles/junoCss.css";
 import React, { useEffect, useState } from 'react';
 import Tooltip from './Tooltip';
 import Icon from './Icon'
