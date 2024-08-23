@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "uikit",
+  "name": "@juno/uikit",
   "version": "0.1.3",
   "module": "./dist/uikit.js",
   "scripts": {
