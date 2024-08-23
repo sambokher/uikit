@@ -47,3 +47,6 @@
     z-index: -1; 
 }
 
+.bg-primary {
+	background-color: black;
+}
