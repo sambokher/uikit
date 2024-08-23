@@ -51,7 +51,7 @@
 	background-color: black;
 }
 
-.hover\:bg-primary-focus:hover {
+.hover:bg-primary-focus {
 	background-color: red;
 }
 
