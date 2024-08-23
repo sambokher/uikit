@@ -10,6 +10,7 @@ export default {
 		sucrase({
 			exclude: ["node_modules/**"],
 			transforms: ["jsx"],
+			production: true
 		}),
 		image(),
 	],
