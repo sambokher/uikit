@@ -29,7 +29,7 @@ export default function Button(props) {
     const isLoading = state == 'loading'
 
     const filledTypeMap = {
-        'primary': `bg-slate-800 !bg-primary ${isDisabled ? '' : 'hover:bg-slate-700 !hover:bg-primary-focus'} text-slate-50 !text-primary-content border border-transparent`,
+        'primary': `!bg-primary ${isDisabled ? '' : '!hover:bg-primary-focus'} text-slate-50 !text-primary-content border border-transparent`,
         'secondary': `bg-slate-700 !bg-base-100 ${isDisabled ? '' : 'hover:bg-slate-600 !hover:bg-base-200'} text-slate-300 !text-base-content border border-transparent`,
         'accent': `bg-teal-600 !bg-accent ${isDisabled ? '' : 'hover:bg-teal-500 !hover:bg-accent-focus'} text-teal-50 !text-accent-content border border-transparent`,
         'link': `bg-transparent ${isDisabled ? '' : 'hover:text-blue-500 !hover:underline'} text-blue-600 !text-base-content border border-transparent`,

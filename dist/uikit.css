@@ -50,3 +50,9 @@
 .bg-primary {
 	background-color: black;
 }
+
+.bg-primary-focus {
+	background-color: red;
+}
+
+
