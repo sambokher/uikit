@@ -2,7 +2,7 @@
 	background-color: black;
 }
 
-.bg-primary-focus {
+.hover:bg-primary-focus {
 	background-color: red;
 }
 
