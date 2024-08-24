@@ -13,5 +13,18 @@ export default {
 			production: true
 		}),
 		image(),
+		{
+			name: 'disable-treeshake',
+        	transform (code, id) {
+            	if (/safelist/.test(id)) {
+                	return {
+                    	code,
+                    	map: null,
+                    	moduleSideEffects: 'no-treeshake',
+                	};
+            	}
+            	return null;
+        	}        
+    	}
 	],
 };

@@ -1,8 +1,36 @@
-.bg-primary {
-	background-color: black;
+:root {
+    --primary: hsla(0, 0%, 19%, 1);
+    --primary-content: hsla(0, 0%, 90%, 1);
+    --primary-focus: hsla(0, 0%, 14%, 1);
+    --secondary: #32505d;
+    --secondary-content: #FFFFFF;
+    --secondary-focus: #2b4550;
+    --accent: hsla(200, 100%, 29%, 1);
+    --accent-content: hsla(200, 100%, 90%, 1);
+    --accent-focus: hsla(200, 100%, 24%, 1);
+    --base-0: hsla(210, 8%, 100%, 1);
+    --base-100: hsla(210, 8%, 92%, 1);
+    --base-200: hsla(210, 8%, 80%, 1);
+    --base-300: hsla(210, 8%, 70%, 1);
+    --base-400: hsla(210, 8%, 60%, 1);
+    --base-500: hsla(210, 8%, 50%, 1);
+    --base-600: hsla(210, 8%, 40%, 1);
+    --base-700: hsla(210, 8%, 30%, 1);
+    --base-900: hsla(210, 8%, 10%, 1);
+    --base-content: hsla(210, 4%, 15%, 1);
+    --error: hsla(50, 100%, 90%, 1);
+    --error-content: hsla(30, 100%, 47%, 1);
+    --error-focus: hsla(50, 90%, 80%, 1);
+    --info: hsla(204, 100%, 90%, 1);
+    --info-content: hsla(202, 98%, 41%, 1);
+    --info-focus: hsla(210, 95%, 90%, 1);
+    --neutral: #9CA3AF;
+    --neutral-content: #1F2937;
+    --neutral-focus: #6B7280;
+    --success: hsla(80, 80%, 90%, 1);
+    --success-content: hsla(105, 50%, 34%, 1);
+    --success-focus: hsla(80, 100%, 80%, 1);
+    --warning: hsla(16, 100%, 90%, 1);
+    --warning-content: hsla(10, 90%, 45%, 1);
+    --warning-focus: hsla(12, 95%, 90%, 1);
 }
-
-.hover:bg-primary-focus {
-	background-color: red;
-}
-
