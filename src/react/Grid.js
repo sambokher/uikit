@@ -1,13 +1,16 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
+import { spacingMap } from './helpers.js';
 
 export default function Grid(props) {
     
     const {
-        paddingX = 'base',
-        paddingY = 'base',
-        background = 'none',
-        gap = 'base',
+        paddingX = null,
+        paddingY = null,
+        gap = null,
+
+        background = null,
+        
         display = true,
         columnCount = 3,
         alignItems = 'start',
@@ -22,13 +25,15 @@ export default function Grid(props) {
     } = props;
 
 
-    const bgStyles = `bg-${background}`;
-    const gapStyles = gap === 'none' ? '' : `gap-${gap}`;
-    const paddingStyles = `${paddingX ? ` px-${paddingX}` : 'px-0'} ${paddingY ? `py-${paddingY}` : 'py-0'}`;
+    const bgStyles = background ? `bg-${background}` : '';
+    
+    const gapStyles = gap ? `gap-${spacingMap[gap]}` : '';
+    const paddingStyles = `${paddingX ? ` px-${spacingMap[paddingX]}` : ''}${paddingY ? ` py-${spacingMap[paddingY]}` : ''}`;
+    
     const cornerStyles = corners === 'none' ? '' : `rounded-${corners}`;
     const widthStyles = `w-${width}`;
     const heightStyles = `h-${height}`;
-    const autoFontStyle = background == 'none' ? 'text-inherit' : background == 'base-900' ? `text-base-0` : background?.startsWith('base') ? 'text-base-content' : `text-${background}-content`
+    const autoFontStyle = (!background || background == 'none') ? 'text-inherit' : background == 'base-900' ? `text-base-0` : background?.startsWith('base') ? 'text-base-content' : `text-${background}-content`
     const fontStyles = fontColor == 'auto' ? autoFontStyle : `text-${fontColor}`
     
     let borderStyles = hasOutline ? 'border border-base-300' : '';
@@ -46,10 +51,13 @@ export default function Grid(props) {
 
 Grid.propTypes = {
     columnCount: PropTypes.number,
-    background: PropTypes.oneOf(['none', 'base-0', 'base-50', 'base-100', 'base-200', 'primary', 'accent', 'base-900']),
+    background: PropTypes.oneOf(['base-0', 'base-50', 'base-100', 'base-200', 'primary', 'accent', 'base-900']),
     fontColor: PropTypes.oneOf(['base-0', 'base-100', 'base-200', 'primary', 'accent', 'base-content', 'auto', 'success-content', 'error-content', 'warning-content', 'info-content']),
-    gap: PropTypes.oneOf(['none', 'xs', 'sm', 'base', 'md', 'lg', 'xl']),
-    padding: PropTypes.oneOf(['none', 'sm', 'base', 'md', 'lg']),
+    
+    paddingX: PropTypes.oneOf(["2px", "4px", "6px", "8px", "10px", "12px", "16px", "24px", "32px", "48px"]),
+    paddingY: PropTypes.oneOf(["2px", "4px", "6px", "8px", "10px", "12px", "16px", "24px", "32px", "48px"]),
+    gap: PropTypes.oneOf(["2px", "4px", "6px", "8px", "10px", "12px", "16px", "24px", "32px", "48px"]),
+    
     display: PropTypes.bool,
     corners: PropTypes.oneOf(["none", "sm", "md", "lg", "full"]),
     hasOutline: PropTypes.bool,

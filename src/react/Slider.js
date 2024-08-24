@@ -19,7 +19,7 @@ export default function Slider(props) {
     const [sliderValue, setSliderValue] = useState(parseInt(value));
 
     const widthStyle = width != 'auto' ? `w-${width}` : size == 'small' ? 'min-w-[120px]' : size == 'large' ? 'min-w-[200px]' : 'min-w-[160px]'
-    const sizeStyles = size == 'small' ? 'gap-2xs' : size == 'large' ? 'gap-sm' : 'gap-xs'
+    const sizeStyles = size == 'small' ? 'gap-0.5' : size == 'large' ? 'gap-2' : 'gap-1.5'
     let wrapperClasses = `flex flex-col ${widthStyle} ${sizeStyles}`
     
     const handleSliderChange = (event) => {

@@ -1,6 +1,7 @@
+import React from 'react';
 import PropTypes from 'prop-types';
-import React, { useState, useRef, useLayoutEffect, useEffect } from 'react';
-import Icon from './Icon'
+import { useState, useRef, useLayoutEffect, useEffect } from 'react';
+import { Icon } from './index'
 import { iconMap } from './iconMap'
 
 const allIconNames = Object.keys(iconMap) || []
@@ -41,14 +42,14 @@ export default function TabGroup(props) {
     }
     
 
-    let sizeStyles = size === 'small' ? `py-2xs text-xs gap-xs -ml-sm` :  
-        size === 'large' ? `py-base gap-base text-md -ml-sm` : `py-xs gap-sm text-sm -ml-sm`;
+    let sizeStyles = size === 'small' ? `py-1 text-xs gap-1.5 -ml-2` :  
+        size === 'large' ? `py-3 gap-3 text-md -ml-2` : `py-1.5 gap-2 text-sm -ml-2`;
 
     let wrapperClasses = `flex flex-row items-center w-full relative`;
 
 
     const tabStyles = `px-2 py-0.5 cursor-pointer hover:bg-base-50 rounded-md transition-colors duration-150 font-medium
-     opacity-70 hover:opacity-100 items-center transition-opacity`;
+     opacity-70 hover:opacity-100 items-center transition-opacity select-none`;
     const activeStyles = `text-${selectColor} !opacity-100`;
     
     const tabRefs = useRef([]);

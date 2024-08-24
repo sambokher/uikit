@@ -44,7 +44,7 @@ onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}
             </div>
 
             {/* Weekdays Row */}
-                <ul className='flex flex-row gap-2xs w-full p-2xs font-normal'>
+                <ul className='flex flex-row gap-1 w-full p-1 font-normal'>
                     {days.map((day, index) => (
                         <li key={index} className={weekdayStyle}>{day}</li>
                     ))}

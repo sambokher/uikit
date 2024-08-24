@@ -1,10 +1,9 @@
+import React from 'react';
 import PropTypes from 'prop-types';
-import Icon  from './Icon'
-import { iconMap } from './iconMap'
+import { Icon } from './index'
 import { MediaImage } from 'iconoir-react';
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 
-const allIconNames = Object.keys(iconMap) || []
 
 export default function ProductCard(props) {
 
@@ -12,7 +11,7 @@ export default function ProductCard(props) {
         title = "Product Name",
         descriptionFirstLine = "Description line 1",
         descriptionSecondLine = null,
-        width = '200px',
+        width = '100%',
         corners = 'md',
         textSize = 'small',
         
@@ -21,7 +20,6 @@ export default function ProductCard(props) {
         rating = "4.5",
         tag = null,
         priceNote = "total",
-        defaultIconSet,
         attributes,
         listeners
       } = props;
@@ -29,7 +27,7 @@ export default function ProductCard(props) {
     const sizeStyles = `w-full h-auto ${textSize == 'small' ? 'text-sm' : 'text-base'}`
     const truncateStyle = { overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'}
 
-    let wrapperClasses = `flex flex-col items-stretch justify-start gap-base ${sizeStyles}`
+    let wrapperClasses = `flex flex-col items-stretch justify-start gap-3 ${sizeStyles}`
     
     const contentClasses = `flex flex-col flex-grow`
     
@@ -56,13 +54,13 @@ export default function ProductCard(props) {
             
             {/* TAG */}
             {tag && 
-                <div className='absolute top-xs left-sm rounded-full px-base py-xs bg-base-0 shadow font-medium max-w-[160px] truncate overflow-ellipsis whitespace-nowrap'>
+                <div className='absolute top-1.5 left-2 rounded-full px-3 py-1.5 bg-base-0 shadow font-medium max-w-[160px] truncate overflow-ellipsis whitespace-nowrap'>
 {tag}
             </div>}
                 
             {/* ICON */}
-            {<div className='absolute top-xs right-sm rounded-full transition-all cursor-pointer p-2 hover:bg-base-0'>
-                <Icon icon={'heart'} defaultIconSet={defaultIconSet} />
+            {<div className='absolute top-1.5 right-2 rounded-full transition-all cursor-pointer p-2 hover:bg-base-0'>
+                <Icon icon={'heart'} />
             </div>}
         {noImage && <MediaImage width={60} height={60} style={{opacity: '0.3'}} />}
         </div>
@@ -71,11 +69,11 @@ export default function ProductCard(props) {
         <div className={contentClasses}>
         
         {/* Title */}
-        <div className={`mb-sm flex flex-row gap-sm justify-between items-center ${titleFont}`}>
+        <div className={`mb-sm flex flex-row gap-2 justify-between items-center ${titleFont}`}>
             <h3 className={`font-semibold`} style={truncateStyle}>
 {title}
             </h3>
-            {rating && <div className='flex-shrink-0 flex flex-row items-center gap-3xs'>
+            {rating && <div className='flex-shrink-0 flex flex-row items-center gap-0.5'>
                 <Icon icon='star' className='flex-shrink-0 scale-75'/>
 {rating}
             </div>}
@@ -110,7 +108,6 @@ ProductCard.propTypes = {
     textSize: PropTypes.oneOf(['small', 'medium']),
     width: PropTypes.oneOf(['100%', '200px', '320px']),
     title: PropTypes.string.isRequired,
-    icon: PropTypes.oneOf(['none', ...allIconNames]),
     tag: PropTypes.string,
     rating: PropTypes.string,
     descriptionFirstLine: PropTypes.string,

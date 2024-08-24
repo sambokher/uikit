@@ -1,15 +1,19 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { spacingMap } from './helpers.js';
 
 export default function Drawer(props) {
     
     const {
         backdrop = 'none',
         position = 'right',
-        paddingX = 'md',
-        paddingY = 'md',
+        
+        paddingX = '16px',
+        paddingY = '16px',
+        gap = '12px',
+
         bgColor = 'base-0',
-        gap = 'base',
+        
         alignItems = 'stretch',
         justifyContent = 'start',
         width = '360px',
@@ -25,12 +29,14 @@ export default function Drawer(props) {
     const overlayClasses = `absolute top-0 flex flex-col w-full h-full`
 
     // STYLES
-    const bgStyles = `flex bg-${bgColor}`;
+    const bgStyles = bgColor ? `bg-${bgColor}` : '';
     const borderStyles = position == 'left' ? 'border-l border-base-300' : 'border-r border-base-300';
-    const gapStyles = gap === 'none' ? '' : `gap-${gap}`;
+    
+    const paddingStyles = `${paddingX ? `px-${spacingMap[paddingX]}` : ''} ${paddingY ? `py-${spacingMap[paddingY]}` : ''}`;
+    const gapStyles = gap ? `gap-${spacingMap[gap]}` : '';
+
     const alignItemsStyles = alignItems ? `items-${alignItems}` : '';
     const justifyContentStyles = justifyContent ? `justify-${justifyContent}` : '';
-    const paddingStyles = `${paddingX ? `px-${paddingX}` : ''} ${paddingY ? `py-${paddingY}` : ''}`;
 
     let wrapperClasses = `flex flex-col relative h-full w-full flex-grow-0 flex-shrink-0 shadow-md ${paddingStyles} ${bgStyles} ${borderStyles}  ${gapStyles} ${alignItemsStyles} ${justifyContentStyles}`
     
@@ -58,11 +64,11 @@ export default function Drawer(props) {
 Drawer.propTypes = {
     backdrop: PropTypes.oneOf(['dark', 'blurred', 'none']),
     position: PropTypes.oneOf(['right', 'left']),
-    paddingX: PropTypes.oneOf(["none", "sm", "base", "md", "lg", 'xl', '2xl']),
-    paddingY: PropTypes.oneOf(["none", "sm", "base", "md", "lg", 'xl', '2xl']),
-    bgColor: PropTypes.oneOf(['base-0', 'base-100', 'base-200', 'none']),
+    paddingX: PropTypes.oneOf(["0px", "8px", "12px", "16px", "24px", "32px", "48px"]),
+    paddingY: PropTypes.oneOf(["0px", "8px", "12px", "16px", "24px", "32px", "48px"]),
+    bgColor: PropTypes.oneOf(['base-0', 'base-100', 'base-200']),
     border: PropTypes.oneOf(['left', 'right', 'none']),
-    gap: PropTypes.oneOf(['none', 'xs', 'sm', 'base', 'md', 'lg', 'xl']),
+    gap: PropTypes.oneOf(["0px", "8px", "12px", "16px", "24px", "32px"]),
     alignItems: PropTypes.oneOf(['start', 'end', 'center', 'stretch']),
     justifyContent: PropTypes.oneOf(['start', 'end', 'center', 'between', 'around', 'evenly']),
     display: PropTypes.bool,

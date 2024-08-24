@@ -1,15 +1,16 @@
-import PropTypes from 'prop-types'
-import * as IconoirIcons from 'iconoir-react';
 import React from 'react';
+import PropTypes from 'prop-types'
+import { Icon } from './index'
+import { iconMap } from './iconMap'
 
-const allIconNames = Object.keys(IconoirIcons);
+const allIconNames = Object.keys(iconMap) || []
 
 export default function Tab(props) {
     
     const {
         text = 'Tab',
         tabColor = 'accent',
-        leftIcon = 'none',
+        icon = 'none',
         state = 'inactive',
         size = 'small',
         borderPosition = 'bottom',
@@ -20,17 +21,17 @@ export default function Tab(props) {
     let sizeStyles = ''
     const direction = borderPosition == 'left' || borderPosition == 'right' ? 'v' : 'h'
     if (direction == 'h') {
-        sizeStyles = size == 'small' ? `py-2xs text-xs gap-xs` :  
-        size == 'large' ? `py-base gap-base text-md`: `py-xs gap-sm text-sm`;
+        sizeStyles = size == 'small' ? `py-1 text-xs gap-1.5` :  
+        size == 'large' ? `py-3 gap-3 text-md`: `py-1.5 gap-2 text-sm`;
     } else {
-        sizeStyles = size == 'small' ? `px-sm text-xs gap-xs` :  
-        size == 'large' ? `px-md text-md gap-base`: `px-base text-sm gap-sm`;
+        sizeStyles = size == 'small' ? `px-2 text-xs gap-1.5` :  
+        size == 'large' ? `px-4 text-md gap-3`: `px-3 text-sm gap-2`;
     }
     
     let wrapperClasses = `flex flex-row items-center justify-center pointer relative ${sizeStyles} border border-transparent group`
 
-    const iconWidth = size == 'small' ? 'w-4' : size == 'large' ? 'w-6' : 'w-5'
-    const LeftIcon = leftIcon !== 'none' && IconoirIcons[leftIcon] ? IconoirIcons[leftIcon] : null;
+    const iconWidth = size == 'small' ? '16px' : size == 'large' ? '24px' : '20px'
+    const IconComponent = icon !== 'none' ? <Icon icon={icon?.toLowerCase()} size={iconWidth} className={`flex-shrink-0`}/> : null;
 
     /* Tailwind safelist
     group-hover:bg-accent, group-hover:bg-accent-content, group-hover:bg-accent-focus,
@@ -55,8 +56,7 @@ export default function Tab(props) {
         {...attributes} {...listeners} 
             className={wrapperClasses}
         >
-            {LeftIcon && <LeftIcon className={`flex-shrink-0 ${iconWidth}`}/>}
-            
+            {IconComponent}
                 {text}
             <div  className={borderClasses} style={borderElement} />
         </div>

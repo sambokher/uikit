@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 export default function ProgressBar(props) {
     
@@ -32,7 +32,7 @@ export default function ProgressBar(props) {
             <div className='flex-shrink-0 leading-none'>{progress}</div>
         </div>
         }
-        <div className='flex flex-row gap-sm w-full items-center'>
+        <div className='flex flex-row gap-2 w-full items-center'>
         <div className='relative flex-grow w-full rounded-full'>
             <div className='rounded-full w-full h-full' style={{ backgroundColor: 'currentColor', opacity: 0.08, height: barHeight }}/>
             <div className={`absolute top-0 left-0 rounded-full bg-${color}`} style={{width: progress, height: barHeight}}/>

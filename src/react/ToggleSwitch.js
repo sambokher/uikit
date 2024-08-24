@@ -17,7 +17,7 @@ export default function ToggleSwitch(props) {
         setIsToggled(isChecked);
     }, [isChecked]);
 
-    const sizeStyles = size == 'small' ? `gap-xs text-xs` : size == 'large' ? `gap-base text-base` : `gap-sm text-sm`;
+    const sizeStyles = size == 'small' ? `gap-1.5 text-xs` : size == 'large' ? `gap-3 text-base` : `gap-2 text-sm`;
 
     const typeMap = {
         'primary': `bg-primary text-primary-content`,

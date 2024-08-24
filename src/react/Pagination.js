@@ -1,15 +1,15 @@
-import PropTypes from 'prop-types'
 import React, { useState } from 'react';
-import Button from './Button';
-import ButtonIcon from './ButtonIcon';
+import PropTypes from 'prop-types'
+import { Button, ButtonIcon } from './index';
+import { spacingMap } from './helpers.js';
 
 export default function Pagination(props) {
     
     const {
         type = 'standard',
         textSize = 'base',
-        paddingX = 'none',
-        paddingY = 'none',
+        paddingX = null, 
+        paddingY = null,
         currentPage = 1,
         totalPages = 3,
         onChange = () => {},
@@ -20,10 +20,10 @@ export default function Pagination(props) {
     const selectedIndex = currentPage
     // local state to imitate page selection, move this state up to the parent and adjust local functions
 
-    const paddingStyles = `${paddingX ? `px-${paddingX}` : ''} ${paddingY ? `py-${paddingY}` : ''}`;    
+    const paddingStyles = `${paddingX ? `px-${spacingMap[paddingX]}` : ''} ${paddingY ? `py-${spacingMap[paddingY]}` : ''}`;    
     const justifyStyle = type == 'mini' ? 'justify-end' : 'justify-between'
     const textStyles = textSize != 'auto' ? `text-${textSize}` : ''
-    let wrapperClasses = `w-full flex flex-row ${justifyStyle} items-center gap-sm ${paddingStyles} ${textStyles}`
+    let wrapperClasses = `w-full flex flex-row ${justifyStyle} items-center gap-2 ${paddingStyles} ${textStyles}`
 
     function handlePageChange(page) {
         if (page < 1 || page > totalPages) return
@@ -82,7 +82,7 @@ export default function Pagination(props) {
                             currentPage={selectedIndex}
                             handlePageChange={handlePageChange}
                         /> : 
-                        <div className='flex flex-row gap-sm'>
+                        <div className='flex flex-row gap-2'>
                             {currentPage} of {totalPages}
                         </div>}
                         {RightButton}
@@ -120,7 +120,7 @@ function PaginationArray ({ totalPages, currentPage, handlePageChange }){
     const paginationArray = createPaginationArray(totalPages, currentPage);
 
     return (
-        <div className='flex flex-row gap-sm'>
+        <div className='flex flex-row gap-2'>
             {paginationArray.map((page, index) => {
                 if (page === '...') {
                     return (
@@ -146,8 +146,8 @@ function PaginationArray ({ totalPages, currentPage, handlePageChange }){
 Pagination.propTypes = {
     type: PropTypes.oneOf(['mini', 'standard']),
     textSize: PropTypes.oneOf(['auto', 'xs', 'sm', 'base', 'md']),
-    paddingX: PropTypes.oneOf(['none', '2xs', 'xs', 'sm', 'base', 'md', 'lg']),
-    paddingY: PropTypes.oneOf(['none', '2xs', 'xs', 'sm', 'base', 'md', 'lg']),
+    paddingX: PropTypes.oneOf(['4px', '6px', '8px', '12px', '16px', '24px', '32px']),
+    paddingY: PropTypes.oneOf(['4px', '6px', '8px', '12px', '16px', '24px', '32px']),
     currentPage: PropTypes.number, // starts at 1
     totalPages: PropTypes.number,
     onChange: PropTypes.func

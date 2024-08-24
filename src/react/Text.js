@@ -1,13 +1,14 @@
+import React from 'react'
 import PropTypes from 'prop-types';
-import React from 'react';
+import { spacingMap } from './helpers.js';
 
 export default function Text(props) {
     
     const {
         textSize = 'auto',
         textColor = 'auto',
-        marginBottom,
-        marginTop,
+        marginBottom = null, 
+        marginTop = null, 
         lineHeight = 'auto',
         text = 'Text..',
         fontWeight = 'auto',
@@ -18,8 +19,9 @@ export default function Text(props) {
 
     const textSizeStyles = textSize !== 'auto' ? `text-${textSize}` : '';
     const textColorStyles = textColor !== 'auto' ?  `text-${textColor}` : '';
-    const marginBottomStyles = marginBottom ? `mb-${marginBottom}` : '';
-    const marginTopStyles = marginTop ? `mt-${marginTop}` : '';
+    const marginBottomStyles = marginBottom ? `mb-${spacingMap[marginBottom]}` : '';
+    const marginTopStyles = marginTop ? `mt-${spacingMap[marginTop]}` : '';
+    
     const lineHeightStyles = lineHeight !== 'auto' ? `leading-${lineHeight}` : '';
     const fontWeightStyles = fontWeight !== 'auto' ? `font-${fontWeight}` : '';
     const textAlignStyles = textAlign ? `text-${textAlign}` : '';
@@ -46,6 +48,8 @@ Text.propTypes = {
     lineHeight: PropTypes.oneOf(['auto', 'none', 'tight', 'normal', 'relaxed', 'loose']),
     textAlign: PropTypes.oneOf(['auto', 'left', 'right', 'center', 'justify']),
     fontWeight: PropTypes.oneOf(['auto', 'hairline', 'thin', 'light', 'normal', 'medium', 'semibold', 'bold', 'extrabold', 'black']),
-    children: PropTypes.node
+    children: PropTypes.node, 
+    marginTop: PropTypes.oneOf(['4px', '6px', '8px', '12px', '16px', '24px', '32px']),
+    marginBottom: PropTypes.oneOf(['4px', '6px', '8px', '12px', '16px', '24px', '32px']),
 };
 

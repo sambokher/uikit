@@ -1,5 +1,6 @@
-import PropTypes from 'prop-types'
 import React from 'react';
+import PropTypes from 'prop-types'
+import { spacingMap } from './helpers.js';
 
 export default function Divider(props) {
     
@@ -7,13 +8,15 @@ export default function Divider(props) {
         length = 'full',
         color = 'base-300',
         thickness = '1px',
-        margins = 'xs',
+        
+        margins = null,
+        
         direction = 'horizontal',
         attributes,
         listeners
       } = props;
 
-    const marginStyles = direction == 'vertical' ? `h-${length} px-${margins}` : `w-${length} py-${margins}`
+    const marginStyles = direction == 'vertical' ? `h-${length} px-${spacingMap[margins]}` : `w-${length} py-${spacingMap[margins]}`
     
     let wrapperClasses = `${marginStyles}`
 
@@ -35,7 +38,7 @@ export default function Divider(props) {
 Divider.propTypes = {
     color: PropTypes.oneOf(['base-0', 'base-100', 'base-200', 'base-300', 'base-content', 'primary', 'accent', 'success', 'warning', 'error', 
     'info', 'success-content', 'warning-content', 'error-content', 'info-content']),
-    margins: PropTypes.oneOf(['none', 'xs', 'sm', 'base', 'md', 'lg']),
+    margins: PropTypes.oneOf(['6px', '8px', '12px', '16px', '24px']),
     direction: PropTypes.oneOf(['horizontal', 'vertical']),
     thickness: PropTypes.oneOf(['0.5px', '1px', '2px', '3px', '4px']),
     length: PropTypes.oneOf(['full', '3/4', '2/3', '1/2', '1/3']),

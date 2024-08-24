@@ -1,8 +1,9 @@
+import React from 'react'
 import PropTypes from 'prop-types'
-import * as IconoirIcons from 'iconoir-react';
-import React from 'react';
+import { Icon } from './index'
+import { iconMap } from './iconMap'
 
-const allIconNames = Object.keys(IconoirIcons);
+const allIconNames = Object.keys(iconMap) || []
 
 export default function Tag(props) {
     
@@ -12,7 +13,7 @@ export default function Tag(props) {
         color = 'info-content',
         size = 'medium',
         leftIcon = 'none',
-        rightIcon = 'Xmark',
+        rightIcon = 'close',
         isPill = true,
         attributes,
         listeners
@@ -26,16 +27,16 @@ export default function Tag(props) {
     }
     
     const sizeStyleMap = {
-        small: `text-xs py-3xs gap-xs ${isPill ? 'rounded-full px-sm' : 'rounded px-xs'}`,
-        medium: `text-sm py-2xs gap-sm ${isPill ? 'rounded-full px-base' : 'rounded-md px-sm'}`,
+        small: `text-xs py-0.5 gap-1.5 ${isPill ? 'rounded-full px-2' : 'rounded px-1.5'}`,
+        medium: `text-sm py-1 gap-2 ${isPill ? 'rounded-full px-3' : 'rounded-md px-2'}`,
     };
 
     const sizeStyles = sizeStyleMap[size]
 
     let wrapperClasses = `flex font-semibold items-center flex-shrink-0 justify-center ${sizeStyles} ${styleMap[type]}`
     
-    const LeftIconComponent = leftIcon !== 'none' && IconoirIcons[leftIcon] ? IconoirIcons[leftIcon] : null;
-    const RightIconComponent = rightIcon !== 'none' && IconoirIcons[rightIcon] ? IconoirIcons[rightIcon] : null;
+    const LeftIconComponent = leftIcon !== 'none' ? <Icon icon={leftIcon?.toLowerCase()} className={`flex-shrink-0`}/> : null;
+    const RightIconComponent = rightIcon !== 'none' ? <Icon icon={rightIcon?.toLowerCase()} className='flex-shrink-0 scale-90'/> : null;
 
     const truncateStyle = { overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'}
 
@@ -47,11 +48,11 @@ export default function Tag(props) {
                 backgroundColor: type == 'light' && `color-mix(in srgb, var(--${color}) 16%, transparent)`
             }}
         >   
-        {LeftIconComponent && <LeftIconComponent className='flex-shrink-0' />}
+        {LeftIconComponent}
         <span style={truncateStyle} className='flex-grow'>
             {text}
         </span>
-        {RightIconComponent && <RightIconComponent className='flex-shrink-0 scale-90' />}
+        {RightIconComponent}
         </div>
     ); 
 }
@@ -62,7 +63,7 @@ Tag.propTypes = {
     color: PropTypes.oneOf(['info-content', 'primary', 'accent', 'base-200', 'success-content', 'base-content', 'warning-content', 'error-content']),
     size: PropTypes.oneOf(['small', 'medium']),
     leftIcon: PropTypes.oneOf(['none', ...allIconNames]),
-    rightIcon: PropTypes.oneOf(['none', 'Xmark', 'Check', 'CheckCircle', 'XmarkCircleSolid', 'XmarkCircle']), 
+    rightIcon: PropTypes.oneOf(['none', 'close', 'check', 'check-circle']), 
     isPill: PropTypes.bool,
 };
 

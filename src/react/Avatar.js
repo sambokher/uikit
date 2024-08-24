@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types'
 import React from 'react';
+import PropTypes from 'prop-types'
 
 export default function Avatar(props) {
     
@@ -89,7 +89,7 @@ export default function Avatar(props) {
 Avatar.propTypes = {
     type: PropTypes.oneOf(['image', 'initials', 'icon']),
     imageSrc: PropTypes.string,
-    bgColor: PropTypes.oneOf(['base-0', 'base-50', 'base-100', 'base-200', 'base-300', 'accent', 'primary', 'base-content']),
+    bgColor: PropTypes.oneOf(['base-0', 'base-50', 'base-100', 'base-200', 'base-300', 'accent', 'primary', 'base-content', 'success-content', 'error-content', 'warning-content', 'base-content']),
     size: PropTypes.oneOf(['16px', '20px', '24px', '28px', '32px', '40px', '48px']),
     indicatorType: PropTypes.oneOf(['none', 'notification', 'status']),
     indicatorColor: PropTypes.oneOf(['success-content', 'warning-content', 'info-content', 'error-content', 'base-300']),

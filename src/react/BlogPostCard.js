@@ -1,7 +1,8 @@
+import React from 'react';
 import PropTypes from 'prop-types';
-import Icon from './Icon'
+import { Icon } from './index'
 import { iconMap } from './iconMap'
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 
 const allIconNames = Object.keys(iconMap) || []
 
@@ -26,7 +27,7 @@ export default function BlogPostCard(props) {
     const sizeStyles = `w-full h-auto ${textSize == 'small' ? 'text-sm' : 'text-base'}`
     const truncateStyle = { overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'}
 
-    let wrapperClasses = `flex flex-col items-stretch justify-start gap-base ${sizeStyles}`
+    let wrapperClasses = `flex flex-col items-stretch justify-start gap-3 ${sizeStyles}`
 
     const noImage = !imageSrc;
     const imageStyles = useMemo(() => ({
@@ -52,7 +53,7 @@ export default function BlogPostCard(props) {
         </div>
         
         {/* CONTENT BLOCK */}
-        <div className={`flex flex-col flex-grow gap-xs`} style={truncateStyle}>
+        <div className={`flex flex-col flex-grow gap-1.5`} style={truncateStyle}>
             
             {/* Title */}
             <h3 className={`${titleFont} font-semibold `} style={truncateStyle}>
@@ -61,11 +62,11 @@ export default function BlogPostCard(props) {
 
             {/* post info */}
             {(author_name || posted_date ) && 
-            <div className={`flex flex-row justify-between w-full gap-sm items-end ${smallerFont}`} style={{maxWidth: '100%'}}>
+            <div className={`flex flex-row justify-between w-full gap-2 items-end ${smallerFont}`} style={{maxWidth: '100%'}}>
             <span className='font-medium truncate' style={truncateStyle}>
 {author_name}
             </span>
-            {posted_date && <div className='flex-shrink-0 flex flex-row items-center gap-xs'>
+            {posted_date && <div className='flex-shrink-0 flex flex-row items-center gap-1.5'>
 {posted_date}
                 <Icon icon='calendar' className='flex-shrink-0 scale-75' />
             </div>

@@ -1,12 +1,18 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
+import { spacingMap } from './helpers.js';
 
 export default function Hero(props) {
     
     const {
-        background = 'none',
+        paddingX = null,
+        paddingY = null,
+        gap = null, 
+
+        background = null,
+
         hasBorder = false,
-        gap = 'lg',
+        
         alignItems = 'center',
         flexDirection = 'flex-col',
         fontSize = 'base',
@@ -14,23 +20,23 @@ export default function Hero(props) {
         bgOverlay = 'darker',
         height = 320,
         justifyContent = 'between',
-        paddingX = null,
-        paddingY = null,
         width = 'stretch',
         children,
         attributes,
         listeners
       } = props;
     
+
+    const bgStyles = background ?`bg-${background}` : '';
+    const fontColor = (!background || background == 'none') ? '' : background == 'base-900' ? `text-base-0` : background?.startsWith('base') ? 'text-base-content' : `text-${background}-content`
+    const paddingStyles = `${paddingX ? ` px-${spacingMap[paddingX]}` : ''}${paddingY ? ` py-${spacingMap[paddingY]}` : ''}`;
+    const gapStyles = gap ? `gap-${spacingMap[gap]}` : '';
+    
     const heightStyles = height ? `h-[${height}px]` : ''
-    const bgStyles = `bg-${background}`;
     const borderStyles = hasBorder ? 'border-b border-base-300' : '';
-    const gapStyles = gap === 'none' ? '' : `gap-${gap}`;
     const alignItemsStyles = alignItems ? `items-${alignItems}` : '';
     const fontSizeStyles = `text-${fontSize}`;
     const justifyContentStyles = justifyContent ? `justify-${justifyContent}` : '';
-    const fontColor = background != 'none' ?  (background == 'base-900' || background == 'base-700') ? `text-base-0` : background?.startsWith('base') ? 'text-base-content' : `text-${background}-content` : ''
-    const paddingStyles = `${paddingX ? `px-${paddingX}` : ''} ${paddingY ? `py-${paddingY}` : ''}`;    
     
 
     let classes = `flex w-full border-box flex-grow flex-shrink-0
@@ -82,16 +88,17 @@ function getImageStyles(bgOverlay, bgImageSrc) {
 
 Hero.propTypes = {
     width: PropTypes.oneOf(['stretch', '780px', '960px', '1200px', '1440px']),
-    paddingX: PropTypes.oneOf(["none", "sm", "base", "md", "lg", 'xl', '2xl']),
-    paddingY: PropTypes.oneOf(["none", "sm", "base", "md", "lg", 'xl', '2xl']),
+    paddingX: PropTypes.oneOf(["6px", "8px", "12px", "16px", "24px", "32px", "48px", '64px']),
+    paddingY: PropTypes.oneOf(["6px", "8px", "12px", "16px", "24px", "32px", "48px", '64px']),
+    gap: PropTypes.oneOf(["4px", "6px", "8px", "10px", "12px", "16px", "24px", "32px", "48px"]),
+
     background: PropTypes.oneOfType([
-        PropTypes.oneOf(['base-0', 'base-50', 'base-100', 'base-200', 'none', 'base-700', 'base-900']),
+        PropTypes.oneOf(['base-0', 'base-50', 'base-100', 'base-200', 'base-700', 'base-900']),
         PropTypes.string]),
     bottomBorder: PropTypes.bool,
-    gap: PropTypes.oneOf(['none', 'sm', 'base', 'md', 'lg']),
     flexDirection: PropTypes.oneOf(["flex-col", "flex-row"]),
     alignItems: PropTypes.oneOf(['start', 'end', 'center', 'stretch']),
-    justifyContent: PropTypes.oneOf(['start', 'center', 'end', 'between', 'around', 'evenly']),
+    justifyContent: PropTypes.oneOf(['start', 'center', 'end', 'between']),
     fontSize: PropTypes.oneOf(['xs', 'sm', 'base', 'md', 'lg', 'xl']),
     height: PropTypes.number,
     bgImageSrc: PropTypes.string,

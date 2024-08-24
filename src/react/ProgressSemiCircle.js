@@ -1,5 +1,5 @@
+import React from 'react'
 import PropTypes from 'prop-types'
-import React from 'react';
 
 export default function ProgressSemiCircle(props) {
     
@@ -40,7 +40,7 @@ export default function ProgressSemiCircle(props) {
         '80px': 'text-base'
     }
 
-    let wrapperClasses = `flex flex-col items-center gap-2xs`
+    let wrapperClasses = `flex flex-col items-center gap-1`
 
     return (
         <div   

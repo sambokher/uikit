@@ -14,11 +14,11 @@ export default function Icon(props) {
 
     const {
         icon = 'add',
-        library = 'auto',
+        library, 
         color = 'auto',
         size = 'auto',
-        defaultIconSet = 'iconoir',
         className = '',
+
         attributes,
         listeners
       } = props;
@@ -27,6 +27,9 @@ export default function Icon(props) {
     const colorStyles = (color == 'auto' || color == 'none') ? '' : `text-${color}`
     let wrapperClasses = `${colorStyles}`
     
+    let globalIconSet = getComputedStyle(document.body).getPropertyValue('--iconset').trim()
+    
+    const fallbackIconSet = 'iconoir'
     const libraryMap = {
         feather: FeatherIcons,
         ionic: Ionicons,
@@ -35,7 +38,9 @@ export default function Icon(props) {
         iconoir: IconoirIcons,
     };
     
-    const useLibrary = (library == 'auto' || !library || libraryMap[library] === undefined) ? defaultIconSet : library;
+    const defaultIconSet = libraryMap[globalIconSet] ? globalIconSet : fallbackIconSet;
+    
+    const useLibrary = (!library || libraryMap[library] === undefined) ? defaultIconSet : library;
     const mappedIconName = getIconName(icon, useLibrary);
     
     
@@ -62,6 +67,7 @@ Icon.propTypes = {
     icon: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf(allIconNames)]),
     color: PropTypes.oneOf(['auto', 'none', 'primary', 'accent', 'base-content', 'info-content', 'warning-content', 'success-content', 'error-content', 'base-100', 'base-200', 'base-300']),
     size: PropTypes.oneOf(['auto', '12px', '16px', '20px', '24px', '32px']),
-    library: PropTypes.oneOf(['feather', 'ionic', 'material', 'heroicons', 'iconoir', 'auto'])
+    library: PropTypes.oneOf(['feather', 'ionic', 'material', 'heroicons', 'iconoir']), 
+    className: PropTypes.string,
 };
 

@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { useState } from 'react';
-import ButtonIcon from './ButtonIcon'
-import Icon from './Icon'
+import { ButtonIcon, Icon } from './index'
 
 export default function Search(props) {
     
@@ -21,7 +20,7 @@ export default function Search(props) {
     const [ isFocused, setIsFocused ] = useState(false);
     const [ query , setQuery] = useState('')
 
-    const sizeStyles = size == 'small' ? `py-2xs px-sm gap-xs text-xs` : size == 'large' ? `py-sm px-base gap-base text-base` : `py-xs px-sm gap-base text-sm`;
+    const sizeStyles = size == 'small' ? `py-1 px-2 gap-1.5 text-xs` : size == 'large' ? `py-2 px-3 gap-3 text-base` : `py-1.5 px-2 gap-3 text-sm`;
     const cornerStyles = size == "small" ? "rounded" : size == "large" ? "rounded-lg" : "rounded-md"
     
     const widthStyle = width != 'auto' ? `w-${width}` : size == 'small' ? 'min-w-[120px]' : size == 'large' ? 'min-w-[200px]' : 'min-w-[160px]'
@@ -42,7 +41,7 @@ export default function Search(props) {
     const fontColor = (bgColor && bgColor !== 'none') ? 'text-base-content' : '' // inherit from parent
     let classes = `w-full flex items-center justify-between truncate ellipsis relative box-border font-medium ${sizeStyles} ${cornerStyles} ${bgStyles} ${stateStyles} ${fontColor}`
     
-    const gapStyles = size == 'small' ? 'gap-3xs' : size == 'large' ? 'gap-xs' : 'gap-2xs'
+    const gapStyles = size == 'small' ? 'gap-0.5' : size == 'large' ? 'gap-1.5' : 'gap-1'
     let wrapperClasses = `flex flex-col ${widthStyle} ${gapStyles} relative`
 
     const iconWidth = size == 'small' ? 'w-4' : size == 'large' ? 'w-6' : 'w-5'
@@ -69,7 +68,7 @@ export default function Search(props) {
             />  
         
         {activeSearch && 
-        <div className={`absolute text-xs bg-${bgColor} cursor-pointer rounded ${size == 'large' ? 'right-sm' : 'right-xs'} top-1/2 -translate-y-1/2 transition-all rounded-lg`}>
+        <div className={`absolute text-xs bg-${bgColor} cursor-pointer rounded ${size == 'large' ? 'right-2' : 'right-1.5'} top-1/2 -translate-y-1/2 transition-all rounded-lg`}>
             <ButtonIcon icon='close'
             size="small"
             type={"ghost"}

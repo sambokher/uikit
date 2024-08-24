@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const getIconName = (preformattedName, library) => {
     const libraryName = iconMap[preformattedName]?.[library];
     
@@ -140,6 +138,13 @@ export const iconMap = {
         material: 'check',
         heroicons: 'check',
         iconoir: 'check',
+    },
+    'check-circle': {
+        feather: 'check-circle',
+        ionic: 'checkmark-circle-outline',
+        material: 'check-circle',
+        heroicons: 'check-circle',
+        iconoir: 'check-circle',
     },
     'truck': {
         feather: 'truck',
@@ -527,4 +532,69 @@ export const iconMap = {
         heroicons: 'academic-cap',
         iconoir: 'graduation-cap',
     },
+    'info': {
+        feather: 'info',
+        ionic: 'information-circle-outline',
+        material: 'info',
+        heroicons: 'information-circle',
+        iconoir: 'info-circle',
+    },
+    'cloud': {
+        feather: 'cloud',
+        ionic: 'cloud-outline',
+        material: 'cloud',
+        heroicons: 'cloud',
+        iconoir: 'cloud',
+    },
+    'cloud-upload': {
+        feather: 'upload',
+        ionic: 'cloud-upload-outline',
+        material: 'cloud-upload',
+        heroicons: 'cloud-upload',
+        iconoir: 'cloud-upload',
+    },
+    'upload': {
+        feather: 'upload',
+        ionic: 'cloud-upload-outline',
+        material: 'cloud-upload',
+        heroicons: 'cloud-upload',
+        iconoir: 'upload',
+    },
+    'flower': {
+        feather: 'loader',
+        ionic: 'flower-outline',
+        material: 'filter-vintage',
+        heroicons: 'flower',
+        iconoir: 'flower',
+    },
+    'moon' : {
+        feather: 'moon',
+        ionic: 'moon-outline',
+        material: 'dark-mode',
+        heroicons: 'moon',
+        iconoir: 'half-moon',
+    },
+    'sun': {
+        feather: 'sun',
+        ionic: 'sunny-outline',
+        material: 'sun',
+        heroicons: 'sun',
+        iconoir: 'sun-light',
+    },
+    'smartphone': {
+        feather: 'smartphone',
+        ionic: 'phone-portrait-outline',
+        material: 'smartphone',
+        heroicons: 'device-mobile',
+        iconoir: 'smartphone-device',
+    },
+    'code': {
+        feather: 'code',
+        ionic: 'code-outline',
+        material: 'code',
+        heroicons: 'code',
+        iconoir: 'code',
+    },
+    
 }
+

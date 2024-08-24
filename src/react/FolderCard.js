@@ -1,7 +1,8 @@
+import React from 'react';
 import PropTypes from 'prop-types';
-import Icon from './Icon'
+import { Icon } from './index'
 import { iconMap } from './iconMap'
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 
 const allIconNames = Object.keys(iconMap) || []
 
@@ -23,7 +24,7 @@ export default function FolderCard(props) {
       
 
     const sizeStyles = `w-full h-auto ${textSize == 'small' ? 'text-sm' : 'text-base'}`
-    let wrapperClasses = `flex flex-col items-stretch justify-start gap-base ${sizeStyles}`
+    let wrapperClasses = `flex flex-col items-stretch justify-start gap-3 ${sizeStyles}`
 
     const contentClasses = `flex flex-col flex-grow`
     const truncateStyle = { overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'}
@@ -56,9 +57,9 @@ export default function FolderCard(props) {
         <div className={contentClasses}>
             
             {/* Title */}
-            <div className={`flex flex-row justify-between gap-sm items-start ${titleFont} group `}>
+            <div className={`flex flex-row justify-between gap-2 items-start ${titleFont} group `}>
                 {IconComponent}
-                <div className='flex-grow flex flex-col gap-2xs' style={truncateStyle}>
+                <div className='flex-grow flex flex-col gap-1' style={truncateStyle}>
                     <h3 className={`font-semibold`}>
 {title}
                     </h3>

@@ -1,5 +1,5 @@
+import React from 'react'
 import PropTypes from 'prop-types'
-import React from 'react';
 
 export default function Status(props) {
 
@@ -14,8 +14,8 @@ export default function Status(props) {
       } = props;
     
     const sizeStyleMap = {
-        small: `py-2xs px-sm gap-xs text-xs max-w-[120px]`,
-        medium: `py-xs px-sm gap-sm text-sm max-w-[160px]`
+        small: `py-1 px-2 gap-1.5 text-xs max-w-[120px]`,
+        medium: `py-1.5 px-2 gap-2 text-sm max-w-[160px]`
     };
     const cornerStyles = isPill ? 'rounded-full' : size === 'small' ? 'rounded' : 'rounded-md';
     const sizeStyles = sizeStyleMap[size]

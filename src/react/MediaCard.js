@@ -1,6 +1,7 @@
+import React from 'react';
 import PropTypes from 'prop-types';
-import Icon from './Icon';
-import React, { useMemo } from 'react';
+import { Icon } from './index'
+import { useMemo } from 'react';
 
 export default function MediaCard(props) {
 
@@ -10,7 +11,7 @@ export default function MediaCard(props) {
         textSize = 'small',
         title = "Title",
         description = "Short description of media",
-        type = "mediaGallery",
+        type = "oneMedia",
         corners = "md",
         width = '100%',
         defaultIconSet,
@@ -22,7 +23,7 @@ export default function MediaCard(props) {
     const sizeStyles = `w-full h-auto ${textSize == 'small' ? 'text-sm' : 'text-base'}`
     const truncateStyle = { overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'}
 
-    let wrapperClasses = `flex flex-col items-stretch justify-start gap-base ${sizeStyles}`
+    let wrapperClasses = `flex flex-col items-stretch justify-start gap-3 ${sizeStyles}`
 
     const noImage = !imageSrc;
     
@@ -67,9 +68,9 @@ export default function MediaCard(props) {
         
         {/* CONTENT BLOCK */}
         {(title || description) &&
-        <div className='flex flex-row gap-sm justify-between items-start group relative'>
+        <div className='flex flex-row gap-2 justify-between items-start group relative'>
             {/* TITLE & DESCRIPTION */}
-            <div className='flex-grow flex flex-col gap-xs' style={truncateStyle}>
+            <div className='flex-grow flex flex-col gap-1.5' style={truncateStyle}>
                 <h3 className={`${titleFont} font-semibold`}>
 {title}
                 </h3>

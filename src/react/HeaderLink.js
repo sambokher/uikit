@@ -1,6 +1,7 @@
+import React from 'react';
 import PropTypes from 'prop-types'
-import React, { useEffect, useState } from 'react';
-import Icon from './Icon'
+import { useEffect, useState } from 'react';
+import { Icon } from './index'
 import { iconMap } from './iconMap'
 
 const allIconNames = Object.keys(iconMap) || []
@@ -15,7 +16,7 @@ export default function HeaderLink(props) {
         size = 'medium',
         width = 'auto',
         dropdownBgColor = 'base-0',
-        background = 'none',
+        background = null,
         showDropdown = false,
         onClick = () => {},
         defaultIconSet,
@@ -27,12 +28,12 @@ export default function HeaderLink(props) {
       } = props;
 
     const fontWeightStyles = fontWeight !== 'inherit' ? `font-${fontWeight}` : '';
-    const sizeStyles = size == 'small' ? `py-2xs px-xs gap-xs text-xs` : `py-xs px-base gap-sm text-sm`;
+    const sizeStyles = size == 'small' ? `py-1 px-1.5 gap-1.5 text-xs` : `py-1.5 px-3 gap-2 text-sm`;
     const widthStyle = width == 'full' ? `w-full self-stretch` : `w-${width}`
     const cornerStyles = size == "small" ? "rounded" : size == "large" ? "rounded-lg" : "rounded-md"
     const borderStyles = `border border-transparent`
-    const bgStyles = background == 'none' ? '' : `bg-${background} transition-all hover:brightness-95` 
-    const fontColor = background == 'none' ? '' : background?.startsWith('base') ? 'text-base-content' : `text-${background}-content`;
+    const bgStyles = (!background || background == 'none') ? '' : `bg-${background} transition-all hover:brightness-95` 
+    const fontColor = (!background || background == 'none') ? 'text-inherit' : background?.startsWith('base') ? 'text-base-content' : `text-${background}-content`;
 
     let linkClasses = `flex flex-row items-center justify-between relative cursor-default ${widthStyle} ${fontWeightStyles} ${sizeStyles} ${bgStyles} ${cornerStyles} ${fontColor} ${borderStyles}`
     
@@ -45,7 +46,7 @@ export default function HeaderLink(props) {
     
 
     const shadowStyles = size == 'small' ? 'shadow-sm' : 'shadow'
-    const dropdownSizeStyles = size == 'small' ? 'py-xs px-xs rounded-md gap-2xs' : 'p-sm rounded-lg gap-xs'
+    const dropdownSizeStyles = size == 'small' ? 'py-1.5 px-1.5 rounded-md gap-1' : 'p-2 rounded-lg gap-1.5'
     const dropwdownClasses = `absolute -bottom-2 left-1/2 -translate-x-1/2 text-base-content translate-y-full border flex flex-col min-w-full bg-${dropdownBgColor} ${dropdownSizeStyles} ${shadowStyles}` 
     
     const [ open, setOpen ] = useState(showDropdown)
@@ -78,7 +79,7 @@ export default function HeaderLink(props) {
 
 HeaderLink.propTypes = {
     background: PropTypes.oneOfType([
-        PropTypes.oneOf(["base-0", "base-100", "base-200", "primary", "accent", "base-900", "none"]),
+        PropTypes.oneOf(["base-0", "base-100", "base-200", "primary", "accent", "base-900"]),
         PropTypes.string]),
     text: PropTypes.string,
     fontWeight: PropTypes.oneOf(['auto', 'light', 'normal', 'medium', 'semibold']),

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 export default function RadioButton(props) {
     
@@ -14,8 +14,8 @@ export default function RadioButton(props) {
         attributes, listeners } = props
     
 
-    const sizeStyles = size == 'small' ? `gap-xs text-xs`: size == 'large' ? `gap-base text-base` : `gap-sm text-sm`;
-    const paddingStyles = size == 'small' ? `py-2xs px-xs` : size == 'large' ? `py-sm px-base` : `py-xs px-sm`;
+    const sizeStyles = size == 'small' ? `gap-1.5 text-xs`: size == 'large' ? `gap-3 text-base` : `gap-2 text-sm`;
+    const paddingStyles = size == 'small' ? `py-1 px-1.5` : size == 'large' ? `py-2 px-3` : `py-1.5 px-2`;
         
     const fillColorMap = {
         'default': `border border-primary`,

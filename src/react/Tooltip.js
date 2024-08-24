@@ -1,12 +1,12 @@
-import PropTypes from 'prop-types';
-import React from 'react';;
+import React from 'react';
+import PropTypes from 'prop-types'
 
 export default function Tooltip(props) {
     const { text, direction, size, bgColor, attributes, listeners } = props
     
     const sizeStylesMap = {
-        small: `py-3xs px-sm text-xs rounded-sm shadow-sm`,
-        medium: `py-2xs px-base text-sm rounded shadow-sm`
+        small: `py-0.5 px-2 text-xs rounded-sm shadow-sm`,
+        medium: `py-1 px-3 text-sm rounded shadow-sm`
     }
 
     // tailwind safelist -left-2 -left-4 -right-2 -right-4 -top-2 -top-4 -bottom-2 -bottom-4

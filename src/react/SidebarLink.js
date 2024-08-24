@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { useEffect, useState } from 'react';
-import Tooltip from './Tooltip';
-import Icon from './Icon'
+import { Tooltip } from './index';
+import { Icon } from './index'
 import { iconMap } from './iconMap'
 
 const allIconNames = Object.keys(iconMap) || []
@@ -32,12 +32,12 @@ export default function SidebarLink(props) {
     const fontWeightStyles = fontWeight == 'auto' ? 'font-normal' : `font-${fontWeight}`
     
     const sizeStylesMap = {
-        small: usePadding ? `py-2xs px-sm text-xs` : `py-2xs px-0 text-xs`,
-        medium: usePadding ? `py-xs px-sm text-sm` : `py-xs px-0 text-sm`,
-        large: usePadding ? `py-base px-base text-base` : `py-base px-0 text-base`
+        small: usePadding ? `py-1 px-2 text-xs` : `py-1 px-0 text-xs`,
+        medium: usePadding ? `py-1.5 px-2 text-sm` : `py-1.5 px-0 text-sm`,
+        large: usePadding ? `py-3 px-3 text-base` : `py-3 px-0 text-base`
         
     }
-    const gapStyles = isCollapsed ? 'gap-0' : size == 'small' ? 'gap-xs' : size == 'large' ? 'gap-base' : 'gap-base'
+    const gapStyles = isCollapsed ? 'gap-0' : size == 'small' ? 'gap-1.5' : size == 'large' ? 'gap-3' : 'gap-2' // was 3 for medium
     
     const sizeStyles = sizeStylesMap[size] || sizeStylesMap['medium']
 
@@ -46,7 +46,7 @@ export default function SidebarLink(props) {
     const cornerStyles = size == "small" ? "rounded" : size == "large" ? "rounded-lg" : "rounded-md"
     const borderStyles = `border border-transparent`
     
-    const innerGap = size == 'small' ? 'gap-0' : size == 'large' ? 'gap-xs' : 'gap-2xs'
+    const innerGap = size == 'small' ? 'gap-0' : size == 'large' ? 'gap-1.5' : 'gap-1'
     let wrapperClasses = `transition-all relative group flex flex-col duration-75
         ${widthStyle} ${fontWeightStyles} ${innerGap}`
 

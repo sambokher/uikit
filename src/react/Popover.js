@@ -1,7 +1,6 @@
+import React from 'react'
 import PropTypes from 'prop-types'
-import * as IconoirIcons from 'iconoir-react';
-import Button from './Button';
-import React from 'react';
+import { Button, Icon } from './index';
 
 export default function Popover(props) {
 
@@ -27,7 +26,7 @@ export default function Popover(props) {
 
     let wrapperClasses = `flex flex-col relative items-stretch md:mt-32 justify-start shadow-md mx-auto ${bgStyles} ${sizeStyles} ${borderStyles}`
 
-    const titleClasses = `flex flex-row items-start text-base font-medium w-full justify-between border-b border-base-200 px-base py-sm`
+    const titleClasses = `flex flex-row items-start text-base font-medium w-full justify-between border-b border-base-200 px-3 py-2`
     const noTitle = !title || title === ''
     return (
         /* Overlay */
@@ -41,7 +40,7 @@ export default function Popover(props) {
         }}>
         <div className={wrapperClasses}
             >
-        <IconoirIcons.Xmark className='absolute right-sm p-[2px] rounded bg-base-0 hover:bg-base-100 top-sm cursor-pointer hover:scale-110 transition-all opacity-70 hover:opacity-100'/>
+        <Icon icon='close' className='absolute right-2 p-0.5 rounded bg-base-0 hover:bg-base-100 top-2 cursor-pointer hover:scale-110 transition-all opacity-70 hover:opacity-100'/>
         {!noTitle && 
         <div className={titleClasses}>
             <h2 className='font-semibold text-lg'>
@@ -49,25 +48,25 @@ export default function Popover(props) {
             </h2>
         </div>}
 
-        <div className={`flex flex-col flex-grow justify-between px-base py-sm pb-base text-base ${noTitle ? 'pr-xl' : '' }`}>
+        <div className={`flex flex-col flex-grow justify-between px-3 py-2 pb-3 text-base ${noTitle ? 'pr-8' : '' }`}>
 {text}
         </div>
         {/* Buttons */}
-        <div className={`flex flex-row items-center flex-grow-0 flex-shrink-0 justify-end gap-sm px-base py-sm`}>
+        <div className={`flex flex-row items-center flex-grow-0 flex-shrink-0 justify-end gap-2 px-3 py-2`}>
             {secondaryAction && 
             <Button
                 text={secondaryAction} 
                 size={'small'}
                 type={'secondary'}
                 style={'outlined'}
-                marginTop={'sm'}
+                marginTop={'8px'}
             />} 
             {primaryAction && 
             <Button 
                 text={primaryAction} 
                 size={'small'}
                 type={'primary'}
-                marginTop={'sm'}
+                marginTop={'8px'}
             />}
         </div>
         </div>

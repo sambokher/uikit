@@ -1,12 +1,17 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
+import { spacingMap } from './helpers.js';
+
 
 export default function FeaturePanel(props) {
     
     const {
-        padding = 'md',
-        background = 'base-0',
-        gap = 'base',
+        paddingX = null,
+        paddingY = null,
+        gap = null,
+
+        background = null, 
+        
         alignItems = 'stretch',
         justifyContent = 'start',
         display = true,
@@ -16,12 +21,13 @@ export default function FeaturePanel(props) {
         attributes,
         listeners
       } = props;
-    
-    const paddingStyles = padding == 'none' ? `p-0` : `p-${padding}`
+
+    const bgStyles = background ?`bg-${background}` : '';
+    const fontColor = (!background || background == 'none') ? '' : background == 'base-900' ? `text-base-0` : background?.startsWith('base') ? 'text-base-content' : `text-${background}-content`
+    const paddingStyles = `${paddingX ? ` px-${spacingMap[paddingX]}` : ''}${paddingY ? ` py-${spacingMap[paddingY]}` : ''}`;
+    const gapStyles = gap ? `gap-${spacingMap[gap]}` : '';
+
     const fontSize = `text-`+textSize
-    const bgStyles = `bg-${background}`;
-    const fontColor = background != 'none' ? background == 'base-content' ? `text-base-0` : background?.startsWith('base') ? 'text-base-content' : `text-${background}-content` : ''
-    const gapStyles = gap === 'none' ? '' : `gap-${gap}`
     const alignItemsStyles = `items-${alignItems}`
     const justifyContentStyles = justifyContent ? `justify-${justifyContent}` : '';
 
@@ -43,11 +49,14 @@ export default function FeaturePanel(props) {
 
 FeaturePanel.propTypes = {
     background: PropTypes.oneOfType([
-        PropTypes.oneOf(['base-0', 'base-50', 'base-100', 'base-200', 'primary', 'accent', 'base-content', 'none']),
+        PropTypes.oneOf(['base-0', 'base-50', 'base-100', 'base-200', 'primary', 'accent', 'base-content']),
         PropTypes.string]),
     backgroundImageSrc: PropTypes.string,
-    padding: PropTypes.oneOf(['none', 'sm', 'md', 'lg', 'xl', '2xl']),
-    gap: PropTypes.oneOf(['none', 'xs', 'sm', 'base', 'md', 'lg', 'xl']),
+    
+    paddingX: PropTypes.oneOf(["6px", "8px", "12px", "16px", "24px", "32px", "48px", '64px']),
+    paddingY: PropTypes.oneOf(["6px", "8px", "12px", "16px", "24px", "32px", "48px", '64px']),
+    gap: PropTypes.oneOf(["4px", "6px", "8px", "10px", "12px", "16px", "24px", "32px", "48px"]),
+
     alignItems: PropTypes.oneOf(['start', 'center', 'end', 'stretch']),
     justifyContent: PropTypes.oneOf(['start', 'center', 'end', 'between', 'around', 'evenly']),
     display: PropTypes.bool,

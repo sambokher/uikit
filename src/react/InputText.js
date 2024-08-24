@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import Icon from './Icon'
+import { Icon } from './index'
 import { iconMap } from './iconMap'
 
 const allIconNames = Object.keys(iconMap) || []
@@ -33,7 +33,7 @@ export default function InputText(props) {
     
     const [isFocused, setIsFocused] = useState(false);
 
-    const sizeStyles = size == 'small' ? `py-2xs px-sm gap-xs text-xs` : size == 'large' ? `py-sm px-base gap-base text-base` : `py-xs px-sm gap-base text-sm`;
+    const sizeStyles = size == 'small' ? `py-1 px-2 gap-1.5 text-xs` : size == 'large' ? `py-2 px-3 gap-3 text-base` : `py-1.5 px-2 gap-3 text-sm`;
     const cornerStyles = size == "small" ? "rounded" : size == "large" ? "rounded-lg" : "rounded-md"
     
     let stateStyles = hasOutline ? isFocused ? `border border-accent` : `border border-base-300` : 'border border-transparent'
@@ -64,7 +64,7 @@ export default function InputText(props) {
     const LeftIconComponent = leftIcon !== 'none' ? <Icon icon={leftIcon?.toLowerCase()} defaultIconSet={defaultIconSet} className={`flex-shrink-0 scale-90 ${iconWidth}`}/> : null;
     const RightIconComponent = rightIcon !== 'none' ? <Icon icon={rightIcon?.toLowerCase()} defaultIconSet={defaultIconSet} className='flex-shrink-0 flex-grow-0'/> : null;
 
-    const gapStyles = size == 'small' ? 'gap-3xs' : size == 'large' ? 'gap-xs' : 'gap-2xs'
+    const gapStyles = size == 'small' ? 'gap-0.5' : size == 'large' ? 'gap-1.5' : 'gap-1'
     let wrapperClasses = `flex flex-col ${widthStyle} ${gapStyles}`
 
     return (
@@ -74,8 +74,7 @@ export default function InputText(props) {
         >
             {label && ( 
                 <label className={labelClasses}>
-                    {
-                    label}
+{label}
                 </label>
             )}
             <div className={classes} style={{boxSizing: 'border-box'}}>

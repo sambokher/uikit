@@ -1,20 +1,20 @@
 import PropTypes from 'prop-types'
-import * as IconoirIcons from 'iconoir-react';
-import Loader from './Loader';
+import { Loader, Icon } from './index';
 import React, { useRef } from 'react';
+import { iconMap } from './iconMap'
 
-const iconNames = Object.keys(IconoirIcons);
+const allIconNames = Object.keys(iconMap) || []
 
 export default function InputFile(props) {
     
     const {
         state = 'default',
         text = 'Choose File',
-        bgColor = 'none',
+        bgColor = null,
         size = 'medium',
         label = 'File Upload',
         helperText = 'help text',
-        icon = 'CloudUpload',
+        icon = 'cloud-upload',
         textAlign,
         hasOutline = true,
         width = 'auto',
@@ -25,7 +25,7 @@ export default function InputFile(props) {
       } = props;
 
 
-    const sizeStyles = size == 'small' ? `py-2xs px-sm gap-xs text-xs` : size == 'large' ? `py-sm px-base gap-base text-base` : `py-xs px-sm gap-base text-sm`;
+    const sizeStyles = size == 'small' ? `py-0.5 px-2 gap-1.5 text-xs` : size == 'large' ? `py-2 px-3 gap-3 text-base` : `py-1.5 px-2 gap-3 text-sm`;
     const cornerStyles = size == "small" ? "rounded" : size == "large" ? "rounded-lg" : "rounded-md"
     
     let stateStyles = hasOutline ? `border border-base-300` : 'border border-transparent';
@@ -52,10 +52,10 @@ export default function InputFile(props) {
 
     const widthStyle = width != 'auto' ? `w-${width}` : size == 'small' ? 'min-w-[120px]' : size == 'large' ? 'min-w-[200px]' : 'min-w-[160px]'
 
-    const gapStyles = size == 'small' ? 'gap-3xs' : size == 'large' ? 'gap-xs' : 'gap-2xs'
+    const gapStyles = size == 'small' ? 'gap-0.5' : size == 'large' ? 'gap-1.5' : 'gap-1'
     let wrapperClasses = `flex flex-col ${widthStyle} ${gapStyles}`
 
-    const IconComponent = icon == 'none' ? null : IconoirIcons[icon] || IconoirIcons['CloudUpload']
+    const IconComponent = icon == 'none' ? null : <Icon icon={icon} className='flex-shrink-0 flex-grow-0' />
 
     const fileInputRef = useRef(null);
 
@@ -89,7 +89,7 @@ export default function InputFile(props) {
                     accept={accept}
                 />
 
-                    {state == 'loading' ? <Loader size={'small'} type='spinner' opacity='50' /> : IconComponent && <IconComponent className='flex-shrink-0 flex-grow-0' />}
+                    {state == 'loading' ? <Loader size={'small'} type='spinner' opacity='50' /> : IconComponent}
                     <div className={`flex-grow text-${textAlign}`}>
                     {state == 'loading' ? 'Uploading' : 
 text}
@@ -113,7 +113,7 @@ InputFile.propTypes = {
     size: PropTypes.oneOf(['small', 'medium', 'large']),
     width: PropTypes.oneOf(['auto', '1/2', 'full']),
     bgColor: PropTypes.oneOf(['none', 'base-0', 'base-100']),
-    icon: PropTypes.oneOf(['none', ...iconNames]),
+    icon: PropTypes.oneOf(['none', ...allIconNames]),
     hasOutline: PropTypes.bool, 
     onChange: PropTypes.func,
     accept: PropTypes.string,

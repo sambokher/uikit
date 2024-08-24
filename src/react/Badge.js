@@ -1,5 +1,5 @@
+import React from 'react'
 import PropTypes from 'prop-types'
-import React from 'react';
 
 export default function Badge(props) {
     
@@ -22,8 +22,8 @@ export default function Badge(props) {
     }
     
     const sizeStyleMap = {
-        small: `text-xs py-2xs gap-xs ${isPill ? 'rounded-full px-sm' : 'rounded px-xs'}`,
-        medium: `text-sm py-xs gap-sm ${isPill ? 'rounded-full px-base' : 'rounded-md px-sm'}`,
+        small: `text-xs py-1 gap-1.5 ${isPill ? 'rounded-full px-2' : 'rounded px-1.5'}`,
+        medium: `text-sm py-1.5 gap-2 ${isPill ? 'rounded-full px-3' : 'rounded-md px-2'}`,
     };
     
     const sizeStyles = sizeStyleMap[size]

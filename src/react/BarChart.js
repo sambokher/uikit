@@ -1,7 +1,7 @@
+import React from 'react'
 import PropTypes from 'prop-types'
 import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Bar, BarChart, LabelList } from 'recharts';
-import Icon from './Icon'
-import React from 'react';
+import { Icon } from './index'
 // Run 'npm install recharts' to install the recharts library
 
 
@@ -21,11 +21,9 @@ const dummyDataData = {
 export default function BarChartComponent(props) {
 
     const {
-        padding = 'base',
-        backgroundColor = 'base-0',
+        backgroundColor = null, 
         width = 'full',
         height = '120px',
-        corners = 'md',
         barColor = 'primary',
         showDots = true,
         showLabels = true,
@@ -41,13 +39,14 @@ export default function BarChartComponent(props) {
       } = props;
 
     const widthStyles = `w-${width}`;
-    const paddingStyles = padding === 'none' ? 'p-0' : `p-${padding}`;
-    const cornerStyles = corners === 'none' ? '' : `rounded-${corners}`;
-    const bgStyles = `flex bg-${backgroundColor} ${backgroundColor != 'none' ? 'text-base-content' : ''}`;
+    // const paddingStyles = padding === 'none' ? 'p-0' : `p-${padding}`;
+    // const cornerStyles = corners === 'none' ? '' : `rounded-${corners}`;
+    const bgStyles = backgroundColor && backgroundColor != 'none' ? `bg-${backgroundColor}` : ''
+    const fontColorStyles = backgroundColor && backgroundColor != 'none' ? `text-base-content` : 'text-inherit'
 
-    let wrapperClasses = `flex flex-col items-stretch ${widthStyles} ${bgStyles} ${paddingStyles} ${cornerStyles} relative`
+    let wrapperClasses = `flex flex-col items-stretch relative ${widthStyles} ${bgStyles} ${fontColorStyles}`
     
-    const emptyStyles = `flex flex-col justify-center items-center px-sm text-sm font-medium gap-sm ${cornerStyles}`
+    const emptyStyles = `flex flex-col justify-center items-center px-sm text-sm font-medium gap-2 rounded-md`
 
     function transformData(keyPairs, valuePairs) {
         return valuePairs.map(values => {
@@ -70,7 +69,7 @@ export default function BarChartComponent(props) {
             
             {/* Title Block & Menu */}
             <div className="flex flex-row items-start justify-between mb-md">
-                <div className="flex flex-col text-sm font-medium gap-sm items-start relative justify-between">
+                <div className="flex flex-col text-sm font-medium gap-2 items-start relative justify-between">
 {title}
                     <span className='text-xl font-semibold'>{totalValue}</span>
                 </div>
@@ -122,9 +121,7 @@ BarChartComponent.propTypes = {
     width: PropTypes.oneOf(['auto', 'full', '1/2']),
     height: PropTypes.oneOf(['92px', '120px', '240px', '360px']),
     barColor: PropTypes.oneOf(['primary', 'accent', 'base-content']),
-    backgroundColor: PropTypes.oneOf(['base-0', 'base-100', 'base-200', 'none']),
-    padding: PropTypes.oneOf(['none', 'sm', 'base', 'md', 'lg']),
-    corners: PropTypes.oneOf(['none', 'sm', 'md', 'lg']),
+    backgroundColor: PropTypes.oneOf(['base-0', 'base-100', 'base-200']),
     emptyState: PropTypes.bool,
     emptyMessage: PropTypes.string,
     showGrid: PropTypes.bool,

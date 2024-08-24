@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
-import * as IconoirIcons from 'iconoir-react';
+import { Icon } from './index'
+import { iconMap } from './iconMap'
 import React, { useState } from 'react';
 
 export default function SegmentedSwitchIcons(props) {
@@ -9,7 +10,7 @@ export default function SegmentedSwitchIcons(props) {
         defaultOption = 0,
         width = 'auto',
         bgColor = 'base-200',
-        iconOptions = ['Heart', 'Star', 'Check'],
+        options = ['heart', 'star', 'check'],
         selectedOptionColor = 'base-0',
         hasOutline = true,
         attributes,
@@ -32,7 +33,7 @@ export default function SegmentedSwitchIcons(props) {
     ${bgStyles} ${borderStyles} ${sizeStyles} ${cornerStyles}`
     
     
-    const optionSizeStyles = size == 'small' ? `p-3xs border-2 rounded` : size == 'large' ? `p-xs border-2 rounded-lg` : `p-3xs border-2 rounded-md`;
+    const optionSizeStyles = size == 'small' ? `p-0.5 border-2 rounded` : size == 'large' ? `p-1.5 border-2 rounded-lg` : `p-0.5 border-2 rounded-md`;
     const optionClasses = `flex flex-row items-center justify-center text-center cursor-pointer border-${bgColor} ${optionSizeStyles} ${textColor}`
     
     const selectedTextColor = 
@@ -41,7 +42,7 @@ export default function SegmentedSwitchIcons(props) {
 
     const selectedOptionClasses = `cursor-pointer text-center bg-${selectedOptionColor} border-${bgColor} ${selectedTextColor} ${optionSizeStyles}`
 
-    const gapStyles = size == 'small' ? 'gap-3xs' : size == 'large' ? 'gap-xs' : 'gap-2xs'
+    const gapStyles = size == 'small' ? 'gap-0.5' : size == 'large' ? 'gap-1.5' : 'gap-1'
     let wrapperClasses = `flex flex-col ${widthStyle} ${gapStyles} select-none`
 
     return (
@@ -50,13 +51,13 @@ export default function SegmentedSwitchIcons(props) {
             className={wrapperClasses}
         >
         <div className={classes}>
-        {iconOptions.map((icon, index) => {
-            const IconComponent = IconoirIcons[icon] ? IconoirIcons[icon] : null;
+        {options.map((icon, index) => {
+            const IconComponent = <Icon icon={icon} className='flex-shrink-0 mx-auto scale-75' />
             return (
                 <div 
                     className={selectedOption == index ? selectedOptionClasses : optionClasses}
                     style={{
-                        width: `${100 / iconOptions?.length}%`,
+                        width: `${100 / options?.length}%`,
                         whiteSpace: 'nowrap',
                         textOverflow: 'ellipsis',
                         overflow: 'hidden', 
@@ -64,7 +65,7 @@ export default function SegmentedSwitchIcons(props) {
                     key={index}
 onClick={()=> handleSelect(index)}
                 >
-                    {IconComponent && <IconComponent className='flex-shrink-0 mx-auto'/>}
+                    {IconComponent}
                 </div>
             );})}
         </div>
@@ -77,10 +78,10 @@ onClick={()=> handleSelect(index)}
 SegmentedSwitchIcons.propTypes = {
     width: PropTypes.oneOf(['auto', '1/2', 'full']),
     size: PropTypes.oneOf(['small', 'medium', 'large']),
-    bgColor: PropTypes.oneOf(['base-0', 'base-100', 'base-200', 'base-300']),
+    bgColor: PropTypes.oneOf(['base-0', 'base-50', 'base-100', 'base-200', 'base-300']),
     selectedOptionColor: PropTypes.oneOf(['base-0', 'accent', 'primary', 'success-content', 'info-content']),
     defaultOption: PropTypes.number,
-    iconOptions: PropTypes.arrayOf(PropTypes.string),
+    options: PropTypes.arrayOf(PropTypes.string),
     hasOutline: PropTypes.bool,
 };
 

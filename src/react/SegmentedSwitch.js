@@ -22,7 +22,7 @@ export default function SegmentedSwitch(props) {
     }
 
     const widthStyle = `w-${width}`
-    const sizeStyles = size == 'small' ? `gap-3xs text-xs` : size == 'large' ? `gap-xs text-base` : `gap-2xs text-sm`;
+    const sizeStyles = size == 'small' ? `gap-0.5 text-xs` : size == 'large' ? `gap-1.5 text-base` : `gap-1 text-sm`;
     const cornerStyles = size == "small" ? "rounded" : size == "large" ? "rounded-lg" : "rounded-md"
     const textColor = bgColor.startsWith('base-') ? 'text-base-content' : `text-${bgColor}-content`
     
@@ -39,13 +39,13 @@ export default function SegmentedSwitch(props) {
 
     const selectedOptionClasses = `cursor-pointer text-center bg-${selectedOptionColor} border-${bgColor} ${selectedTextColor} ${optionSizeStyles}`
 
-    const gapStyles = size == 'small' ? 'gap-3xs' : size == 'large' ? 'gap-xs' : 'gap-2xs'
+    const gapStyles = size == 'small' ? 'gap-0.5' : size == 'large' ? 'gap-1.5' : 'gap-1'
     let wrapperClasses = `flex flex-col ${widthStyle} ${gapStyles} select-none`
 
     const truncateStyle = { overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',}
 
 
-
+    
     return (
         <div
         {...attributes} {...listeners} 

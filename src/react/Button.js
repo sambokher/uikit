@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Loader from './Loader';
-import { Icon } from './index'
+import { Icon, Loader } from './index'
 import { iconMap } from './iconMap'
 
 const allIconNames = Object.keys(iconMap) || []
@@ -29,27 +28,27 @@ export default function Button(props) {
     const isLoading = state == 'loading'
 
     const filledTypeMap = {
-        'primary': `!bg-primary ${isDisabled ? '' : '!hover:bg-primary-focus'} text-slate-50 !text-primary-content border border-transparent`,
-        'secondary': `bg-slate-700 !bg-base-100 ${isDisabled ? '' : 'hover:bg-slate-600 !hover:bg-base-200'} text-slate-300 !text-base-content border border-transparent`,
-        'accent': `bg-teal-600 !bg-accent ${isDisabled ? '' : 'hover:bg-teal-500 !hover:bg-accent-focus'} text-teal-50 !text-accent-content border border-transparent`,
-        'link': `bg-transparent ${isDisabled ? '' : 'hover:text-blue-500 !hover:underline'} text-blue-600 !text-base-content border border-transparent`,
-        'ghost': `bg-transparent ${isDisabled ? '' : 'hover:bg-gray-200 !juno-current-color-hover-bg'} border border-transparent opacity-70 hover:opacity-100`,
-        'warning': `bg-yellow-600 !bg-warning-content ${isDisabled ? '' : 'hover:bg-yellow-500 !hover:brightness-110'} text-white !text-base-0 border border-transparent`,
-        'success': `bg-green-600 !bg-success-content ${isDisabled ? '' : 'hover:bg-green-500 !hover:brightness-110'} text-white !text-base-0 border border-transparent`,
-        'info': `bg-blue-600 !bg-info-content ${isDisabled ? '' : 'hover:bg-blue-500 !hover:brightness-110'} text-white !text-base-0 border border-transparent`,
-        'error': `bg-red-600 !bg-error-content ${isDisabled ? '' : 'hover:bg-red-500 !hover:brightness-110'} text-white !text-base-0 border border-transparent`,
+        'primary': `bg-primary ${isDisabled ? '' : 'hover:bg-primary-focus'} text-primary-content border border-transparent`,
+        'secondary': `bg-base-100 ${isDisabled ? '' : 'hover:bg-base-200'} text-base-content border border-transparent`,
+        'accent': `bg-accent ${isDisabled ? '' : 'hover:bg-accent-focus'} text-accent-content border border-transparent`,
+        'link': `bg-transparent ${isDisabled ? '' : 'hover:underline'} text-base-content border border-transparent`,
+        'ghost': `bg-transparent ${isDisabled ? '' : 'juno-current-color-hover-bg'} border border-transparent opacity-70 hover:opacity-100`,
+        'warning': `bg-warning-content ${isDisabled ? '' : 'hover:brightness-110'} text-white text-base-0 border border-transparent`,
+        'success': `bg-success-content ${isDisabled ? '' : 'hover:brightness-110'} text-white text-base-0 border border-transparent`,
+        'info': `bg-info-content ${isDisabled ? '' : 'hover:brightness-110'} text-white text-base-0 border border-transparent`,
+        'error': `bg-error-content ${isDisabled ? '' : 'hover:brightness-110'} text-white text-base-0 border border-transparent`,
     };
 
     const outlinedTypeMap = {
-        'primary': `border-slate-800 !border-primary bg-transparent text-slate-800 !text-primary-focus ${isDisabled ? '' : 'hover:border-slate-600 !hover:border-primary-focus'}`,
-        'secondary': `border-slate-700 !border-base-300 bg-transparent ${isDisabled ? '' : 'hover:border-slate-600 !hover:border-base-400'}`,
-        'accent': `border-teal-600 !border-accent bg-transparent text-teal-600 !text-accent-focus ${isDisabled ? '' : 'hover:border-teal-500 !hover:border-accent-focus'}`,
-        'link': `bg-transparent text-blue-600 !text-base-content ${isDisabled ? '' : 'hover:text-blue-500 !hover:underline'} border border-transparent`,
-        'ghost': `bg-transparent ${isDisabled ? '' : 'hover:bg-gray-200 !juno-current-color-hover-bg'} border`,
-        'warning': `border-yellow-600 !border-warning-content bg-transparent text-yellow-600 !text-warning-content ${isDisabled ? '' : 'hover:border-yellow-500 !hover:border-warning-focus'}`,
-        'success': `border-green-600 !border-success-content bg-transparent text-green-600 !text-success-content ${isDisabled ? '' : 'hover:border-green-500 !hover:border-success-focus'}`,
-        'error': `border-red-600 !border-error-content bg-transparent text-red-600 !text-error-content ${isDisabled ? '' : 'hover:border-red-500 !hover:border-error-focus'}`,
-        'info': `border-blue-600 !border-info-content bg-transparent text-blue-600 !text-info-content ${isDisabled ? '' : 'hover:border-blue-500 !hover:border-info-focus'}`,
+        'primary': `border-primary bg-transparent text-primary-focus ${isDisabled ? '' : 'hover:border-primary-focus'}`,
+        'secondary': `border-base-300 bg-transparent ${isDisabled ? '' : 'hover:border-base-400'}`,
+        'accent': `border-accent bg-transparent text-accent-focus ${isDisabled ? '' : 'hover:border-accent-focus'}`,
+        'link': `bg-transparent text-base-content ${isDisabled ? '' : 'hover:underline'} border border-transparent`,
+        'ghost': `bg-transparent ${isDisabled ? '' : 'juno-current-color-hover-bg'} border`,
+        'warning': `border-warning-content bg-transparent text-warning-content ${isDisabled ? '' : 'hover:border-warning-focus'}`,
+        'success': `border-success-content bg-transparent text-success-content ${isDisabled ? '' : 'hover:border-success-focus'}`,
+        'error': `border-error-content bg-transparent text-error-content ${isDisabled ? '' : 'hover:border-error-focus'}`,
+        'info': `border-info-content bg-transparent text-info-content ${isDisabled ? '' : 'hover:border-info-focus'}`,
     };
 
     // and just type: primary, accent, base, warning, success, error, info
@@ -97,7 +96,7 @@ export default function Button(props) {
                 opacity='50'
                 />
             </div>}
-             <span className={`${isLoading ? 'opacity-0' : ''} flex flex-row items-center gap-2 !gap-sm whitespace-nowrap truncate max-w-full`}>
+             <span className={`${isLoading ? 'opacity-0' : ''} flex flex-row items-center gap-2 whitespace-nowrap truncate max-w-full`}>
 {text}
             </span>
             </div>

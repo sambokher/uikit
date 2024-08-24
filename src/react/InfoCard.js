@@ -1,8 +1,8 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import { iconMap } from './iconMap'
-import Button from './Button'
-import Icon from './Icon'
-import React, { useMemo } from 'react';
+import { Button, Icon } from './index'
+import { useMemo } from 'react';
 
 const allIconNames = Object.keys(iconMap) || []
 
@@ -14,13 +14,12 @@ export default function InfoCard(props) {
         imageSrc = null,
         imageAspectRatio = '2 / 1',
         textSize = 'small',
-        icon = 'Calendar',
+        icon = 'calendar',
         secondaryText = "Jun 2, 2023",
         description = "Short description that should be about 80-100 characters long.",
         primaryAction = null,
         secondaryAction = null,
         corners = 'md',
-        defaultIconSet,
         attributes,
         listeners
       } = props;
@@ -28,9 +27,9 @@ export default function InfoCard(props) {
     const sizeStyles = `w-full h-auto ${textSize == 'small' ? 'text-sm' : 'text-base'}`
     const truncateStyle = { overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'}
 
-    let wrapperClasses = `flex flex-col items-stretch justify-start gap-base ${sizeStyles}`
+    let wrapperClasses = `flex flex-col items-stretch justify-start gap-3 ${sizeStyles}`
 
-    const IconComponent = icon !== 'none' ? <Icon icon={icon?.toLowerCase()} defaultIconSet={defaultIconSet} className='flex-shrink-0' /> : null;
+    const IconComponent = icon !== 'none' ? <Icon icon={icon?.toLowerCase()}  className='flex-shrink-0' /> : null;
 
     const noImage = !imageSrc;
     const imageStyles = useMemo(() => ({
@@ -59,13 +58,13 @@ export default function InfoCard(props) {
         <div style={truncateStyle} className={`flex flex-col flex-grow`}>
             
             {/* Title */}
-            <div className={`mb-sm flex flex-col justify-between gap-sm items-start ${titleFont}`}>
+            <div className={`mb-sm flex flex-col justify-between gap-2 items-start ${titleFont}`}>
                 <h3 className={`font-semibold`} style={truncateStyle}>
 {title}
                 </h3>
                 
                 {(secondaryText || icon) && 
-                <div className={`flex-shrink-0 flex flex-row items-center gap-xs ${smallerFont}`}>
+                <div className={`flex-shrink-0 flex flex-row items-center gap-1.5 ${smallerFont}`}>
                     {IconComponent}
 {secondaryText}
                 </div>}
@@ -80,7 +79,7 @@ export default function InfoCard(props) {
 
         {/* Actions */}
         {(primaryAction || secondaryAction) && 
-        <div className={`flex flex-row items-center flex-grow-0 flex-shrink-0 justify-start text-base gap-sm pointer-events-none`}>
+        <div className={`flex flex-row items-center flex-grow-0 flex-shrink-0 justify-start text-base gap-2 pointer-events-none`}>
             {primaryAction && <Button size='small' type='primary' text={primaryAction} onClick={()=>{}} marginTop={'sm'}/>} 
             {secondaryAction && <Button size='small' type='secondary' text={secondaryAction} onClick={()=>{}} marginTop={'sm'}/>} 
         </div>}

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { useState, useEffect } from 'react';
-import Icon from './Icon'
+import { Icon } from './index'
 
 export default function Select(props) {
     
@@ -15,7 +15,7 @@ export default function Select(props) {
         state = 'default',
         rightIcon = 'chevron-down',
         width = 'auto',
-        hasOutline = true,
+        hasOutline = false,
         onSelect = () => {},
         defaultIconSet = 'heroicons',
         options = ['Option A', 'Option B', 'Option C'],
@@ -30,7 +30,7 @@ export default function Select(props) {
         setOpen(showOptions);
     }, [showOptions]);
     
-    const sizeStyles = size == 'small' ? `py-2xs px-sm gap-xs text-xs` : size == 'large' ? `py-sm px-base gap-base text-base` : `py-xs px-sm gap-base text-sm`;
+    const sizeStyles = size == 'small' ? `py-1 px-2 gap-1.5 text-xs` : size == 'large' ? `py-2 px-3 gap-3 text-base` : `py-1.5 px-2 gap-3 text-sm`;
         
     const cornerStyles = size == "small" ? "rounded" : size == "large" ? "rounded-lg" : "rounded-md"
     let stateStyles = '';
@@ -55,9 +55,9 @@ export default function Select(props) {
     const labelClasses = `${bgColor == 'none' ? '': 'text-base-content'} ${labelTextSize} font-medium`
 
     const messageTextColor = state == 'error' ? stateStyles = 'text-error-content' : state == 'warning' ? stateStyles = 'text-warning-content' : state == 'success' ? stateStyles = 'text-success-content' : 'text-base-content'
-    const messageClasses = `text-sm font-sm ${messageTextColor}`
+    const messageClasses = `text-sm ${messageTextColor}`
     const widthStyle = width != 'auto' ? `w-${width}` : size == 'small' ? 'min-w-[120px]' : size == 'large' ? 'min-w-[200px]' : 'min-w-[160px]'
-    const gapStyles = size == 'small' ? 'gap-3xs' : size == 'large' ? 'gap-xs' : 'gap-2xs'
+    const gapStyles = size == 'small' ? 'gap-0.5' : size == 'large' ? 'gap-1.5' : 'gap-1'
     let wrapperClasses = `flex flex-col ${widthStyle} ${gapStyles} relative`
 
     const RightIconComponent = rightIcon !== 'none' ? 
@@ -70,8 +70,8 @@ export default function Select(props) {
     /* OPTIONS STYLING */
     const shadowStyles = size == 'small' ? 'shadow-sm' : size == 'large' ? 'shadow-md' : 'shadow'
     const optionsBorderRadius = (size === 'small' ? 'rounded' : size === 'large' ? 'rounded-lg' : 'rounded-md');
-    const optionsClasses = `w-full absolute mt-sm bg-white overflow-hidden ${optionsBorderRadius} ${shadowStyles} border border-base-100`
-    const optionSizeStyles = size == 'small' ? `py-2xs px-sm gap-xs text-xs min-w-[120px]` :  size == 'large' ? `py-sm px-base gap-base text-base min-w-[200px]`: `py-xs px-sm gap-base text-sm min-w-[160px]`;
+    const optionsClasses = `w-full absolute mt-2 bg-white overflow-hidden ${optionsBorderRadius} ${shadowStyles} border border-base-100`
+    const optionSizeStyles = size == 'small' ? `py-0.5 px-2 gap-1.5 text-xs min-w-[120px]` :  size == 'large' ? `py-2 px-3 gap-3 text-base min-w-[200px]`: `py-1.5 px-2 gap-3 text-sm min-w-[160px]`;
     const optionClasses = `${optionSizeStyles} hover:bg-base-100 transition-all duration-100 ease-in-out cursor-default`
 
     return (

@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types'
 
 // Import the SVG files
 import sample_symbol from './assets/brand/symbol.svg';
@@ -7,11 +7,12 @@ import sample_logo from './assets/brand/logo.svg';
 import sample_symbol_inverted from './assets/brand/symbol.svg';
 import sample_logo_inverted from './assets/brand/logo_inverted.svg';
 
+
 export default function Logo(props) {
     
     const {
         type = 'symbol',
-        size = '20px',
+        size = '28px',
         customWidth = null,
         customHeight = null,
         selfAlign = 'auto',
@@ -22,7 +23,7 @@ export default function Logo(props) {
       } = props;
 
     
-    const symbolAsset = assets?.find(asset => asset.api_name == 'symbol')?.file_url || 'sample_symbol'
+    const symbolAsset = assets?.find(asset => asset.api_name == 'symbol')?.file_url || sample_symbol
     const symbolInvertedAsset = assets?.find(asset => asset.api_name == 'symbol_inverted')?.file_url || sample_symbol_inverted
     const logoAsset = assets?.find(asset => asset.api_name == 'logo')?.file_url || sample_logo
     const logoInvertedAsset = assets?.find(asset => asset.api_name == 'logo_inverted')?.file_url || sample_logo_inverted

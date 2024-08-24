@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types';
-import Avatar from './Avatar';
-import Tooltip from './Tooltip';
-import Heading from './Heading';
-import Icon from './Icon'
+import { Avatar, Tooltip, Heading } from './index.js';
+import { Icon } from './index'
 import { iconMap } from './iconMap'
 
 export default function UserMenu(props) {
@@ -28,12 +26,12 @@ export default function UserMenu(props) {
     const [isOpen, setIsOpen] = useState(false)
 
     const sizeStylesMap = {
-        small: `py-2xs px-2xs text-xs`,
-        medium: `py-xs px-xs text-sm`,
-        large: `py-base px-base text-base`
+        small: `py-1 px-1 text-xs`,
+        medium: `py-1.5 px-1.5 text-sm`,
+        large: `py-3 px-3 text-base`
     }
     const borderStyles = `border border-transparent`
-    const gapStyles = isCollapsed ? 'gap-0' : size == 'small' ? 'gap-xs' : size == 'large' ? 'gap-base' : 'gap-sm'
+    const gapStyles = isCollapsed ? 'gap-0' : size == 'small' ? 'gap-1.5' : size == 'large' ? 'gap-3' : 'gap-2'
     const imageSize = size == 'small' ? '20px' : size == 'medium' ? '28px' : '40px'
     const bgStyles = (isActive || isOpen) ? 'juno-current-color-bg' : 'juno-current-color-hover-bg'
     const cornerStyles = isCollapsed ? 'rounded-full' : size == "small" ? "rounded" : size == "large" ? "rounded-lg" : "rounded-md"
@@ -71,7 +69,7 @@ export default function UserMenu(props) {
         </div>}
         </div>
         {isOpen && children?.length > 0 &&
-        <div className={`absolute -bottom-1 translate-y-full right-0 bg-base-0 shadow-md p-xs border-[0.5px] border-base-200 rounded-md z-10
+        <div className={`absolute -bottom-1 translate-y-full right-0 bg-white !bg-base-0 shadow-md p-1.5 border-[0.5px] border-slate-200 !border-base-200 rounded-md z-10
         flex flex-col items-stretch`}
         >
             {children}

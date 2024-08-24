@@ -1,9 +1,9 @@
+import React from 'react'
 import PropTypes from 'prop-types'
-import * as IconoirIcons from 'iconoir-react';
-import Button from './Button';
-import React from 'react';
+import { Button, Icon } from './index'
+import { iconMap } from './iconMap'
 
-const allIconNames = Object.keys(IconoirIcons);
+const allIconNames = Object.keys(iconMap) || []
 
 // needs mobile behavior
 export default function Banner(props) {
@@ -38,18 +38,19 @@ export default function Banner(props) {
     };    
     const typeStyles = typeStyleMap[type] || typeStyleMap['base']
 
-    let wrapperClasses = `bg-base-0 text-base px-base py-sm pb-base rounded-lg gap-sm flex flex-row items-start justify-start shadow-md mx-auto ${alertStyles} ${typeStyles}`
+    let wrapperClasses = `bg-base-0 text-base px-3 py-2 pb-3 rounded-lg gap-2 flex flex-row items-start justify-start shadow-md mx-auto ${alertStyles} ${typeStyles}`
 
     // ICON Styles
     const iconStyleMap = {
-        info: IconoirIcons['InfoCircle'],
-        error: IconoirIcons['WarningTriangle'],
-        base: IconoirIcons['InfoCircle'],
-        warning: IconoirIcons['WarningTriangle'],
-        success: IconoirIcons['CheckCircle'],
-    }; 
+        info: 'info',
+        error: 'warning',
+        base: 'info',
+        warning: 'warning',
+        success: 'check-circle',
+    };
 
-    const IconComponent = icon == 'none' ? null : icon == 'auto' ? iconStyleMap[type] : IconoirIcons[icon];
+    const useIcon = icon == 'auto' ? iconStyleMap[type] : icon;
+    const IconComponent = icon !== 'none' ? <Icon icon={useIcon?.toLowerCase()} className='flex-shrink-0 mt-0.5' /> : null;
     
     return (
         /* Overlay */
@@ -65,19 +66,19 @@ export default function Banner(props) {
         {/* Modal */}
             <div className={wrapperClasses} 
             style={{width: '100%', width: '100%', maxWidth: width, marginTop: 60 }}>
-            {IconComponent && <IconComponent className='flex-shrink-0 mt-[2px]' />}
-            <div className='flex flex-col gap-xs flex-grow-1 w-full items-start'>
+            {IconComponent}
+            <div className='flex flex-col gap-1.5 flex-grow-1 w-full items-start'>
                 {title && <h2 className='font-semibold text-lg'>
 {title}
                 </h2>}
 {text}
-                <div className={`flex flex-row flex-shrink-0 items-center gap-sm`}>
+                <div className={`flex flex-row flex-shrink-0 items-center gap-2`}>
             {primaryAction && 
                 <Button 
                     text={primaryAction} 
                     size={'small'}
                     type={type == 'base' ? 'primary' : type}
-                    marginTop={'sm'}
+                    marginTop={'8px'}
                 />}
             {secondaryAction && 
                 <Button 
@@ -85,11 +86,11 @@ export default function Banner(props) {
                     size={'small'}
                     type={type == 'base' ? 'secondary' : type}
                     style={'outlined'}
-                    marginTop={'sm'}
+                    marginTop={'8px'}
                 />}
             </div>
             </div>
-            <IconoirIcons.Xmark className='flex-shrink-0 hover:scale-110 cursor-pointer transition-all' />
+            <Icon icon='close' className='flex-shrink-0 hover:scale-110 cursor-pointer transition-all' />
             </div>
         </div>
     );

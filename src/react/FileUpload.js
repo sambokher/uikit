@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
-import * as IconoirIcons from 'iconoir-react';
 import React, { useRef, useState } from 'react';
 
-const allIconNames = Object.keys(IconoirIcons);
+import { Icon } from './index'
+import { iconMap } from './iconMap'
+
+const allIconNames = Object.keys(iconMap) || []
 
 export default function FileUpload(props) {
 
@@ -12,7 +14,7 @@ export default function FileUpload(props) {
         fileName = "file-name.txt",
         width = "auto",
         label = null,
-        icon = 'CloudUpload',
+        icon = 'cloud-upload',
         dropAreaText = 'Drag your file here or browse files',
         secondaryText = null,
         state = 'placeholder',
@@ -31,18 +33,18 @@ export default function FileUpload(props) {
 
     const widthStyle = width != 'auto' ? `w-${width}` : 'w-auto'
     const borderStyles = hasOutline ?`border border-base-200` : '';
-    const sizeStyles = size == 'small' ? 'gap-3xs text-xs' : size == 'large' ? 'gap-xs text-base' : 'gap-2xs text-sm'
+    const sizeStyles = size == 'small' ? 'gap-0.5 text-xs' : size == 'large' ? 'gap-1.5 text-base' : 'gap-1 text-sm'
     let wrapperClasses = `flex flex-col items-stretch justify-start ${sizeStyles} ${widthStyle} ${borderStyles}`
 
     const labelTextSize = size == 'small' ? `text-xs` :  size == 'large' ? `text-lg`: `text-sm`;
     const labelClasses = `text-base-content ${labelTextSize} font-medium`
 
-    const iconSize = size == 'small' ? 20 : size == 'large' ? 32 : 24;
-    const IconComponent = icon !== 'none' && IconoirIcons[icon] ? IconoirIcons[icon] : null;
+    const iconSize = size == 'small' ? '20px' : size == 'large' ? '32px' : '24px'
+    const IconComponent = icon !== 'none' ? <Icon icon={icon}  className='flex-shrink-0' size={iconSize}  /> : null;
 
     const stateStyles = state === 'focused' || isDragOver ? 'bg-base-100 border-accent' : 'bg-base-0 border-base-400';
     const cornerStyles = corners === 'none' ? '' : `rounded-${corners}`;
-    const dropAreaSizeClasses = size === 'small' ? 'p-sm gap-3xs' : size === 'large' ? 'p-base gap-xs' : 'p-sm gap-2xs';
+    const dropAreaSizeClasses = size === 'small' ? 'p-2 gap-0.5' : size === 'large' ? 'p-3 gap-1.5' : 'p-2 gap-1';
     const dropAreaClasses = `w-full h-full relative border-dashed flex flex-col items-center justify-center ${cornerStyles} ${stateStyles} ${dropAreaSizeClasses}`
 
     
@@ -137,7 +139,7 @@ export default function FileUpload(props) {
                     onChange={handleFileChange}
                     accept={accept}
                 />
-                {IconComponent && <IconComponent className='flex-shrink-0' width={iconSize} height={iconSize} />}
+                {IconComponent}
                 
                 {dropAreaText ? <div className={'font-medium'}>
 {dropAreaText}
@@ -151,13 +153,13 @@ export default function FileUpload(props) {
 
             </div>
             {file && 
-            <div className={`flex flex-col items-center gap-xs p-sm bg-base-100 ${cornerStyles}`}>
-                <div className='flex flex-row gap-sm w-full justify-between'>
-                <IconoirIcons.Page width={16} className='flex-shrink-0' />
+            <div className={`flex flex-col items-center gap-1.5 p-2 bg-base-100 ${cornerStyles}`}>
+                <div className='flex flex-row gap-2 w-full justify-between'>
+                <Icon icon='page'  size={'16px'}  className='flex-shrink-0 w-4 h-4' />
                 <div className='text-base-content text-sm flex-grow' style={truncateStyle}>
                     {file?.name}
                 </div>
-                    <IconoirIcons.Xmark width={16} className='flex-shrink-0' 
+                    <Icon icon='close' size={'16px'} className='flex-shrink-0 w-4 h-4' 
 onClick={() => setFile(null)}
                     />
                 </div>

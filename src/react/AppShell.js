@@ -1,5 +1,6 @@
 import React, { isValidElement } from 'react';
 import PropTypes from 'prop-types';
+import { spacingMap } from './helpers.js';
 
 export default function AppShell(props) {
     const { 
@@ -9,8 +10,9 @@ export default function AppShell(props) {
         paddingX=null,
         paddingY=null,
         children, attributes, listeners } = props
+    
 
-    const paddingStyles = `${paddingX ? ` px-${paddingX}` : 'px-0'} ${paddingY ? `py-${paddingY}` : 'py-0'}`;
+    const paddingStyles = `${paddingX ? ` px-${spacingMap[paddingX]}` : ''}${paddingY ? ` py-${spacingMap[paddingY]}` : ''}`;
     const fontColor = pageBackground?.startsWith('base') ? 'base-content' : `${pageBackground}-content`;
     const pageBgColor = `bg-${pageBackground}`;
     const fontColorValue = `text-${fontColor}`;
@@ -83,8 +85,8 @@ AppShell.propTypes = {
         PropTypes.string]),
     maxWidth: PropTypes.oneOf(['stretch', '960', '1200', '1440', '1920']),
     justifyContent: PropTypes.oneOf(['center', 'start', 'end']), 
-    paddingX: PropTypes.oneOf(["none", "xs", "2xs", "sm", "base", "md", "lg", 'xl', '2xl']),
-    paddingY: PropTypes.oneOf(["none", "xs", "2xs", "sm", "base", "md", "lg", 'xl', '2xl']),
+    paddingX: PropTypes.oneOf(["2px", "4px", "6px", "8px", "10px", "12px", "16px", "24px", "32px", "48px"]),
+    paddingY: PropTypes.oneOf(["2px", "4px", "6px", "8px", "10px", "12px", "16px", "24px", "32px", "48px"]),
     children: PropTypes.node
 };
 

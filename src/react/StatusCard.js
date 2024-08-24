@@ -1,14 +1,14 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function StatusCard(props) {
 
     const {
-        name = "Status",
+        title = "Status",
         value = "Active",
         textSize = 'small',
         statusColor = 'success-content',
-        helpText = "Updated Feb 03, 2024",
+        helpText = null,
         attributes,
         listeners,
       } = props;
@@ -17,7 +17,7 @@ export default function StatusCard(props) {
     const sizeStyles = `w-full h-auto ${textSize == 'small' ? 'text-sm' : 'text-base'}`
     const truncateStyle = { overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'}
 
-    let wrapperClasses = `flex flex-row items-stretch justify-start gap-base ${sizeStyles}`
+    let wrapperClasses = `flex flex-row items-stretch justify-start gap-3 ${sizeStyles}`
 
     const titleFont = textSize == 'small' ? 'text-base' : 'text-lg';
     const smallerFont = textSize == 'small' ? 'text-sm' : 'text-base';
@@ -34,14 +34,14 @@ export default function StatusCard(props) {
         </div>
 
         {/* CONTENT BLOCK */}
-        <div className={`flex flex-col flex-grow items-start ${smallerFont} gap-xs`} style={truncateStyle}>
+        <div className={`flex flex-col flex-grow items-start ${smallerFont} gap-1.5`} style={truncateStyle}>
             
-            {name && <div className={`flex-shrink-0 flex flex-row items-center relative group`}>
-{name}
+            {title && <div className={`flex-shrink-0 flex flex-row items-center relative group`}>
+{title}
             </div>}
 
             {/* Value */}
-            <h3 className={`${titleFont} flex flex-row font-semibold px-base rounded`} 
+            <h3 className={`${titleFont} flex flex-row font-semibold px-3 rounded`} 
             style={{
                 ...truncateStyle, 
                 color: `var(--${statusColor})`,
@@ -62,7 +62,7 @@ export default function StatusCard(props) {
 
 
 StatusCard.propTypes = {
-    name: PropTypes.string,
+    title: PropTypes.string,
     value: PropTypes.string,
     textSize: PropTypes.oneOf(['small', 'medium']),
     statusColor: PropTypes.oneOf(['primary', 'accent', 'info-content', 'error-content', 'success-content', 'warning-content']),

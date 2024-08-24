@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types'
 import React, { useState } from 'react';
 import * as UIKit from './index';
-import Pagination from './Pagination';
-import { ArrowDown, ArrowUp, Square } from 'iconoir-react';
+import { Pagination } from './index';
+import { Icon } from './index'
+import { spacingMap } from './helpers.js';
 
 const sampleColumns = [
   {
@@ -97,10 +98,10 @@ const dummyData = [
 export default function TableWidget(props) {
 
   const {
-    bgColor = 'none',
+    bgColor = null,
     textSize = 'sm',
-    cellPaddingX = 'sm',
-    cellPaddingY = 'xs',
+    cellPaddingX = '8px',
+    cellPaddingY = '6px',
     pagination = 'none',
     showHeader = true,
     corners = 'md',
@@ -174,7 +175,7 @@ export default function TableWidget(props) {
     }
 
     // STYLING 
-    const textColor = bgColor == 'none' ? '' : `text-base-content`
+    const textColor = (!bgColor || bgColor == 'none') ? '' : `text-base-content`
     const cornerStyles = corners != 'none' ? `rounded-${corners}` : ''
     const textSizeStyles = textSize != 'auto' ? `text-${textSize}` : ''
     
@@ -188,7 +189,7 @@ export default function TableWidget(props) {
     function getRowStyles(index, rowId) {
       const rowSelected = selectedRows.includes(rowId)
       let rowStyles = ``
-      if (bgColor == 'none') {
+      if (!bgColor || bgColor == 'none') {
         rowStyles = rowSelected ? 'bg-base-50' : 'hover:bg-base-50' // transparent bg only highlights on hover or when selected
       } else if (bgColor == 'zebra') {
         rowStyles = index % 2 === 0 ? 'bg-base-50' : 'bg-base-0 hover:bg-base-50' // zebra stripes
@@ -200,14 +201,11 @@ export default function TableWidget(props) {
       return rowStyles
     }
 
-    const vertPadding = `var(--spacing-${cellPaddingY})`
-    const horizPadding = `var(--spacing-${cellPaddingX})`
-    
     const padding = {
-      paddingLeft: horizPadding,
-      paddingRight: horizPadding,
-      paddingTop: vertPadding,
-      paddingBottom: vertPadding
+      paddingLeft: cellPaddingX,
+      paddingRight: cellPaddingX,
+      paddingTop: cellPaddingY,
+      paddingBottom: cellPaddingY
     }
     
     // This function helps style the cells based on the column configuration
@@ -291,7 +289,7 @@ export default function TableWidget(props) {
                 className={`${column?.hideOnMobile ? 'hidden md:table-cell' : 'table-cell'} relative`}
                 style={{ 
                 width: `${adjustedWidth.toFixed(2)}%`,
-                backgroundColor: bgColor == 'none' ? '' : bgColor == 'base-100' ? 'var(--base-100)' : 'var(--base-0)',
+                backgroundColor: (!bgColor || bgColor == 'none') ? '' : bgColor == 'base-100' ? 'var(--base-100)' : 'var(--base-0)',
                 borderRight: (borders == 'vert' || borders == 'all') ? lighterBorder : 'none',
                 borderBottom: showHeader && borders !== 'none' && borders != 'vert' ? darkerBorder : 'none',
                 
@@ -301,7 +299,7 @@ export default function TableWidget(props) {
                 ...(index === columns.length - 1 ?  { borderRight: 'none'} : {}),
                 }}>
                   <div 
-                    className='flex gap-xs h-full relative group items-center select-auto'  
+                    className='flex gap-1.5 h-full relative group items-center select-auto'  
                     style={styleFromColumn(column, true)} >
                   {column.type === 'checkbox' ? 
                     <UIKit.Checkbox 
@@ -321,8 +319,8 @@ export default function TableWidget(props) {
                       direction: sortState.direction === 'asc' ? 'desc' : 'asc' })}}>
                   
                   {sortState.direction == 'asc' ? 
-                    <ArrowUp className='scale-75 select-none' style={{strokeWidth: 2}}/> : 
-                    <ArrowDown className='scale-75 select-none' style={{strokeWidth: 2}} />
+                    <Icon icon='arrow-up' className='scale-75 select-none' /> : 
+                    <Icon icon='arrow-down' className='scale-75 select-none'  />
                   }
                   </div> : isSortable && 
                   <div className={`rounded-full hover:bg-base-200 cursor-pointer opacity-0 group-hover:opacity-100`} 
@@ -331,7 +329,7 @@ export default function TableWidget(props) {
                     setSortState({ 
                       accessor: column.accessor, 
                       direction: 'asc' })}}>
-                  <ArrowDown className='scale-75 select-none'  />
+                  <Icon icon='arrow-down' className='scale-75 select-none'  />
                   </div>
                   }
                   </div>
@@ -370,7 +368,7 @@ export default function TableWidget(props) {
                     ...(colIndex === columns.length - 1 && rowIndex === data.length - 1 ? { borderBottomRightRadius: pagination == 'none' && borderRadius } : {}),
                     ...(colIndex === columns.length - 1 ? { borderRight: 'none' } : {}),
                 }}>
-              <div className={`flex gap-2xs h-full w-full ${column.displayOnHoverOnly ? 'opacity-0 group-hover:opacity-100' : ''}`} style={styleFromColumn(column)} >
+              <div className={`flex gap-1 h-full w-full ${column.displayOnHoverOnly ? 'opacity-0 group-hover:opacity-100' : ''}`} style={styleFromColumn(column)} >
               {renderCell({
                 content: item[column?.accessor], 
                 columnType: column?.type})}
@@ -407,10 +405,10 @@ export default function TableWidget(props) {
 
 
 TableWidget.propTypes = {
-  bgColor: PropTypes.oneOf(['base-0', 'base-100', 'zebra', 'none']),
+  bgColor: PropTypes.oneOf(['base-0', 'base-100', 'zebra']),
   textSize: PropTypes.oneOf(['auto', 'xs', 'sm', 'base', 'md']),
-  cellPaddingX: PropTypes.oneOf(['none', '2xs', 'xs', 'sm', 'base', 'md', 'lg']),
-  cellPaddingY: PropTypes.oneOf(['none', '2xs', 'xs', 'sm', 'base', 'md', 'lg']),
+  cellPaddingX: PropTypes.oneOf(['4px', '6px', '8px', '12px', '16px', '24px']),
+  cellPaddingY: PropTypes.oneOf(['4px', '6px', '8px', '12px', '16px', '24px']),
   pagination: PropTypes.oneOf(['none', 'mini', 'standard']),
   showHeader: PropTypes.bool,
   corners: PropTypes.oneOf(['none', 'sm', 'md', 'lg', 'xl']),

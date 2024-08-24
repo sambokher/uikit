@@ -1,20 +1,24 @@
+import React from 'react';
 import PropTypes from 'prop-types'
-import React, { useState, useEffect } from 'react'; 
+import { useState, useEffect } from 'react'; 
 import * as IconoirIcons from 'iconoir-react';
+import { spacingMap } from './helpers.js';
 
 export default function KebabMenu(props) {
     
     const {
+        bgColor = 'base-0',
+
+        padding = null,
+        gap = null,
+
         icon = 'MoreHoriz',
-        buttonBgColor = 'none',
+        buttonBgColor = null,
         buttonOutline = true,
         size = '20px',
         showMenu = false,
         menuMinWidth = '120px',
-        padding = 'sm',
-        bgColor = 'base-0',
         corners = 'md',
-        gap = 'sm',
         openDirection = 'downward-right',
         children,
         attributes,
@@ -27,7 +31,7 @@ export default function KebabMenu(props) {
     }, [showMenu]);
 
     /* Kebab Button */
-    const iconColor = buttonBgColor === 'none' ? '' : parseInt(buttonBgColor.replace('base-', ''), 10) > 301 ? 'text-base-0' : 'text-base-content'
+    const iconColor = !buttonBgColor ? '' : parseInt(buttonBgColor.replace('base-', ''), 10) > 301 ? 'text-base-0' : 'text-base-content'
     const borderStyles = buttonOutline ? 'border border-base-300' : ''
     const menuPositionStyle = getMenuPositionStyle(openDirection)
     let wrapperClasses = `relative flex-shrink-0 flex items-center justify-center`
@@ -38,11 +42,11 @@ export default function KebabMenu(props) {
     
 
     /* Drop Area */
-    const gapStyles = gap === 'none' ? '' : `gap-${gap}`;
-    const paddingStyles = padding === 'none' ? 'p-0' : `p-${padding}`;
+    const gapStyles = gap ? `gap-${spacingMap[gap]}` : '';
+    const paddingStyles = padding ? `gap-${spacingMap[padding]}` : '';
     const cornerStyles = corners === 'none' ? '' : `rounded-${corners}`;
     const borderClasses = `border border-base-300` 
-    let optionsClasses = `w-auto flex flex-col items-start justify-start mt-sm bg-${bgColor} z-5 absolute ${borderClasses} ${gapStyles} ${paddingStyles} ${cornerStyles} `
+    let optionsClasses = `w-auto flex flex-col items-start justify-start mt-2 bg-${bgColor} z-5 absolute ${borderClasses} ${gapStyles} ${paddingStyles} ${cornerStyles} `
     
     function getMenuPositionStyle(direction) {
         switch (direction) {
@@ -88,15 +92,15 @@ export default function KebabMenu(props) {
 
 KebabMenu.propTypes = {
     icon: PropTypes.oneOf(['MoreHoriz', 'MoreVert', 'MoreHorizCircle', 'MoreVertCircle', 'NavArrowDown', 'Plus', 'PlusCircle']),
-    buttonBgColor: PropTypes.oneOf(['none', 'base-0', 'base-100']),
+    buttonBgColor: PropTypes.oneOf(['base-0', 'base-100']),
     buttonOutline: PropTypes.bool,
     size: PropTypes.oneOf(['16px', '20px', '24px', '32px']),
     showMenu: PropTypes.bool,
     menuMinWidth: PropTypes.oneOf(['fitContent', '120px', '160px', '240px', '320px']),
-    padding: PropTypes.oneOf(['none', 'sm', 'base', 'md']),
-    bgColor: PropTypes.oneOf(['base-0', 'base-100', 'none']),
+    padding: PropTypes.oneOf(['8x', '12px', '16px']),
+    bgColor: PropTypes.oneOf(['base-0', 'base-100']),
     corners: PropTypes.oneOf(['none', 'sm', 'md', 'lg']),
-    gap: PropTypes.oneOf(['none', '2xs', 'xs', 'sm', 'base', 'md']),
+    gap: PropTypes.oneOf(['4px', '6px', '8x', '12px', '16px']),
     openDirection: PropTypes.oneOf(['downward-right', 'downward-left', 'upward-right', 'upward-left']),
 };
 

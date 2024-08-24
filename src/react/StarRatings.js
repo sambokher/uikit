@@ -1,6 +1,6 @@
+import React from 'react'
 import PropTypes from 'prop-types';
 import * as IconoirIcons from 'iconoir-react';
-import React from 'react';
 
 export default function StarRatings(props) {
     
@@ -9,14 +9,14 @@ export default function StarRatings(props) {
         ratingValue = '90%', // This should be considered whether it should be a percentage string or a numeric value depending on your implementation.
         labelPosition = 'right',
         color = 'orange-500',
-        size = 'sm',
+        size = 'sm', // consider making this px value
         attributes,
         listeners
       } = props;
     
-    let classes = `flex flex-row gap-sm items-center text-${size}`
+    let classes = `flex flex-row gap-2 items-center text-${size}`
     
-    let starClasses = `flex flex-row gap-xs flex-shrink-0 text-${color}`
+    let starClasses = `flex flex-row gap-1.5 flex-shrink-0 text-${color}`
 
     /* text-orange-500 */
 
@@ -25,8 +25,8 @@ export default function StarRatings(props) {
         {...attributes} {...listeners} 
             className={classes}
         >
-            <div className='relative flex flex-row gap-xs opacity-100' style={{ width: 'max-content' }}>
-                    <div className='flex flex-row gap-xs opacity-10'>
+            <div className='relative flex flex-row gap-1.5 opacity-100' style={{ width: 'max-content' }}>
+                    <div className='flex flex-row gap-1.5 opacity-10'>
                         {Array.from({ length: 5 }, (_, index) => <IconoirIcons.StarSolid key={index} className='flex-shrink-0' />)}
                     </div>
                     <div className={starClasses} style={{ position: 'absolute', width: ratingValue, overflow: 'hidden'}}>

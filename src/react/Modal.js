@@ -1,16 +1,18 @@
+import React from 'react'
 import PropTypes from 'prop-types'
-import ButtonIcon from './ButtonIcon';
-import React from 'react';
+import { ButtonIcon } from './index';
+import { spacingMap } from './helpers.js';
 
 export default function Modal(props) {
     
     const {
-        paddingX = 'md',
-        paddingY = 'md',
+        paddingX = '16px',
+        paddingY = '16px',
+        gap = '12px',
+
         modalBackground = 'base-100',
         width = '640px',
         corners = 'base',
-        gap = 'base',
         backdrop = 'dark',
         children,
         onClose,
@@ -26,11 +28,13 @@ export default function Modal(props) {
 
 
     // MODAL STYLES
+    const paddingStyles = `${paddingX ? `px-${spacingMap[paddingX]}` : ''} ${paddingY ? `py-${spacingMap[paddingY]}` : ''}`;
+    const gapStyles = gap ? `gap-${spacingMap[gap]}` : '';
+
     const cornerStyles = corners === 'none' ? '' : `rounded-${corners}`;
-    const paddingStyles = `${paddingX ? `px-${paddingX}` : ''} ${paddingY ? `py-${paddingY}` : ''}`;
-    const modalBg = `bg-${modalBackground} mx-auto`;
+    const modalBg = modalBackground ? `bg-${modalBackground} mx-auto` : `mx-auto`;
     const borderStyles = `border border-base-200`;
-    const gapStyles = gap === 'none' ? '' : `${gap == 'sm' ? 'gap-xs' : gap == 'base' ? 'gap-sm' : gap == 'lg' ? 'gap-md' : 'gap-base' }`;
+    
     const shadowStyle = {
         '480px': 'shadow-md',
         '640px': 'shadow-md', 
@@ -70,12 +74,12 @@ onClick={onClose}
 
 
 Modal.propTypes = {
-    modalBackground: PropTypes.oneOf(['base-100', 'base-0', 'none']),
+    modalBackground: PropTypes.oneOf(['base-100', 'base-0']),
     backdrop: PropTypes.oneOf(['dark', 'blurred', 'none']),
     width: PropTypes.oneOf(['480px', '640px', '780px', '960px', '1200px']),
-    paddingX: PropTypes.oneOf(["none", "sm", "base", "md", "lg", 'xl', '2xl']),
-    paddingY: PropTypes.oneOf(["none", "sm", "base", "md", "lg", 'xl', '2xl']),
-    gap: PropTypes.oneOf(['none', 'sm', 'base', 'md', 'lg']),
+    paddingX: PropTypes.oneOf(['0px', '8px', '12px', '16px', '24px', '32px', '48px']),
+    paddingY: PropTypes.oneOf(['0px', '8px', '12px', '16px', '24px', '32px', '48px']),
+    gap: PropTypes.oneOf(['0px', '8px', '12px', '16px', '24px', '32px'],),
     corners: PropTypes.oneOf(['none', 'sm', 'base', 'md', 'lg', 'xl', '2xl', '3xl']),
     closeButton: PropTypes.bool,
     children: PropTypes.node

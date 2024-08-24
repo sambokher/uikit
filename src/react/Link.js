@@ -1,5 +1,6 @@
+import React from 'react'
 import PropTypes from 'prop-types';
-import React from 'react';
+import { spacingMap } from './helpers.js';
 
 export default function Link(props) {
 
@@ -12,6 +13,8 @@ export default function Link(props) {
         lineHeight = 'auto',
         fontWeight = 'auto',
         underline = 'onlyOnHover',
+        marginBottom = null, 
+        marginTop = null, 
         attributes,
         listeners
       } = props;
@@ -20,9 +23,12 @@ export default function Link(props) {
     const textColorStyles = `text-${textColor}`;
     const lineHeightStyles = lineHeight != 'auto' ? `leading-${lineHeight}` : '';
     const fontWeightStyles = fontWeight != 'auto' ? `font-${fontWeight}` : '';
+    const marginBottomStyles = marginBottom ? `mb-${spacingMap[marginBottom]}` : '';
+    const marginTopStyles = marginTop ? `mt-${spacingMap[marginTop]}` : '';
+    
     const underlineStyles = underline == 'always' ? 'underline' : underline == 'onlyOnHover' ? 'hover:underline' : 'no-underline';
 
-    let classes = `inline-flex ${textSizeStyles} ${textColorStyles} ${lineHeightStyles} ${fontWeightStyles} ${underlineStyles} cursor-pointer`
+    let classes = `inline-flex ${textSizeStyles} ${textColorStyles} ${lineHeightStyles} ${fontWeightStyles} ${underlineStyles}  ${marginBottomStyles} ${marginTopStyles} cursor-pointer`
 
     return (
         <a
@@ -49,6 +55,8 @@ Link.propTypes = {
     lineHeight: PropTypes.oneOf(['auto', 'tight', 'normal', 'relaxed', 'loose']),
     fontWeight: PropTypes.oneOf(['auto', 'hairline', 'thin', 'light', 'normal', 'medium', 'semibold', 'bold', 'extrabold', 'black']),
     underline: PropTypes.oneOf(['always', 'onlyOnHover', 'never']),
+    marginTop: PropTypes.oneOf(['4px', '6px', '8px', '12px', '16px', '24px', '32px']),
+    marginBottom: PropTypes.oneOf(['4px', '6px', '8px', '12px', '16px', '24px', '32px']),
     children: PropTypes.node
 };
 

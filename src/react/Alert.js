@@ -1,10 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import * as IconoirIcons from 'iconoir-react';
-import Button from './Button';
-import Link from './Link';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Button, Link, Icon } from './index'
+import { iconMap } from './iconMap'
 
-const allIconNames = Object.keys(IconoirIcons);
+const allIconNames = Object.keys(iconMap) || []
 
 // needs mobile behavior
 export default function Alert(props) {
@@ -25,51 +24,40 @@ export default function Alert(props) {
       } = props;
 
     const styleMap = {
-        'filled': type == 'base' ? `bg-base-content text-base-0 border-base-content` : `bg-${type}-content text-white border-${type}-content ` ,
-        'outline': type == 'base' ? `text-base-600 border-base-300` : `text-${type}-content border-${type}-content`,
-        'light': type == 'base' ? `bg-base-100 text-base-content border-base-300` : `bg-${type} border-${type}-focus text-${type}-content`
+        'filled': type == 'base' ? `bg-base-content text-base-0` : `bg-${type}-content text-base-0` ,
+        'outline': type == 'base' ? `text-base-600 ring-1 ring-inset ring-base-300` : `text-${type}-content ring-1 ring-inset ring-${type}-content`,
+        'light': type == 'base' ? `bg-base-100 text-base-content` : `bg-${type}  text-${type}-content`
     }
 
-    const typeStyles = styleMap[style] || '';
+    const typeStyles = `${styleMap[style]}`
     
-    const sizeStyles = size == 'small' ? `py-2xs px-xs gap-xs text-xs` : `py-xs px-base gap-base text-sm`;
+    const sizeStyles = size == 'small' ? `py-1 px-1.5 gap-1.5 text-xs` : `py-1.5 px-3 gap-3 text-sm`;
     const widthStyle = width == 'auto' ? `w-auto` : `w-${width}`
     const cornerStyles = size == "small" ? "rounded" : size == "large" ? "rounded-lg" : "rounded-md"
 
-    let wrapperClasses = `flex flex-row items-start justify-between transition-all duration-100 border ${typeStyles} ${sizeStyles} ${cornerStyles} ${widthStyle}`
+    let wrapperClasses = `flex flex-row items-start justify-between transition-all duration-100 ${typeStyles} ${sizeStyles} ${cornerStyles} ${widthStyle}`
 
     const iconStyleMap = {
-        info: IconoirIcons['InfoCircle'],
-        error: IconoirIcons['WarningTriangle'],
-        base: IconoirIcons['InfoCircle'],
-        warning: IconoirIcons['WarningTriangle'],
-        success: IconoirIcons['CheckCircle'],
+        info: 'info',
+        error: 'warning',
+        base: 'info',
+        warning: 'warning',
+        success: 'check-circle',
     };
-
-    const buttonStyleMap = {
-        info: style == 'filled' ? `bg-base-0 text-base-content` : `bg-info-content text-base-0`,
-        error: style == 'filled' ? `bg-base-0 text-base-content` : `bg-error-content text-base-0`,
-        base: style == 'filled' ? `bg-base-0 text-base-content` : `bg-base-content  text-base-0`,
-        warning: style == 'filled' ?`bg-base-0 text-base-content` : `bg-warning-content  text-base-0`,
-        success: style == 'filled' ? `bg-base-0 text-base-content`:  `bg-success-content text-base-0`,
-    };   
-
     
     const truncateStyle = { overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'}
     
-    const DefaultIcon = iconStyleMap[type] || IconoirIcons['InfoCircle'];
-    const IconComponent = icon == 'none' ? null :
-        icon == 'auto' || !IconoirIcons[icon] ? DefaultIcon :
-        IconoirIcons[icon] ? IconoirIcons[icon] : null;
+    const useIcon = icon == 'auto' ? iconStyleMap[type] : icon;
     
+    const IconComponent = icon !== 'none' ? <Icon icon={useIcon?.toLowerCase()}  className='flex-shrink-0' /> : null;
 
     return (
         <div 
             {...attributes} {...listeners} 
             className={wrapperClasses}
         >   
-            {IconComponent && <IconComponent className='flex-shrink-0' />}
-            <div className='flex flex-col gap-xs flex-grow-1 w-full items-start'>
+            {IconComponent}
+            <div className='flex flex-col gap-1.5 flex-grow-1 w-full items-start'>
                 {title && title != '' && <h2 className='font-semibold' style={truncateStyle}>
 {title}
                 </h2>}
@@ -81,7 +69,7 @@ export default function Alert(props) {
                     size={'small'}
                     type={type == 'base' ? 'secondary' : type}
                     style={'filled'}
-                    marginTop={'sm'}
+                    marginTop={'6px'}
             /> : 
                 <Link 
                     text={actionText} 
@@ -91,7 +79,7 @@ export default function Alert(props) {
                 
             </div>
             
-            {hasCloseButton && <IconoirIcons.Xmark className='flex-shrink-0 mt-[px]'/>}   
+            {hasCloseButton && <Icon icon='close' className='flex-shrink-0 mt-0.5'/>}   
         </div>
     ); 
     

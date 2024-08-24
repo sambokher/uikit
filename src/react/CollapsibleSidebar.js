@@ -1,12 +1,8 @@
 import PropTypes from 'prop-types'
 import React, { useEffect, useState } from 'react'
-import UserMenu from './UserMenu';
-import Sidebar from './Sidebar';
-import SidebarLink from './SidebarLink';
-import ButtonIcon from './ButtonIcon';
-import Logo  from './Logo';
+import { UserMenu, Sidebar, SidebarLink, ButtonIcon, Logo } from './index';
 
-const topLinks = [
+const sampleTopLinks = [
     {text: 'Home', icon: 'home', onClick: ()=>{}},
     {text: 'Assessment', icon: 'activity', onClick: ()=>{}, 
         sublinks: [
@@ -17,14 +13,25 @@ const topLinks = [
     {text: 'Contact', icon: 'people', onClick: ()=>{}},
 ]
 
-const bottomLinks = [
+const sampleBottomLinks = [
     {text: 'Settings', icon: 'settings', onClick: ()=>{}},
     {text: 'Logout', icon: 'log-out', onClick: ()=>{}},
 ]
 
 export default function CollapsibleSidebar(props) {
     
-    const { attributes, bgColor, state, logoColor, userMenu, topLinks, expandWidth, bottomLinks, assets} = props
+    const { 
+        bgColor = 'base-0',
+        state = 'openOnClick',
+        logoColor = 'normal', 
+        userMenu = 'top',
+        expandWidth = '280px',
+
+        topLinks = sampleTopLinks,
+        bottomLinks = sampleBottomLinks,
+        assets,
+        attributes, 
+        } = props
     
     
     const [activeLink, setActiveLink] = useState(topLinks[0]?.text || null)
@@ -42,7 +49,6 @@ export default function CollapsibleSidebar(props) {
     }
     
     function renderUserMenu() {
-        const spacing = 'var(--spacing-sm)';
         return (
             <div className='flex flex-row relative'
             style={{
@@ -75,16 +81,16 @@ export default function CollapsibleSidebar(props) {
         <Sidebar
             background={bgColor} 
             width={'100%'}
-            paddingX={'base'}
+            paddingX={'12px'}
             alignItems={'start'}
             justifyContent={'between'}
-            paddingY={'base'}
-            gap={'sm'}
+            paddingY={'12px'}
+            gap={'8px'}
             >
             
             {/* Top block */}
-            <div className='flex flex-col items-start gap-sm w-full relative'>
-                <div className={`flex flex-row w-full justify-between items-center text-sm transition-all px-2xs my-sm`}>
+            <div className='flex flex-col items-start gap-2 w-full relative'>
+                <div className={`flex flex-row w-full justify-between items-center text-sm transition-all px-1 my-2`}>
                     <Logo 
                         type={'symbol'} 
                         size={'28px'} 
@@ -126,7 +132,7 @@ export default function CollapsibleSidebar(props) {
             </div>
                 
             {/* bottom block */}
-            <div className='flex flex-col items-start gap-sm w-full relative'>
+            <div className='flex flex-col items-start gap-2 w-full relative'>
             {bottomLinks.map((link, index) => (
                 <SidebarLink 
                     key={index}
@@ -144,7 +150,7 @@ export default function CollapsibleSidebar(props) {
 }
 
 CollapsibleSidebar.propTypes = {
-    bgColor: PropTypes.oneOf(['base-0', 'base-50', 'base-100', 'base-200', 'base-700', 'none', 'base-content', 'primary', 'accent']),
+    bgColor: PropTypes.oneOf(['base-0', 'base-50', 'base-100', 'base-200', 'base-700', 'base-content', 'primary', 'accent']),
     state: PropTypes.oneOf(['openOnClick', 'openOnHover', 'alwaysOpen', 'alwaysClosed']),
     expandWidth: PropTypes.oneOf(['240px', '280px', '320px']),
     logoColor: PropTypes.oneOf(['normal', 'inverted']),
@@ -162,16 +168,5 @@ CollapsibleSidebar.propTypes = {
         onClick: PropTypes.func,
     }))
 
-}
-
-CollapsibleSidebar.defaultProps = {
-    bgColor: 'base-50',
-    state: 'openOnClick',
-    expandWidth: '280px',
-    logoColor: 'normal',
-    openStyle: 'grow',
-    userMenu: 'top',
-    topLinks: topLinks,
-    bottomLinks: bottomLinks,
 }
 

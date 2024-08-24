@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { allFlags } from './assets/flags/flags'
-import * as Flags from './assets/flags/index.js'
+import * as Flags from './assets/flags/index'
 
 const countryNames = allFlags.map(f => f.name); 
 
@@ -11,7 +11,7 @@ export default function CountryFlag(props) {
         country = 'United States of America',
         corners = 'none',
         aspectRatio = '4x3',
-        width = '16',
+        height = '16px',
         attributes,
         listeners
       } = props;
@@ -26,7 +26,7 @@ export default function CountryFlag(props) {
     const imageStyles = {
         backgroundImage: flagSvg ? `url(${flagSvg})` : placeholderImg(),
         backgroundSize: 'cover',
-        width: `${width}px`,
+        height: height, 
         aspectRatio: aspectRatio === 'square' ? '1 / 1' : '4 / 3'
     };
     
@@ -53,6 +53,6 @@ CountryFlag.propTypes = {
     country: PropTypes.oneOf(['none', ...countryNames]),
     corners: PropTypes.oneOf(['none', 'sm', 'base', 'md', 'lg', 'full']),
     aspectRatio: PropTypes.oneOf(['square', '4x3']),
-    width: PropTypes.oneOf(['12', '16', '20', '24', '28', '32']),
+    height: PropTypes.oneOf(['12px', '16px', '20px', '24px', '28px', '32px']),
 };
 

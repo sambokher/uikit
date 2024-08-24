@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types'
+import React from 'react';import PropTypes from 'prop-types'
 import * as IconoirIcons from 'iconoir-react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export default function MiniSnippet(props) {
 
@@ -15,7 +15,7 @@ export default function MiniSnippet(props) {
       } = props;
     
     const widthStyle = width == 'auto' ? `w-auto` : `w-${width}`
-    const sizeStyles =  size == 'small' ? `py-2xs px-xs gap-xs text-xs` : `py-xs px-base gap-base text-sm`;
+    const sizeStyles =  size == 'small' ? `py-1 px-1.5 gap-1.5 text-xs` : `py-1.5 px-3 gap-3 text-sm`;
     const cornerStyles = size == "small" ? "rounded" :  "rounded-md"
     const bgStyles = `bg-${bgColor}`
     const borderStyles = hasOutline ? `border border-base-300` : `border border-transparent`
@@ -46,7 +46,7 @@ export default function MiniSnippet(props) {
             
             {/* COPY BUTTON */}
             <div 
-                className={`sticky top-0 right-0 ${bgStyles} transition-all p-3xs hover:brightness-95 rounded h-5 w-5 flex items-center justify-center cursor-pointer`}
+                className={`sticky top-0 right-0 ${bgStyles} transition-all p-0.5 hover:brightness-95 rounded h-5 w-5 flex items-center justify-center cursor-pointer`}
                 onClick={copyToClipboard}
             >
                 {copied ? <IconoirIcons.Check /> :  <IconoirIcons.Copy />}

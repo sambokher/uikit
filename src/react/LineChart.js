@@ -1,7 +1,7 @@
+import React from 'react'
 import PropTypes from 'prop-types'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LabelList } from 'recharts';
-import Icon from './Icon';
-import React from 'react';
+import { Icon } from './index'
 // Run 'npm install recharts' to install the recharts library
 
 const dummyData = {
@@ -20,11 +20,9 @@ const dummyData = {
 export default function LineChartComponent(props) {
 
     const {
-        padding = 'base',
-        backgroundColor = 'base-0',
+        backgroundColor = null,
         width = 'full',
         height = '120px',
-        corners = 'md',
         lineColor = 'primary',
         lineWidth = '2',
         lineType = 'wavy',
@@ -42,13 +40,14 @@ export default function LineChartComponent(props) {
       } = props;
 
     const widthStyles = `w-${width}`;
-    const paddingStyles = padding === 'none' ? 'p-0' : `p-${padding}`;
-    const cornerStyles = corners === 'none' ? '' : `rounded-${corners}`;
-    const bgStyles = `flex bg-${backgroundColor} ${backgroundColor != 'none' ? 'text-base-content' : ''}`;
+    // const paddingStyles = padding === 'none' ? 'p-0' : `p-${padding}`;
+    // const cornerStyles = corners === 'none' ? '' : `rounded-${corners}`;
+    const bgStyles = backgroundColor && backgroundColor != 'none' ? `bg-${backgroundColor}` : ''
+    const fontColorStyles = backgroundColor && backgroundColor != 'none' ? `text-base-content` : 'text-inherit'
 
-    let wrapperClasses = `flex flex-col items-stretch ${widthStyles} ${bgStyles} ${paddingStyles} ${cornerStyles} relative`
+    let wrapperClasses = `flex flex-col items-stretch relative ${widthStyles} ${bgStyles} ${fontColorStyles}`
     
-    const emptyStyles = `flex flex-col justify-center items-center px-sm text-sm font-medium gap-sm ${cornerStyles}`
+    const emptyStyles = `flex flex-col justify-center items-center px-sm text-sm font-medium gap-2 rounded-md`
 
     function transformData(keyPairs, valuePairs) {
         return valuePairs.map(values => {
@@ -71,7 +70,7 @@ export default function LineChartComponent(props) {
             
             {/* Title Block & Menu */}
             <div className="flex flex-row items-start justify-between mb-md">
-                <div className="flex flex-col text-sm font-medium gap-sm items-start relative justify-between">
+                <div className="flex flex-col text-sm font-medium gap-2 items-start relative justify-between">
 {title}
                     <span className='text-xl font-semibold'>{totalValue}</span>
                 </div>
@@ -134,9 +133,7 @@ LineChartComponent.propTypes = {
     showLabels: PropTypes.bool,
     showYAxis: PropTypes.bool,
     showXAxis: PropTypes.bool,
-    backgroundColor: PropTypes.oneOf(['base-0', 'base-100', 'base-200', 'none']),
-    padding: PropTypes.oneOf(['none', 'sm', 'base', 'md', 'lg']),
-    corners: PropTypes.oneOf(['none', 'sm', 'md', 'lg']),
+    backgroundColor: PropTypes.oneOf(['base-0', 'base-100', 'base-200']),
     emptyState: PropTypes.bool,
     emptyMessage: PropTypes.string,
     data: PropTypes.shape({

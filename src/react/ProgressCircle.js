@@ -1,5 +1,5 @@
+import React from 'react'
 import PropTypes from 'prop-types'
-import React from 'react';
 
 export default function ProgressCircle(props) {
     
@@ -42,7 +42,7 @@ export default function ProgressCircle(props) {
         '80px': 'text-base'
     }
 
-    let wrapperClasses = `flex flex-col items-center gap-2xs`
+    let wrapperClasses = `flex flex-col items-center gap-1`
 
     return (
         <div 
@@ -78,7 +78,7 @@ export default function ProgressCircle(props) {
             </svg>
 
             {/* LABELING */}
-            <div className={`flex flex-col items-center justify-center max-w-full gap-2xs leading-tight font-semibold absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2`}>
+            <div className={`flex flex-col items-center justify-center max-w-full gap-1 leading-tight font-semibold absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2`}>
                 {radius >= 60 && !noLabel ? 
                 <h3 className={`whitespace-nowrap text-center font-normal ${labelFontSizeMap[circleRadius]}`} style={{ maxWidth: radius * 1.2 }}>
 {label}

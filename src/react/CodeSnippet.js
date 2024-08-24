@@ -1,7 +1,7 @@
+import React from 'react';
 import PropTypes from 'prop-types'
-import React, { useState } from 'react';
-import Button from './Button';
-import Select from './Select';
+import { useState } from 'react';
+import { Button, Select } from './index';
 
 const sample = `function greet(name) {
     const greeting = "Hello, " + name + "!";
@@ -24,7 +24,7 @@ export default function CodeSnippet(props) {
 
 
     const widthStyle = width == 'auto' ? `w-auto` : `w-${width}`
-    const sizeStyles =  size == 'small' ? `py-2xs px-xs gap-xs text-xs` : `py-xs px-sm gap-base text-sm`;
+    const sizeStyles =  size == 'small' ? `py-1 px-1.5 gap-1.5 text-xs` : `py-1.5 px-2 gap-3 text-sm`;
     const cornerStyles = size == "small" ? "rounded" :  "rounded-md"
     const headerCorners = size == "small" ? "rounded-t" :  "rounded-t-md"
     const bgStyles = `bg-base-0 text-base-content`
