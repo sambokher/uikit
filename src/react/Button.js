@@ -11,14 +11,16 @@ export default function Button(props) {
         leftIcon = 'none',
         rightIcon = 'none',
         text = 'Button',
-        type = 'secondary',
+        
+        color = 'base',
+        style = 'light',
+
         size = 'medium',
         width = 'auto',
-        style = 'filled',
+        
         marginTop,
         state = 'default',
         onClick = () => {},
-        defaultIconSet, 
         hideOnMobile=false,
         attributes,
         listeners
@@ -26,37 +28,43 @@ export default function Button(props) {
 
     const isDisabled = state == 'disabled'
     const isLoading = state == 'loading'
+    const isActive = state == 'active'
 
-    const filledTypeMap = {
-        'primary': `bg-primary ${isDisabled ? '' : 'hover:bg-primary-focus'} text-primary-content border border-transparent`,
-        'secondary': `bg-base-100 ${isDisabled ? '' : 'hover:bg-base-200'} text-base-content border border-transparent`,
-        'accent': `bg-accent ${isDisabled ? '' : 'hover:bg-accent-focus'} text-accent-content border border-transparent`,
-        'link': `bg-transparent ${isDisabled ? '' : 'hover:underline'} text-base-content border border-transparent`,
-        'ghost': `bg-transparent ${isDisabled ? '' : 'juno-current-color-hover-bg'} border border-transparent opacity-70 hover:opacity-100`,
-        'warning': `bg-warning-content ${isDisabled ? '' : 'hover:brightness-110'} text-white text-base-0 border border-transparent`,
-        'success': `bg-success-content ${isDisabled ? '' : 'hover:brightness-110'} text-white text-base-0 border border-transparent`,
-        'info': `bg-info-content ${isDisabled ? '' : 'hover:brightness-110'} text-white text-base-0 border border-transparent`,
-        'error': `bg-error-content ${isDisabled ? '' : 'hover:brightness-110'} text-white text-base-0 border border-transparent`,
-    };
+    /* Filled */
+    const bgColor = color == 'base' ? 'base-200' : (color == 'primary' || color == 'accent') ? color : color+'-content'
+    const textColor = color == 'base' ? 'base-content' : 'base-0'
+    const statusStyles = (isDisabled || isLoading ) ? '' : isActive ? 'brightness-90' : 'hover:brightness-110 active:brightness-90'
+    const filledStyle = `bg-${bgColor} text-${textColor} ${statusStyles}`
 
-    const outlinedTypeMap = {
-        'primary': `border-primary bg-transparent text-primary-focus ${isDisabled ? '' : 'hover:border-primary-focus'}`,
-        'secondary': `border-base-300 bg-transparent ${isDisabled ? '' : 'hover:border-base-400'}`,
-        'accent': `border-accent bg-transparent text-accent-focus ${isDisabled ? '' : 'hover:border-accent-focus'}`,
-        'link': `bg-transparent text-base-content ${isDisabled ? '' : 'hover:underline'} border border-transparent`,
-        'ghost': `bg-transparent ${isDisabled ? '' : 'juno-current-color-hover-bg'} border`,
-        'warning': `border-warning-content bg-transparent text-warning-content ${isDisabled ? '' : 'hover:border-warning-focus'}`,
-        'success': `border-success-content bg-transparent text-success-content ${isDisabled ? '' : 'hover:border-success-focus'}`,
-        'error': `border-error-content bg-transparent text-error-content ${isDisabled ? '' : 'hover:border-error-focus'}`,
-        'info': `border-info-content bg-transparent text-info-content ${isDisabled ? '' : 'hover:border-info-focus'}`,
-    };
+    /* Outlined */
+    const outlinedColor = color == 'base' ? 'base-700' : (color == 'primary' || color == 'accent') ? color : color+'-content'
+    const outlineStatusStyles = (isDisabled || isLoading )  ? '' : isActive ? 'bg-current-10' : 'hover:bg-current-10 active:bg-transparent'
+    const outlinedStyle = `ring-1 ring-inset ring-${outlinedColor} text-${outlinedColor} ${outlineStatusStyles}`
 
-    // and just type: primary, accent, base, warning, success, error, info
+    /* Light */
+    const lightColor = color == 'base' ? 'base-100' : (color == 'primary' || color == 'accent') ? color+'-content' : color
+    const lightTextColor = (color == 'primary' || color == 'accent') ? color : color+'-content'
+    const lightStatusStyles = (isDisabled || isLoading ) ? '' : isActive ? `bg-${lightColor}/75` : `hover:bg-${lightColor}/75`
+    const lightStyle = `bg-${lightColor} text-${lightTextColor} ${lightStatusStyles}`
+
+    /* Ghost */
+    const ghostStatusStyles = (isDisabled || isLoading ) ? '' : isActive ? `bg-current-10` : `hover:bg-current-10`
+    const ghostStyle = `text-${lightTextColor} ${ghostStatusStyles}`
+
+    /* Link */
+    const linkStatusStyles = !(isDisabled || isLoading || isActive)  ? `hover:underline opacity-80 hover:opacity-100` : ''
+    const linkStyle = `text-${lightTextColor} ${linkStatusStyles}`
     
     const fontStyles = `font-medium` 
     
-    let typeStyles = filledTypeMap['secondary'] // defaults to secondary button
-    typeStyles = style == 'filled' ? filledTypeMap[type] : outlinedTypeMap[type]
+    const styleMap = {
+        filled: filledStyle,
+        outlined: outlinedStyle,
+        ghost: ghostStyle,
+        link: linkStyle,
+        light: lightStyle
+    }
+    let typeStyles = styleMap[style]
     
     
     let sizeStyles = `py-2 px-3 gap-3 text-sm`;  // default size
@@ -70,10 +78,10 @@ export default function Button(props) {
         ${fontStyles} ${typeStyles} ${sizeStyles} ${cornerStyles} ${widthStyle}
         ${isDisabled ? 'opacity-50 saturate-50 !cursor-not-allowed' : ''}`
     
-     const LeftIconComponent = leftIcon !== 'none' ? <Icon icon={leftIcon?.toLowerCase()} defaultIconSet={defaultIconSet} /> : null;
-     const RightIconComponent = rightIcon !== 'none' ? <Icon icon={rightIcon?.toLowerCase()} defaultIconSet={defaultIconSet} /> : null;
+     const LeftIconComponent = leftIcon !== 'none' ? <Icon icon={leftIcon?.toLowerCase()} className={'scale-90'}/> : null;
+     const RightIconComponent = rightIcon !== 'none' ? <Icon icon={rightIcon?.toLowerCase()}  className={'scale-[0.8]'}/> : null;
 
-    const loaderColor = 'currentColor'
+    const loaderColor = 'current'
 
     // 'mt-0.5', 'mt-1', 'mt-1.5', 'mt-2', 'mt-3', 'mt-4', 'mt-6', 'mt-8', 'mt-12', 'mt-16',
     // mt-[1px] mt-[2px] mt-[6px] mt-[8px] mt-[12px] mt-[16px] mt-[24px] mt-[32px] mt-[40px] mt-[48px] mt-[56px] mt-[64px]
@@ -90,10 +98,10 @@ export default function Button(props) {
             <div className='flex-shrink-0 max-w-full box-border'>
             {isLoading && <div className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2'>
                 <Loader 
-                size={size == 'small' ? 'small' : 'medium'}
+                size={size == 'small' ? '12px' : '16px'}
                 color={loaderColor}
                 type='spinner'
-                opacity='50'
+                opacity={(style == 'filled') ? '50' : '100'}
                 />
             </div>}
              <span className={`${isLoading ? 'opacity-0' : ''} flex flex-row items-center gap-2 whitespace-nowrap truncate max-w-full`}>
@@ -110,9 +118,9 @@ export default function Button(props) {
 Button.propTypes = {
     width: PropTypes.oneOf(["auto", "1/2", "full"]),
     text: PropTypes.string,
-    state: PropTypes.oneOf(['default', 'disabled', 'loading']),
-    type: PropTypes.oneOf(['primary', 'secondary', 'accent', 'link', 'warning', 'ghost', 'info', 'success', 'error']),   
-    style: PropTypes.oneOf(['filled', 'outlined']),
+    state: PropTypes.oneOf(['default', 'disabled', 'loading', 'active']),
+    color: PropTypes.oneOf(['base', 'primary', 'accent', 'warning', 'info', 'success', 'error']),
+    style: PropTypes.oneOf(['filled', 'outlined', 'ghost', 'link', 'light']),
     size: PropTypes.oneOf(['small', 'medium', 'large']),
     leftIcon: PropTypes.oneOf(['none', ...allIconNames]),
     rightIcon: PropTypes.oneOf(['none', ...allIconNames]),

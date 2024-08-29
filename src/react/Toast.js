@@ -39,7 +39,8 @@ export default function Toast(props) {
          style={positionMap[position]}>
             <div className={wrapperClasses}>
                 
-            <div className='flex flex-col gap-2 flex-grow-1 w-full items-start'>
+            <div className='flex flex-col gap-2 flex-grow-1 w-full items-start'
+            >
 {text}
                     
                 {action && 

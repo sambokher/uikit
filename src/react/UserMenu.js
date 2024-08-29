@@ -13,12 +13,12 @@ export default function UserMenu(props) {
         name = 'JD',
         avatarPosition = 'left',
         avatarType = 'initials',
+        imageSrc = null,
         icon = null,
         isCollapsed,
         isActive,
         onClick,
         children, 
-        defaultIconSet,
         attributes,
         listeners
       } = props;
@@ -39,8 +39,7 @@ export default function UserMenu(props) {
 
     let classes = `relative flex gap-1 ${widthStyles} ${sizeStylesMap[size]} ${cornerStyles} ${bgStyles} ${borderStyles} items-center justify-between cursor-default transition-all duration-500 group`
 
-    const IconComponent = icon ? <Icon icon={icon?.toLowerCase()} defaultIconSet={defaultIconSet} 
-    className='scale-75 opacity-0 group-hover:opacity-100 hover:scale-90 transition-all cursor-pointer' 
+    const IconComponent = icon ? <Icon icon={icon?.toLowerCase()} className='scale-75 opacity-0 group-hover:opacity-100 hover:scale-90 transition-all cursor-pointer' 
     style={{order: avatarPosition == 'left' ? 1 : -1}}
     /> : null;
 
@@ -56,6 +55,7 @@ export default function UserMenu(props) {
         <Avatar 
             initials={name}
             bgColor={color}
+            imageSrc={imageSrc}
             size={imageSize} 
             type={avatarType}
             
@@ -93,13 +93,16 @@ export default function UserMenu(props) {
 
 UserMenu.propTypes = {
     color: PropTypes.oneOfType([
-        PropTypes.oneOf(["base-0", 'base-50', "base-100", "base-200", "primary", "accent", "none"]),
+        PropTypes.oneOf(["base-0", 'base-50', "base-100", "base-200", "primary", "accent"]),
         PropTypes.string]),
     size: PropTypes.oneOf(['medium', 'small']),
     avatarPosition: PropTypes.oneOf(['left', 'right']),
     icon: PropTypes.oneOf(['chevron-right', 'chevron-down', 'chevron-left']),
     avatarType: PropTypes.oneOf(['image', 'initials']),
     width: PropTypes.oneOf(['auto', 'full']),
+    isActive: PropTypes.bool,
+    isCollapsed: PropTypes.bool,
+    imageSrc: PropTypes.string,
     name: PropTypes.string,
 }
 

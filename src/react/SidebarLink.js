@@ -32,12 +32,12 @@ export default function SidebarLink(props) {
     const fontWeightStyles = fontWeight == 'auto' ? 'font-normal' : `font-${fontWeight}`
     
     const sizeStylesMap = {
-        small: usePadding ? `py-1 px-2 text-xs` : `py-1 px-0 text-xs`,
-        medium: usePadding ? `py-1.5 px-2 text-sm` : `py-1.5 px-0 text-sm`,
-        large: usePadding ? `py-3 px-3 text-base` : `py-3 px-0 text-base`
+        small: usePadding ? `p-1 text-xs` : `py-1 px-0 text-xs`,
+        medium: usePadding ? `p-1.5 text-sm` : `py-1.5 px-0 text-sm`,
+        large: usePadding ? `p-2.5 text-base` : `py-3 px-0 text-base`
         
     }
-    const gapStyles = isCollapsed ? 'gap-0' : size == 'small' ? 'gap-1.5' : size == 'large' ? 'gap-3' : 'gap-2' // was 3 for medium
+    const gapStyles = isCollapsed ? 'gap-0' : size == 'small' ? 'gap-2' : size == 'large' ? 'gap-3' : 'gap-2.5' // was 3 for medium
     
     const sizeStyles = sizeStylesMap[size] || sizeStylesMap['medium']
 

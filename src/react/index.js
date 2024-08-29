@@ -34,6 +34,7 @@ export { default as SegmentedSwitchIcons } from './SegmentedSwitchIcons';
 export { default as Select } from './Select';
 export { default as Search } from './Search';
 export { default as InputFile } from './InputFile';
+export { default as InputPIN } from './InputPIN';
 export { default as FileUpload } from './FileUpload';
 export { default as Slider } from './Slider';
 export { default as MiniCalendar } from './MiniCalendar';

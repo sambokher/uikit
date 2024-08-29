@@ -7,11 +7,10 @@ export default function Slider(props) {
         width = 'auto',
         label = 'label',
         barColor = 'info-content',
-        value = 50, // Assuming this should be a number, not a string based on its usage as a slider value
+        value = 50, 
         minValue = 0,
         maxValue = 100,
         size = 'small',
-        showProgress = false, // Adding this default since it seems important for functionality but was omitted in the original destructuring
         attributes,
         listeners
       } = props;
@@ -83,6 +82,7 @@ Slider.propTypes = {
     value: PropTypes.string,
     minValue: PropTypes.number,
     maxValue: PropTypes.number,
+    value: PropTypes.string,
     size: PropTypes.oneOf(['small', 'medium', 'large']),
 };
 

@@ -10,7 +10,7 @@ export default function FintechLogo(props) {
         company = 'visa',
         corners = 'none',
         style = 'logo',
-        height = '16',
+        height = '16px',
         hasOutline = false,
         attributes,
         listeners
@@ -54,7 +54,7 @@ FintechLogo.propTypes = {
     company: PropTypes.oneOf(allFintechs),
     corners: PropTypes.oneOf(['none', 'sm', 'md', 'lg', 'xl']),
     style: PropTypes.oneOf(['mono', 'flat', 'logo']),
-    height: PropTypes.oneOf(['12', '16', '20', '24', '28', '32', '40', '60']),
+    height: PropTypes.oneOf(['12px', '16px', '20px', '24px', '28px', '32px', '40px', '60px']),
     hasOutline: PropTypes.bool,
 };
 

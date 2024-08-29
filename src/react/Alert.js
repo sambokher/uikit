@@ -19,6 +19,7 @@ export default function Alert(props) {
         actionType = 'link',
         title = '',
         width = 'auto',
+        onActionClick,
         attributes,
         listeners
       } = props;
@@ -31,7 +32,7 @@ export default function Alert(props) {
 
     const typeStyles = `${styleMap[style]}`
     
-    const sizeStyles = size == 'small' ? `py-1 px-1.5 gap-1.5 text-xs` : `py-1.5 px-3 gap-3 text-sm`;
+    const sizeStyles = size == 'small' ? `py-2 px-2 gap-2 text-xs` : `py-2.5 px-4 gap-3 text-sm`;
     const widthStyle = width == 'auto' ? `w-auto` : `w-${width}`
     const cornerStyles = size == "small" ? "rounded" : size == "large" ? "rounded-lg" : "rounded-md"
 
@@ -57,7 +58,7 @@ export default function Alert(props) {
             className={wrapperClasses}
         >   
             {IconComponent}
-            <div className='flex flex-col gap-1.5 flex-grow-1 w-full items-start'>
+            <div className={`flex flex-col flex-grow-1 w-full items-start ${size == 'small' ? 'gap-0.5' : 'gap-1'}`}>
                 {title && title != '' && <h2 className='font-semibold' style={truncateStyle}>
 {title}
                 </h2>}
@@ -70,9 +71,11 @@ export default function Alert(props) {
                     type={type == 'base' ? 'secondary' : type}
                     style={'filled'}
                     marginTop={'6px'}
+                    onClick={onActionClick}
             /> : 
                 <Link 
                     text={actionText} 
+                    onClick={onActionClick}
                     underline='always'
                     />
                     : null}
@@ -93,7 +96,7 @@ Alert.propTypes = {
     type: PropTypes.oneOf(['info', 'base', 'error', 'warning', 'success']),
     actionText: PropTypes.string,
     actionType: PropTypes.oneOf(['button', 'link']),
-    size: PropTypes.oneOf(['medium', 'large']),
+    size: PropTypes.oneOf(['small', 'medium']),
     icon: PropTypes.oneOfType([
         PropTypes.oneOf(['none', 'auto', ...allIconNames]),
         PropTypes.string

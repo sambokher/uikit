@@ -79,7 +79,7 @@ FileCard.propTypes = {
     thumbnailImageSrc: PropTypes.string,
     thumbnailAspectRatio: PropTypes.oneOf(['2 / 1', '1 / 1', '3 / 2', '4 / 3']),
     textSize: PropTypes.oneOf(['small', 'medium']),
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     icon: PropTypes.oneOf(['none', ...allIconNames]),
     description: PropTypes.string,
     corners: PropTypes.oneOf(["none", "sm", "md", "lg", 'xl']),

@@ -8,6 +8,7 @@ export default function Link(props) {
         text = 'Link',
         URL = '#',
         openInNewWindow = false,
+        onClick=()=>{},
         textSize = 'auto',
         textColor = 'auto',
         lineHeight = 'auto',
@@ -36,6 +37,7 @@ export default function Link(props) {
             href={URL}
             target={openInNewWindow ? "_blank" : "_self"}
             rel={openInNewWindow ? "noopener noreferrer" : ""}
+            onClick={(e)=> onClick(e)}
             {...attributes} {...listeners} 
         >
             {

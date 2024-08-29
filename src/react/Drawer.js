@@ -66,11 +66,11 @@ Drawer.propTypes = {
     position: PropTypes.oneOf(['right', 'left']),
     paddingX: PropTypes.oneOf(["0px", "8px", "12px", "16px", "24px", "32px", "48px"]),
     paddingY: PropTypes.oneOf(["0px", "8px", "12px", "16px", "24px", "32px", "48px"]),
-    bgColor: PropTypes.oneOf(['base-0', 'base-100', 'base-200']),
+    bgColor: PropTypes.oneOf(['base-0', 'base-50', 'base-100', 'base-200']),
     border: PropTypes.oneOf(['left', 'right', 'none']),
     gap: PropTypes.oneOf(["0px", "8px", "12px", "16px", "24px", "32px"]),
     alignItems: PropTypes.oneOf(['start', 'end', 'center', 'stretch']),
-    justifyContent: PropTypes.oneOf(['start', 'end', 'center', 'between', 'around', 'evenly']),
+    justifyContent: PropTypes.oneOf(['start', 'end', 'center', 'between']),
     display: PropTypes.bool,
     width: PropTypes.oneOf(['360px', '480px', '640px', '780px', '50%', '33%', '25%']),
     children: PropTypes.node

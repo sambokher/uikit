@@ -7,7 +7,8 @@ import { format, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addDays, isSa
 export default function MiniCalendar(props) {
 
     const {
-        bgColor = 'base-100',
+        bgColor = 'base-50',
+        selectColor = 'accent',
         corners = 'sm',
         weekStart = 'Monday',
         hasOutline = false,
@@ -16,7 +17,8 @@ export default function MiniCalendar(props) {
       } = props;
     
     const cornerStyles = corners == 'none' ? '' : 'rounded-'+corners
-    const outlineStyles = hasOutline ? 'border border-base-300' : ''
+    const outlineColor = (bgColor === 'base-50' || bgColor == 'base-0') ? 'base-100' : bgColor == 'base-100' ? 'base-200' : 'base-300'
+    const outlineStyles = hasOutline ? 'ring-[0.5px] ring-inset ring-'+outlineColor : ''
     let wrapperClasses = `flex w-full max-w-[240px] p-sm flex-col items-stretch relative text-sm select-none bg-${bgColor} ${cornerStyles} ${outlineStyles}`
 
     const weekdayStyle = `flex-grow-1 w-full text-center font-normal pt-2xs text-gray-500`
@@ -55,6 +57,7 @@ onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}
                 <DaysGrid 
                     currentMonth={currentMonth}  
                     selectedDate={selectedDate} 
+                    selectColor={selectColor}
                     weekStart={weekStart}
                     setSelectedDate={setSelectedDate} 
                     cornerStyles={cornerStyles} />
@@ -63,7 +66,7 @@ onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}
     );
 }
 
-function DaysGrid({ currentMonth, selectedDate, setSelectedDate, cornerStyles, weekStart = 'Monday' }) {
+function DaysGrid({ currentMonth, selectedDate, setSelectedDate, selectColor, cornerStyles, weekStart = 'Monday' }) {
     const weekStartOptions = weekStart === 'Sunday' ? { weekStartsOn: 0 } : { weekStartsOn: 1 };
 
     const monthStart = startOfMonth(currentMonth);
@@ -97,7 +100,7 @@ function DaysGrid({ currentMonth, selectedDate, setSelectedDate, cornerStyles, w
 onClick={(e) => { e.stopPropagation(); setSelectedDate(currentDay); }}
                         style={{
                             backgroundColor:
-                                isSelected ? 'var(--accent)' :
+                                isSelected ? `var(--${selectColor})` :
                                 isCurrentDay ? 'color-mix(in srgb, var(--base-content) 12%, transparent)' : 'transparent',
                         }}
                     >
@@ -135,7 +138,7 @@ onClick={(e) => { e.stopPropagation(); setSelectedDate(currentDay); }}
                     <span className={`${dayClasses}`}
 onClick={(e) => { e.stopPropagation(); setSelectedDate(nextDay); }}
                         style={{
-                            backgroundColor: isSelected ? 'var(--accent)' : isCurrentDay ? 'color-mix(in srgb, var(--base-content) 12%, transparent)' : 'transparent',
+                            backgroundColor: isSelected ? `var(--${selectColor})` : isCurrentDay ? 'color-mix(in srgb, var(--base-content) 12%, transparent)' : 'transparent',
                             color: isSelected ? 'white' : 'var(--base-content)'
                         }}>
                         {formattedDate}
@@ -155,7 +158,8 @@ onClick={(e) => { e.stopPropagation(); setSelectedDate(nextDay); }}
 }
 
 MiniCalendar.propTypes = {
-    bgColor: PropTypes.oneOf(['base-0', 'base-100', 'base-200']),
+    bgColor: PropTypes.oneOf(['base-0', 'base-50', 'base-100', 'base-200']),
+    selectColor: PropTypes.oneOf(['accent', 'primary', 'base-content']),
     corners: PropTypes.oneOf(['none', 'sm', 'base', 'md', 'lg']),
     weekStart: PropTypes.oneOf(['Monday', 'Sunday']),
     hasOutline: PropTypes.bool,

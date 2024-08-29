@@ -11,7 +11,7 @@ export default function Checkbox(props) {
         isChecked = false,
         isPartial = false,
         size = 'medium',
-        onChange = null,
+        onChange = () => {},
         attributes,
         listeners
       } = props;
@@ -21,9 +21,9 @@ export default function Checkbox(props) {
         setChecked(isChecked);
     }, [isChecked]);
     
-    const onCheckboxChange = () => {
+    const onCheckboxChange = (e) => {
         if (onChange) {
-            onChange();
+            onChange(e);
         } else {
             setChecked(!checked)
         }
@@ -31,8 +31,8 @@ export default function Checkbox(props) {
 
     const sizeStyles = size == 'small' ? `gap-1.5 text-xs`: size == 'large' ? `gap-3 text-base` : `gap-2 text-sm`;
     const paddingStyles = size == 'small' ? `py-1 px-1.5` : size == 'large' ? `py-2 px-3` : `py-1.5 px-2`;
-    const borderStyles = isChecked ? `border border-primary` : `border border-base-200`
-    const bgSttyles = isChecked ? `bg-transparent` : `bg-transparent hover:bg-base-100 transition-all duration-75`
+    const borderStyles = checked ? `border border-primary` : `border border-base-200`
+    const bgSttyles = checked ? `bg-transparent` : `bg-transparent hover:bg-base-100 transition-all duration-75`
     
     const styleMap  = {
         standard: `flex items-start ${sizeStyles} cursor-default w-${width}`, 
@@ -46,7 +46,7 @@ export default function Checkbox(props) {
         'disabled': 'bg-base-200 border border-base-300 bg-base-200'
     };
 
-    const stateStyles = isChecked ? fillColorMap[state] : 'border border-base-300'
+    const stateStyles = checked ? fillColorMap[state] : 'border border-base-300'
     
     let wrapperClasses = styleMap[style] || styleMap['standard']
 

@@ -21,51 +21,69 @@ export default function InputText(props) {
         suffix = '',
         textAlign = 'left',
         width = 'auto',
+        onFocus=()=>{},
         hasOutline = true,
-        defaultIconSet,
         attributes,
         listeners,
         name,
         type,
-        onChange = () => {}
+        onChange,
+        onBlur,
       } = props;
 
     
-    const [isFocused, setIsFocused] = useState(false);
+    const isControlled = value !== undefined && onChange !== undefined;
+    const [internalValue, setInternalValue] = useState(value);
+    
+    // const sizeStyles = size == 'small' ? `py-1 px-2 gap-1.5` : size == 'large' ? `py-2 px-3 gap-3` : `py-1.5 px-2 gap-3`;
+    const paddingX = size == 'small' ? `px-2` : size == 'large' ? `px-3` : `px-2.5`;
+    const gapUnit = size == 'small' ? 1.5 : size == 'large' ? 2.5 : 2
+    const paddingY = size == 'small' ? `py-1.5` : size == 'large' ? `py-3` : `py-2`;
 
-    const sizeStyles = size == 'small' ? `py-1 px-2 gap-1.5 text-xs` : size == 'large' ? `py-2 px-3 gap-3 text-base` : `py-1.5 px-2 gap-3 text-sm`;
+    const textSize = size == 'small' ? 'text-xs' : size == 'large' ? 'text-base' : 'text-sm';
     const cornerStyles = size == "small" ? "rounded" : size == "large" ? "rounded-lg" : "rounded-md"
     
-    let stateStyles = hasOutline ? isFocused ? `border border-accent` : `border border-base-300` : 'border border-transparent'
+    // default
+    let stateStyles = hasOutline ? `ring-1 ring-inset ring-base-200 focus-within:ring-[1.5px] focus-within:ring-accent` : '';
     switch (state) {
         case 'disabled':
-            stateStyles = `bg-base-100 opacity-70 cursor-not-allowed ${hasOutline ? 'border border-base-300' : ''}`
+            stateStyles = `bg-base-100 opacity-70 cursor-not-allowed ${hasOutline ? 'ring-1 ring-inset ring-base-200' : ''}`
             break;
         case 'error':
-            stateStyles = `text-warning-content ${hasOutline ? 'border border-warning-content' : ''}`
+            stateStyles = `text-warning-content ${hasOutline ? 'ring-1 ring-inset ring-warning-content' : ''}`
             break;
         case 'success':
-            stateStyles = `text-success-content ${hasOutline ? 'border border-success-content' : ''}`
+            stateStyles = `text-success-content ${hasOutline ? 'ring-1 ring-inset ring-success-content' : ''}`
             break;
     }
     
-    const bgStyles = (bgColor && bgColor !== 'none') ? `bg-${bgColor} ${!hasOutline && isFocused && 'brightness-95'}` : '';
+    const bgStyles = (bgColor && bgColor !== 'none') ? `bg-${bgColor} ${!hasOutline && 'brightness-95'}` : '';
     
-    let classes = `w-full flex items-center justify-between truncate ellipsis box-border font-medium ${sizeStyles} ${cornerStyles} ${bgStyles} ${stateStyles}`
+    
+    let inputWrapper = `w-full relative flex flex-row items-center ${paddingX} ${textSize} ${cornerStyles} ${bgStyles} ${stateStyles} `
+
+
     
     const labelTextSize = size == 'small' ? `text-xs` :  size == 'large' ? `text-lg`: `text-sm`;
     const labelClasses = `text-base-content ${labelTextSize} font-medium`
 
     const messageTextColor = state == 'error' ? stateStyles = 'text-warning-content' : state == 'success' ? stateStyles = 'text-success-content' : ''
     const messageClasses = size == 'large' ? `text-sm  ${messageTextColor}` : `text-xs ${messageTextColor}`
-    const widthStyle = width != 'auto' ? `w-${width}` : size == 'small' ? 'min-w-[120px]' : size == 'large' ? 'min-w-[200px]' : 'min-w-[160px]'
+    const widthStyle = width != 'auto' ? `w-${width}` : size == 'small' ? '' : size == 'large' ? 'min-w-[200px]' : 'min-w-[160px]'
     
-    const iconWidth = size == 'small' ? 'w-4' : size == 'large' ? 'w-6' : 'w-5'
-    const LeftIconComponent = leftIcon !== 'none' ? <Icon icon={leftIcon?.toLowerCase()} defaultIconSet={defaultIconSet} className={`flex-shrink-0 scale-90 ${iconWidth}`}/> : null;
-    const RightIconComponent = rightIcon !== 'none' ? <Icon icon={rightIcon?.toLowerCase()} defaultIconSet={defaultIconSet} className='flex-shrink-0 flex-grow-0'/> : null;
+    
+    const iconSize = size == 'small' ? '16px' : size == 'large' ? '24px' : '20px'
+    const iconStyle = size == 'small' ? 'w-4' : size == 'large' ? 'w-6' : 'w-5' // temporary before we fix Icon
+    const LeftIconComponent = leftIcon !== 'none' ? <Icon icon={leftIcon?.toLowerCase()} size={iconSize} className={`flex-shrink-0 scale-90 ${iconStyle}`}/> : null;
+    const RightIconComponent = rightIcon !== 'none' ? <Icon icon={rightIcon?.toLowerCase()} size={iconSize} className={`flex-shrink-0 scale-90 ${iconStyle}`}/> : null;
 
     const gapStyles = size == 'small' ? 'gap-0.5' : size == 'large' ? 'gap-1.5' : 'gap-1'
     let wrapperClasses = `flex flex-col ${widthStyle} ${gapStyles}`
+
+    const inputPaddingX = `${(prefix || LeftIconComponent) ? 'pl-'+gapUnit : ''} ${(suffix || RightIconComponent) ? 'pr-'+gapUnit : ''}`
+
+    // pr-0.5 pr-1 pr-1.5 pr-2 pr-2.5 pl-0.5 pl-1 pl-1.5 pl-2 pl-2.5
+    // ml-0.5 ml-1 ml-1.5 ml-2 ml-2.5 mr-0.5 mr-1 mr-1.5 mr-2 mr-2.5
 
     return (
         <div
@@ -77,23 +95,24 @@ export default function InputText(props) {
 {label}
                 </label>
             )}
-            <div className={classes} style={{boxSizing: 'border-box'}}>
+            <div className={inputWrapper} >
             {LeftIconComponent}
-            {prefix}
-             
+            <span className={`flex-shrink-0 ${LeftIconComponent && prefix ? `pl-${gapUnit}` : ''}`}>{prefix}</span>
             <input
             type={type}
             name={name}
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
+            onBlur={() => onBlur()}
             onChange={(e) => onChange(e)}
-            disabled={state == 'disabled'}
-            className={`flex-grow text-${textAlign} border-transparent focus:outline-none focus:ring-0 font-medium placeholder:font-normal
-            placeholder-base-500 text-base-content bg-transparent w-full truncate ellipsis ${state == 'disabled' && 'cursor-not-allowed'}`}
+disabled={state == 'disabled'}
+            onFocus={() => onFocus()}
+            className={`block w-full text-${textAlign} ${paddingY} border-0 border-transparent focus:outline-none focus:ring-0 font-medium placeholder:font-normal
+            placeholder-base-500 text-base-content ${state == 'disabled' && 'cursor-not-allowed'} ${inputPaddingX}`}
             value={value}
             placeholder={placeholder}
             />  
+            <span className={`flex-shrink-0 ${RightIconComponent && suffix ? `pr-${gapUnit}` : ''}`}>
             {suffix}
+            </span>
             {RightIconComponent}
             </div>
             {helperText && <span
@@ -116,7 +135,7 @@ InputText.propTypes = {
     helperText: PropTypes.string,
     prefix: PropTypes.string,
     suffix: PropTypes.string,
-    textAlign: PropTypes.oneOf(['left', 'right']),
+    textAlign: PropTypes.oneOf(['left', 'right', 'center']),
     size: PropTypes.oneOf(['small', 'medium', 'large']),
     leftIcon: PropTypes.oneOf(['none', ...allIconNames]),
     rightIcon: PropTypes.oneOf(['none', ...allIconNames]),
