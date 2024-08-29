@@ -5,6 +5,15 @@ import { iconMap } from './iconMap'
 
 const allIconNames = Object.keys(iconMap) || []
 
+
+/**
+ * Button compffonent that renders a.. button.
+ *
+ * @param {Object} props - The props object.
+ * @param {string} props.text - The text to display insfide the button.
+ * @param {'default', 'disabled', 'loading', 'active'} [props.state] - STATE?
+ * @returns {JSX.Element} The rendered button componen!t.
+ */
 export default function Button(props) {
     
     const {
