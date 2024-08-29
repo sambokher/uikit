@@ -7,8 +7,8 @@ export default {
 	output: [{
 		dir: "./dist",
 		format: "es",
-		sourcemap: true,
-    	preserveModules: true,
+		// sourcemap: true,
+    	// preserveModules: true,
 	}],
 	plugins: [
 		css({ output: "uikit.css" }),
