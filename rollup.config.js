@@ -5,7 +5,7 @@ import css from "rollup-plugin-css-only";
 export default {
 	input: "src/index.js",
 	output: [{
-		dir: "./dist",
+		file: "./dist/uikit.js",
 		format: "es",
 	}],
 	plugins: [
