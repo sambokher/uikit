@@ -1,4 +1,0 @@
-var img = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' id='flag-icons-sl' viewBox='0 0 512 512'%3e %3cdefs%3e %3cclipPath id='sl-a'%3e %3crect width='384' height='512' rx='4.6' ry='7.6'/%3e %3c/clipPath%3e %3c/defs%3e %3cg fill-rule='evenodd' clip-path='url(%23sl-a)' transform='scale(1.33333 1)'%3e %3cpath fill='%230000cd' d='M0 341.7h512V512H0z'/%3e %3cpath fill='white' d='M0 171.4h512v170.3H0z'/%3e %3cpath fill='%2300cd00' d='M0 0h512v171.4H0z'/%3e %3c/g%3e%3c/svg%3e";
-
-export { img as default };
-//# sourceMappingURL=sl.svg.js.map

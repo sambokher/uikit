@@ -1,4 +1,0 @@
-var img = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' id='flag-icons-sd' viewBox='0 0 640 480'%3e %3cdefs%3e %3cclipPath id='sd-a'%3e %3cpath fill-opacity='.7' d='M0 0h682.7v512H0z'/%3e %3c/clipPath%3e %3c/defs%3e %3cg fill-rule='evenodd' stroke-width='1pt' clip-path='url(%23sd-a)' transform='scale(.9375)'%3e %3cpath fill='%23000001' d='M0 341.3h1024V512H0z'/%3e %3cpath fill='white' d='M0 170.6h1024v170.7H0z'/%3e %3cpath fill='red' d='M0 0h1024.8v170.7H0z'/%3e %3cpath fill='%23009a00' d='M0 0v512l341.3-256z'/%3e %3c/g%3e%3c/svg%3e";
-
-export { img as default };
-//# sourceMappingURL=sd.svg.js.map

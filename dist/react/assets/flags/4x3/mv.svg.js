@@ -1,4 +1,0 @@
-var img = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' id='flag-icons-mv' viewBox='0 0 640 480'%3e %3cpath fill='%23d21034' d='M0 0h640v480H0z'/%3e %3cpath fill='%23007e3a' d='M120 120h400v240H120z'/%3e %3ccircle cx='350' cy='240' r='80' fill='white'/%3e %3ccircle cx='380' cy='240' r='80' fill='%23007e3a'/%3e%3c/svg%3e";
-
-export { img as default };
-//# sourceMappingURL=mv.svg.js.map

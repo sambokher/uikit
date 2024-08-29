@@ -1,4 +1,0 @@
-var img = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' id='flag-icons-mm' viewBox='0 0 640 480'%3e %3cpath fill='%23fecb00' d='M0 0h640v480H0z'/%3e %3cpath fill='%2334b233' d='M0 160h640v320H0z'/%3e %3cpath fill='%23ea2839' d='M0 320h640v160H0z'/%3e %3cg transform='translate(320 256.9)scale(176.87999)'%3e %3cpath id='mm-a' fill='white' d='m0-1 .3 1h-.6z'/%3e %3cuse xlink:href='%23mm-a' width='100%25' height='100%25' transform='rotate(-144)'/%3e %3cuse xlink:href='%23mm-a' width='100%25' height='100%25' transform='rotate(-72)'/%3e %3cuse xlink:href='%23mm-a' width='100%25' height='100%25' transform='rotate(72)'/%3e %3cuse xlink:href='%23mm-a' width='100%25' height='100%25' transform='rotate(144)'/%3e %3c/g%3e%3c/svg%3e";
-
-export { img as default };
-//# sourceMappingURL=mm.svg.js.map

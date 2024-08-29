@@ -1,4 +1,0 @@
-var img = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' id='flag-icons-vn' viewBox='0 0 640 480'%3e %3cdefs%3e %3cclipPath id='vn-a'%3e %3cpath fill-opacity='.7' d='M-85.3 0h682.6v512H-85.3z'/%3e %3c/clipPath%3e %3c/defs%3e %3cg fill-rule='evenodd' clip-path='url(%23vn-a)' transform='translate(80)scale(.9375)'%3e %3cpath fill='%23da251d' d='M-128 0h768v512h-768z'/%3e %3cpath fill='%23ff0' d='M349.6 381 260 314.3l-89 67.3L204 272l-89-67.7 110.1-1 34.2-109.4L294 203l110.1.1-88.5 68.4 33.9 109.6z'/%3e %3c/g%3e%3c/svg%3e";
-
-export { img as default };
-//# sourceMappingURL=vn.svg.js.map

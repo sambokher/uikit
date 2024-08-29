@@ -1,4 +1,0 @@
-var img = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' id='flag-icons-za' viewBox='0 0 640 480'%3e %3cdefs%3e %3cclipPath id='za-a'%3e %3cpath fill-opacity='.7' d='M-71.9 0h682.7v512H-71.9z'/%3e %3c/clipPath%3e %3c/defs%3e %3cg clip-path='url(%23za-a)' transform='translate(67.4)scale(.93748)'%3e %3cg fill-rule='evenodd' stroke-width='1pt'%3e %3cpath fill='%23000001' d='M-71.9 407.8V104.4L154 256.1z'/%3e %3cpath fill='%23000c8a' d='m82.2 512.1 253.6-170.6H696V512H82.2z'/%3e %3cpath fill='%23e1392d' d='M66 0h630v170.8H335.7S69.3-1.7 66 0'/%3e %3cpath fill='%23ffb915' d='M-71.9 64v40.4L154 256-72 407.8v40.3l284.5-192z'/%3e %3cpath fill='%23007847' d='M-71.9 64V0h95l301.2 204h371.8v104.2H324.3L23 512h-94.9v-63.9l284.4-192L-71.8 64z'/%3e %3cpath fill='white' d='M23 0h59.2l253.6 170.7H696V204H324.3zm0 512.1h59.2l253.6-170.6H696v-33.2H324.3L23 512z'/%3e %3c/g%3e %3c/g%3e%3c/svg%3e";
-
-export { img as default };
-//# sourceMappingURL=za.svg.js.map

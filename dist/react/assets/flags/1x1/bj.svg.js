@@ -1,4 +1,0 @@
-var img = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' id='flag-icons-bj' viewBox='0 0 512 512'%3e %3cdefs%3e %3cclipPath id='bj-a'%3e %3cpath fill='gray' d='M67.6-154h666v666h-666z'/%3e %3c/clipPath%3e %3c/defs%3e %3cg clip-path='url(%23bj-a)' transform='translate(-52 118.4)scale(.7688)'%3e %3cg fill-rule='evenodd' stroke-width='1pt'%3e %3cpath fill='%23319400' d='M0-154h333v666H0z'/%3e %3cpath fill='%23ffd600' d='M333-154h666v333H333z'/%3e %3cpath fill='%23de2110' d='M333 179h666v333H333z'/%3e %3c/g%3e %3c/g%3e%3c/svg%3e";
-
-export { img as default };
-//# sourceMappingURL=bj.svg.js.map

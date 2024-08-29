@@ -1,4 +1,0 @@
-var img = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' id='flag-icons-tt' viewBox='0 0 512 512'%3e %3cpath fill='white' d='M0 0h512v512H0z' style='width:0'/%3e %3cg fill-rule='evenodd'%3e %3cpath fill='%23e00000' d='M371 512 0 1v510.7zM141 0l371 511V.2z'/%3e %3cpath fill='%23000001' d='M22.2.2h94.9l374.5 511.3h-97.9z'/%3e %3c/g%3e%3c/svg%3e";
-
-export { img as default };
-//# sourceMappingURL=tt.svg.js.map
