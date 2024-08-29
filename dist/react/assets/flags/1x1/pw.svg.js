@@ -1,0 +1,4 @@
+var img = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' id='flag-icons-pw' viewBox='0 0 512 512'%3e %3cdefs%3e %3cclipPath id='pw-a'%3e %3cpath fill-opacity='.7' d='M61.7 4.2h170.8V175H61.7z'/%3e %3c/clipPath%3e %3c/defs%3e %3cg fill-rule='evenodd' stroke-width='1pt' clip-path='url(%23pw-a)' transform='translate(-185 -12.5)scale(2.9973)'%3e %3cpath fill='%234aadd6' d='M0 4.2h301.2V175H0z'/%3e %3cpath fill='%23ffde00' d='M185.9 86.8a52 52 0 0 1-53 50.8 52 52 0 0 1-53.2-50.8c0-28 23.8-50.8 53.1-50.8s53 22.7 53 50.8z'/%3e %3c/g%3e%3c/svg%3e";
+
+export { img as default };
+//# sourceMappingURL=pw.svg.js.map

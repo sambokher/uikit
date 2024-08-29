@@ -1,0 +1,4 @@
+var img = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' id='flag-icons-cw' viewBox='0 0 640 480'%3e %3cdefs%3e %3cclipPath id='cw-a'%3e %3cpath fill-opacity='.7' d='M0 0h682.7v512H0z'/%3e %3c/clipPath%3e %3cpath id='cw-b' d='m0-1 .2.7H1L.3 0l.2.7L0 .4l-.6.4.2-.7-.5-.4h.7z'/%3e %3c/defs%3e %3cg clip-path='url(%23cw-a)' transform='scale(.94)'%3e %3cpath fill='%23002b7f' d='M0 0h768v512H0z'/%3e %3cpath fill='%23f9e814' d='M0 320h768v64H0z'/%3e %3cuse xlink:href='%23cw-b' width='13500' height='9000' x='2' y='2' fill='white' transform='scale(42.67)'/%3e %3cuse xlink:href='%23cw-b' width='13500' height='9000' x='3' y='3' fill='white' transform='scale(56.9)'/%3e %3c/g%3e%3c/svg%3e";
+
+export { img as default };
+//# sourceMappingURL=cw.svg.js.map

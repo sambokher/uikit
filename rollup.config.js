@@ -4,7 +4,12 @@ import css from "rollup-plugin-css-only";
 
 export default {
 	input: "src/index.js",
-	output: [{ file: "./dist/uikit.js", format: "es" }],
+	output: [{
+		dir: "./dist",
+		format: "es",
+		sourcemap: true,
+    	preserveModules: true,
+	}],
 	plugins: [
 		css({ output: "uikit.css" }),
 		sucrase({

@@ -1,0 +1,4 @@
+var img = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' id='flag-icons-ss' viewBox='0 0 640 480'%3e %3cpath fill='%23078930' d='M0 336h640v144H0z'/%3e %3cpath fill='white' d='M0 144h640v192H0z'/%3e %3cpath fill='%23000001' d='M0 0h640v144H0z'/%3e %3cpath fill='%23da121a' d='M0 168h640v144H0z'/%3e %3cpath fill='%230f47af' d='m0 0 415.7 240L0 480z'/%3e %3cpath fill='%23fcdd09' d='M200.7 194.8 61.7 240l139 45.1L114.9 167v146z'/%3e%3c/svg%3e";
+
+export { img as default };
+//# sourceMappingURL=ss.svg.js.map

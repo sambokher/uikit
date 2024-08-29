@@ -1,0 +1,4 @@
+var img = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' id='flag-icons-bf' viewBox='0 0 512 512'%3e %3cg fill-rule='evenodd'%3e %3cpath fill='%23de0000' d='M512 511.6H.5V0H512z'/%3e %3cpath fill='%2335a100' d='M511.8 512H0V256.2h511.7z'/%3e %3c/g%3e %3cpath fill='%23fff300' fill-rule='evenodd' d='m389 223.8-82.9 56.5 31.7 91.6-82.7-56.7-82.8 56.7 31.7-91.6-82.8-56.6 102.3.2 31.6-91.7 31.5 91.6'/%3e%3c/svg%3e";
+
+export { img as default };
+//# sourceMappingURL=bf.svg.js.map
