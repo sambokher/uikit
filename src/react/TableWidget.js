@@ -163,7 +163,7 @@ export default function TableWidget(props) {
             return { checkbox: { 
               component: "Checkbox", 
               props: { 
-                isChecked: selectedRows.includes(row?.id),
+                checked: selectedRows.includes(row?.id),
                 size: "small", 
                 label: null, 
                 onChange: () => handleRowSelect(row?.id)
@@ -304,9 +304,9 @@ export default function TableWidget(props) {
                   {column.type === 'checkbox' ? 
                     <UIKit.Checkbox 
                       size='small' 
-                      isChecked={selectedRows.length > 0}
+                      checked={selectedRows.length > 0}
                       label={null} 
-                      isPartial={selectedRows.length != rowData.length}
+                      intederminate={selectedRows.length != rowData.length}
                       onChange={handleAllRowsSelect}
                     /> : 
                   column.header}

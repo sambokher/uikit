@@ -25,9 +25,9 @@ export default function Alert(props) {
       } = props;
 
     const styleMap = {
-        'filled': type == 'base' ? `bg-base-content text-base-0` : `bg-${type}-content text-base-0` ,
-        'outline': type == 'base' ? `text-base-600 ring-1 ring-inset ring-base-300` : `text-${type}-content ring-1 ring-inset ring-${type}-content`,
-        'light': type == 'base' ? `bg-base-100 text-base-content` : `bg-${type}  text-${type}-content`
+        'filled': type == 'base' ? `bg-base-content text-base-0` : `bg-${type} text-base-0` ,
+        'outline': type == 'base' ? `text-base-600 ring-1 ring-inset ring-base-300` : `text-${type}-content ring-1 ring-inset ring-${type}-focus`,
+        'light': type == 'base' ? `bg-base-100 text-base-content` : `bg-${type}-surface text-${type}-content`
     }
 
     const typeStyles = `${styleMap[style]}`

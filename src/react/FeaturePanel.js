@@ -22,8 +22,8 @@ export default function FeaturePanel(props) {
         listeners
       } = props;
 
-    const bgStyles = background ?`bg-${background}` : '';
-    const fontColor = (!background || background == 'none') ? '' : background == 'base-900' ? `text-base-0` : background?.startsWith('base') ? 'text-base-content' : `text-${background}-content`
+    const bgStyles = background ? `bg-${background}` : '';
+    const fontColor = (!background || background == 'none') ? '' : (background?.startsWith('base') && background != 'base-content') ? 'text-base-content' : `text-base-0`
     const paddingStyles = `${paddingX ? ` px-${spacingMap[paddingX]}` : ''}${paddingY ? ` py-${spacingMap[paddingY]}` : ''}`;
     const gapStyles = gap ? `gap-${spacingMap[gap]}` : '';
 

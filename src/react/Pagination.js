@@ -35,7 +35,8 @@ export default function Pagination(props) {
         <Button
           text="Back"
           size="small"
-          type={"ghost"}
+          color={'base-700'}
+          style={"ghost"}
           isDisabled={selectedIndex == 1}
           leftIcon="chevron-left"
           onClick={() => handlePageChange(selectedIndex - 1)}
@@ -44,7 +45,8 @@ export default function Pagination(props) {
         <ButtonIcon
           icon='chevron-left'
           size="small"
-          type={"ghost"}
+          color={'base-700'}
+          style={"ghost"}
           isDisabled={selectedIndex == 1}
           onClick={() => handlePageChange(selectedIndex - 1)}
         />
@@ -55,7 +57,8 @@ export default function Pagination(props) {
         <Button
           text="Next"
           size="small"
-          type={"ghost"}
+          color={'base-700'}
+          style={"ghost"}
           isDisabled={selectedIndex >= totalPages}
           rightIcon="chevron-right"
           onClick={() => handlePageChange(selectedIndex + 1)}
@@ -64,7 +67,8 @@ export default function Pagination(props) {
         <ButtonIcon
           icon='chevron-right'
           size="small"
-          type={"ghost"}
+          color={'base-700'}
+          style={"ghost"}
           isDisabled={selectedIndex >= totalPages}
           onClick={() => handlePageChange(selectedIndex + 1)}
         />
@@ -134,7 +138,8 @@ function PaginationArray ({ totalPages, currentPage, handlePageChange }){
                         key={page}
                         text={`${page}`}
                         size="small"
-                        type={currentPage === page  ? 'secondary' : 'ghost'}
+                        color={currentPage == page ? 'base-200' : 'base-700'}
+                        style={currentPage == page ? 'light' : 'ghost'}
                         onClick={() => handlePageChange(page)}
                     />
                 );

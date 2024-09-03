@@ -8,45 +8,53 @@ export default function Checkbox(props) {
         state = 'default',
         label = 'checkbox',
         style = 'standard',
-        isChecked = false,
-        isPartial = false,
+        checked: externalValue,
+        intederminate = false,
         size = 'medium',
-        onChange = () => {},
+        onChange,
         attributes,
         listeners
       } = props;
     
-    const [checked, setChecked] = useState(isChecked); 
-    useEffect(() => {
-        setChecked(isChecked);
-    }, [isChecked]);
+    const isControlled = externalValue !== undefined && onChange !== undefined;
+    const [isChecked, setIsChecked] = useState(externalValue || false);
+    const checked = isControlled ? externalValue : isChecked; 
     
-    const onCheckboxChange = (e) => {
-        if (onChange) {
+    useEffect(() => {
+        if (externalValue) {
+            setIsChecked(externalValue);
+        }
+    }, [externalValue]);
+
+    function handleChange(e) {
+        e.stopPropagation();
+        
+        if (isControlled) {
             onChange(e);
         } else {
-            setChecked(!checked)
+            setIsChecked(!checked);
         }
     }
-
+    const heightStyle = size == 'small' ? 'h-7' : size == 'large' ? 'h-12' : 'h-9';
     const sizeStyles = size == 'small' ? `gap-1.5 text-xs`: size == 'large' ? `gap-3 text-base` : `gap-2 text-sm`;
-    const paddingStyles = size == 'small' ? `py-1 px-1.5` : size == 'large' ? `py-2 px-3` : `py-1.5 px-2`;
-    const borderStyles = checked ? `border border-primary` : `border border-base-200`
-    const bgSttyles = checked ? `bg-transparent` : `bg-transparent hover:bg-base-100 transition-all duration-75`
+    const paddingStyles = size == 'small' ? `px-1.5` : size == 'large' ? `px-3` : `px-2`;
+    const borderStyles = checked ? `ring-1 ring-inset ring-primary` : `ring-1 ring-inset ring-base-200`
+    const bgSttyles = checked ? `bg-primary/10` : `bg-transparent hover:bg-current-5 transition-all duration-75`
     
     const styleMap  = {
         standard: `flex items-start ${sizeStyles} cursor-default w-${width}`, 
-        button: `flex flex-row ${paddingStyles} rounded items-center ${sizeStyles} cursor-pointer w-${width} ${borderStyles} ${bgSttyles}`
+        button: `flex flex-row ${paddingStyles} ${heightStyle} rounded items-center ${sizeStyles} 
+        cursor-pointer w-${width} ${borderStyles} ${bgSttyles}`
     }
 
     const fillColorMap = {
-        'default': `border border-primary bg-primary`,
-        'warning': `border border-warning-content bg-warning-content`,
-        'success': `border border-success-content bg-success-content`,
-        'disabled': 'bg-base-200 border border-base-300 bg-base-200'
+        'default': `ring-1 ring-inset ring-primary bg-primary`,
+        'error': `ring-1 ring-inset ring-error-focus bg-error`,
+        'success': `ring-1 ring-inset ring-success-focus bg-success`,
+        'disabled': 'bg-base-200 ring-1 ring-inset ring-base-300'
     };
 
-    const stateStyles = checked ? fillColorMap[state] : 'border border-base-300'
+    const stateStyles = checked ? fillColorMap[state] : 'ring-1 ring-inset ring-base-300'
     
     let wrapperClasses = styleMap[style] || styleMap['standard']
 
@@ -63,11 +71,11 @@ export default function Checkbox(props) {
         <div 
         {...attributes} {...listeners} 
             className={wrapperClasses} 
-onClick={onCheckboxChange}
+onClick={handleChange}
         >
             <div className="relative flex-shrink-0 inline-block">
                 <span className={checkboxClasses}>
-                    {checked ? !isPartial ? 
+                    {checked ? !intederminate ? 
                         <svg className="w-5 h-5" viewBox="0 0 20 20" aria-hidden="true" fill={`var(--${checkColor})`}>
                             <path fillRule="evenodd" d="M6.293 9.293a1 1 0 011.414 0L10 11.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
                         </svg> :
@@ -89,8 +97,8 @@ Checkbox.propTypes = {
     type: PropTypes.oneOf(['standard', 'button']),
     state: PropTypes.oneOf(['default', 'warning', 'disabled', 'success']),
     label: PropTypes.string,
-    isChecked: PropTypes.bool,
-    isPartial: PropTypes.bool,
+    checked: PropTypes.bool,
+    intederminate: PropTypes.bool,
     size: PropTypes.oneOf(['small', 'medium', 'large']),
     onChange: PropTypes.func
     

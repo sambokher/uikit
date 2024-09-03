@@ -28,7 +28,7 @@ export default function Hero(props) {
     
 
     const bgStyles = background ?`bg-${background}` : '';
-    const fontColor = (!background || background == 'none') ? '' : background == 'base-900' ? `text-base-0` : background?.startsWith('base') ? 'text-base-content' : `text-${background}-content`
+    const fontColor = (!background || background == 'none') ? '' : (background?.startsWith('base') && background != 'base-content' && background != 'base-700') ? 'text-base-content' : `text-base-0`
     const paddingStyles = `${paddingX ? ` px-${spacingMap[paddingX]}` : ''}${paddingY ? ` py-${spacingMap[paddingY]}` : ''}`;
     const gapStyles = gap ? `gap-${spacingMap[gap]}` : '';
     
@@ -93,7 +93,7 @@ Hero.propTypes = {
     gap: PropTypes.oneOf(["4px", "6px", "8px", "10px", "12px", "16px", "24px", "32px", "48px"]),
 
     background: PropTypes.oneOfType([
-        PropTypes.oneOf(['base-0', 'base-50', 'base-100', 'base-200', 'base-700', 'base-900']),
+        PropTypes.oneOf(['base-0', 'base-50', 'base-100', 'base-200', 'base-700', 'base-content']),
         PropTypes.string]),
     bottomBorder: PropTypes.bool,
     flexDirection: PropTypes.oneOf(["flex-col", "flex-row"]),

@@ -59,9 +59,9 @@ export default function InputPIN(props) {
     if (state === 'disabled') {
         stateStyles = `bg-base-100 opacity-70 cursor-not-allowed ${hasOutline ? 'ring-1 ring-inset ring-base-300' : ''}`;
     } else if (state === 'error') {
-        stateStyles = `text-warning-content ${hasOutline ? 'ring-1 ring-inset ring-warning-content' : ''}`;
+        stateStyles = `text-warning-content ${hasOutline ? 'ring-1 ring-inset ring-warning' : ''}`;
     } else if (state === 'success') {
-        stateStyles = `text-success-content ${hasOutline ? 'ring-1 ring-inset ring-success-content' : ''}`;
+        stateStyles = `text-success-content ${hasOutline ? 'ring-1 ring-inset ring-success' : ''}`;
     }
 
     const bgStyles = (bgColor && bgColor !== 'none') ? `bg-${bgColor}` : '';

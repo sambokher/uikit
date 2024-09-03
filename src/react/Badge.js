@@ -6,7 +6,7 @@ export default function Badge(props) {
     const {
         type = 'filled',
         text = 'Badge',
-        color = 'success-content',
+        color = 'success',
         size = 'medium',
         isPill = false,
         alignSelf = 'auto',
@@ -16,9 +16,9 @@ export default function Badge(props) {
     
     
     const styleMap = {
-        'filled': color == 'base-200' ? `bg-base-200 text-base-content border-transparent` : `bg-${color} text-white border-transparent` ,
-        'outline': color == 'base-200' ? `text-base-600 border-base-300` : `text-${color} border-${color}`,
-        'light': color == 'base-200' ? `bg-base-100 text-base-content border-base-200` : `text-${color} border-transparent`
+        'filled': `bg-${color} text-${color == 'base-200' ? 'base-content' : 'base-0'} `,
+        'outline': `text-${color} ring-1 ring-inset ring-${color}`,
+        'light': color == 'base-200' ? `bg-base-100 text-base-content` : color == 'base-700' ? `bg-base-200 text-base-content` : `text-${color}-content bg-${color}-surface`
     }
     
     const sizeStyleMap = {
@@ -30,15 +30,12 @@ export default function Badge(props) {
 
     let wrapperClasses = `flex font-semibold items-center flex-shrink-0 justify-center leading-tight self-${alignSelf} ${sizeStyles} ${styleMap[type]}`
     
-    const truncateStyle = { overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 120,  }
+    const truncateStyle = { overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 120 }
 
     return (
         <div 
         {...attributes} {...listeners} 
-            className={wrapperClasses} style={{
-                borderWidth: size == 'small' ? '1px' : '1.5px',
-                backgroundColor: type == 'light' && `color-mix(in srgb, var(--${color}) 16%, transparent)`
-            }}
+            className={wrapperClasses}
         >   
             <span className='w-full' style={{...truncateStyle}} >
             {text}
@@ -50,7 +47,7 @@ export default function Badge(props) {
 Badge.propTypes = {
     type: PropTypes.oneOf(['filled', 'outline', 'light']),
     text: PropTypes.string,
-    color: PropTypes.oneOf(['info-content', 'primary', 'accent', 'base-200', 'success-content', 'base-content', 'warning-content', 'error-content']),
+    color: PropTypes.oneOf(['base-200', 'base-700',  'primary', 'accent', 'info', 'success', 'warning', 'error']),
     size: PropTypes.oneOf(['small', 'medium']),
     isPill: PropTypes.bool,
     alignSelf: PropTypes.oneOf(['auto', 'start', 'end', 'center'])

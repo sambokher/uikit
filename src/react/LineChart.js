@@ -125,7 +125,7 @@ LineChartComponent.propTypes = {
     title: PropTypes.string,
     width: PropTypes.oneOf(['auto', 'full', '1/2']),
     height: PropTypes.oneOf(['92px', '120px', '240px', '360px']),
-    lineColor: PropTypes.oneOf(['primary', 'accent', 'base-content']),
+    lineColor: PropTypes.oneOf(['primary', 'accent', 'base-content', 'base-0']),
     lineWidth: PropTypes.oneOf(['1', '2', '3', '4']),
     lineType: PropTypes.oneOf(['wavy', 'linear']),
     showGrid: PropTypes.bool,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import * as FeatherIcons from 'react-icons/fi';
 import * as Ionicons from 'react-icons/io5'; 
@@ -15,7 +15,7 @@ export default function Icon(props) {
     const {
         icon = 'add',
         library, 
-        color = 'auto',
+        color = null,
         size = 'auto',
         className = '',
 
@@ -24,10 +24,11 @@ export default function Icon(props) {
       } = props;
 
 
-    const colorStyles = (color == 'auto' || color == 'none') ? '' : `text-${color}`
+    const colorStyles = (color == 'auto' || color == 'none' || !color) ? '' : `text-${color}`
     let wrapperClasses = `${colorStyles}`
     
-    let globalIconSet = getComputedStyle(document.body).getPropertyValue('--iconset').trim()
+    const iconRef = useRef(null)
+    const globalIconSet = iconRef.current ? getComputedStyle(iconRef.current).getPropertyValue('--iconset').trim() : 'iconoir'
     
     const fallbackIconSet = 'iconoir'
     const libraryMap = {
@@ -57,7 +58,7 @@ export default function Icon(props) {
         className={wrapperClasses}
         {...attributes} {...listeners} 
         >
-        
+        <div className='absolute w-0 h-0 invisible' ref={iconRef} />
         <IconComponent size={iconSize} color={color} className={className} />
         </div>
     );
@@ -65,7 +66,7 @@ export default function Icon(props) {
 
 Icon.propTypes = {
     icon: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf(allIconNames)]),
-    color: PropTypes.oneOf(['auto', 'none', 'primary', 'accent', 'base-content', 'info-content', 'warning-content', 'success-content', 'error-content', 'base-100', 'base-200', 'base-300']),
+    color: PropTypes.oneOf('base-100', 'base-200', 'base-300', 'primary', 'accent', 'base-content', 'info', 'warning', 'success', 'error',),
     size: PropTypes.oneOf(['auto', '12px', '16px', '20px', '24px', '32px']),
     library: PropTypes.oneOf(['feather', 'ionic', 'material', 'heroicons', 'iconoir']), 
     className: PropTypes.string,

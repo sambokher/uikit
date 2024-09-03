@@ -4,12 +4,22 @@ import { Tooltip, Avatar } from './index';
 
 export default function AvatarCard(props) {
     
-    const { imageSize, imageSrc, imageColor, imageOnly, type, imagePosition, name, secondaryText, attributes, listeners } = props
+    const { 
+        imageSize = '28px',
+        imageSrc = null,
+        imageColor = 'accent',
+        imageOnly = false,
+        type = 'image',
+        imagePosition = 'left',
+        name = 'John Doe',
+        secondaryText = null,
+        attributes, 
+        listeners 
+    } = props
 
     const parsedSize = parseInt(imageSize)
-    const fontColor = 'text-inherit'
     const gapStyle = parsedSize >= 42 ? 'gap-4' : parsedSize >=  33 ? 'gap-3' : parsedSize >= 28 ? 'gap-3' : 'gap-2'
-    let classes = `flex flex-row items-center justify-start relative ${fontColor} ${gapStyle}`
+    let classes = `flex flex-row items-center justify-start relative ${gapStyle}`
 
     
     const noSecondaryText = !secondaryText || secondaryText == '' || parsedSize < 24
@@ -55,11 +65,10 @@ AvatarCard.propTypes = {
     imageSize: PropTypes.oneOf(['16px', '20px', '24px', '28px', '32px', '40px', '48px']),
     imageSrc: PropTypes.string,
     imagePosition: PropTypes.oneOf(['left', 'right']),
-    imageColor: PropTypes.oneOf(['auto', 'base-0', 'accent', 'primary', 'success-content', 'error-content', 'warning-content', 'base-content']),
+    imageColor: PropTypes.oneOf(['auto', 'base-0', 'accent', 'primary', 'success', 'error', 'warning', 'base-700']),
     type: PropTypes.oneOf(['image', 'initials']),
     name: PropTypes.string,
     secondaryText: PropTypes.string,
-    bgColor: PropTypes.oneOf(["base-0", "base-100", "base-200", "primary", "accent", "base-900", 'base-content', "none"]),
     corners: PropTypes.oneOf(["none", "sm", "md"]),
     hasOutline: PropTypes.bool,
     imageOnly: PropTypes.bool, 

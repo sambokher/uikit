@@ -6,7 +6,7 @@ export default function Heading(props) {
 
     const {
         textSize = '2xl',
-        textColor = 'none',
+        textColor = null,
         marginBottom = null, 
         marginTop = null, 
         lineHeight = 'auto',
@@ -19,7 +19,7 @@ export default function Heading(props) {
       } = props;
     
     const textSizeStyles = `text-${textSize}`;
-    const textColorStyles = textColor != 'none' ? `text-${textColor}` : '';
+    const textColorStyles = (textColor == 'none' || !textColor) ? `` : `text-${textColor}`
     
     const marginBottomStyles = marginBottom ? `mb-${spacingMap[marginBottom]}` : '';
     const marginTopStyles = marginTop ? `mt-${spacingMap[marginTop]}` : '';
@@ -44,7 +44,7 @@ export default function Heading(props) {
 
 Heading.propTypes = {
     textColor: PropTypes.oneOfType([
-        PropTypes.oneOf(['none', 'primary', 'primary-content', 'accent', 'accent-content', 'base-content', 'info-content', 'base-500', 'base-700', 'base-900']),
+        PropTypes.oneOf(['primary', 'primary-content', 'accent', 'accent-content', 'base-0', 'base-50', 'base-100', 'base-content', 'base-500', 'base-700', 'base-900','success-content', 'warning-content', 'error-content', 'info-content']),
         PropTypes.string]),
     text: PropTypes.string,
     textSize: PropTypes.oneOf(['xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl']),

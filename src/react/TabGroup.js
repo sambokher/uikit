@@ -7,62 +7,67 @@ import { iconMap } from './iconMap'
 const allIconNames = Object.keys(iconMap) || []
 
 const sampleTabs = [
-    { name: 'Home', icon: 'home', isActive: true },
-    { name: 'Help', icon: 'support', isActive: false },
-    { name: 'Settings', icon: 'settings', isActive: false },
-    { name: 'Balances', icon: 'chart-up', isActive: false },
+    { label: 'Home', value: 'home', icon: 'home'},
+    { label: 'Help', value: 'help', icon: 'support'},
+    { label: 'Settings', value: 'settings', icon: 'settings'},
+    { label: 'Balances', value: 'balances', icon: 'chart-up'},
 ];
 
 export default function TabGroup(props) {
     const {
         tabs: externalTabs,
+        value: externalValue,
         selectColor = 'accent',
         size = 'medium',
         underlineAll=true,
-        onSelect, 
+        style='default',
+        onChange,
         attributes,
         listeners
     } = props;
     
 
     const [internalTabs, setInternalTabs] = useState(externalTabs || sampleTabs);
-    const isControlled = externalTabs !== undefined && onSelect !== undefined;
+    const [selectedTab, setSelectedTab] = useState(externalValue || internalTabs[0].value);
+    const isControlled = externalTabs !== undefined && onChange !== undefined;
     const tabs = isControlled ? externalTabs : internalTabs;
+
+    useEffect(() => {if (externalTabs) {setInternalTabs(externalTabs);}}, [externalTabs]);
+    useEffect(() => {if (externalValue) {setSelectedTab(externalValue);}}, [externalValue]);     
     
-    function handleTabClick(e, name) {
-        e.stopPropagation();
-        
-        if (isControlled && onSelect) {
-            onSelect(name);
+    function handleTabClick(value) {
+        if (isControlled && onChange) {
+            onChange(value);
         } else {
-            let newTabs = [...tabs]
-            newTabs = newTabs.map(tab => tab.name === name ? {...tab, isActive: true} : { ...tab, isActive: false });
-            setInternalTabs(newTabs);
+            setSelectedTab(value);
         }
     }
     
-
-    let sizeStyles = size === 'small' ? `py-1 text-xs gap-1.5 -ml-2` :  
+    let buttonsSizeStyles = size === 'small' ? `text-xs gap-1.5` : size === 'large' ? `text-md gap-3` : `text-sm gap-2`;
+    let defaultSizeStyles = size === 'small' ? `py-1 text-xs gap-1.5 -ml-2` :  
         size === 'large' ? `py-3 gap-3 text-md -ml-2` : `py-1.5 gap-2 text-sm -ml-2`;
 
+    const sizeStyles = style === 'buttons' ? buttonsSizeStyles : defaultSizeStyles;
     let wrapperClasses = `flex flex-row items-center w-full relative`;
 
+    const bgStylesMap = {
+        'buttons': 'opacity-100 hover:bg-current-10 opacity-80 hover:opacity-100',
+        'default': 'hover:bg-current-10 opacity-70 hover:opacity-100'
+    }
+    
+    const tabStyles = `px-2 py-0.5 cursor-pointer ${bgStylesMap[style]}
+    
+     rounded-md transition-all duration-150 font-medium
+      items-center select-none`;
 
-    const tabStyles = `px-2 py-0.5 cursor-pointer hover:bg-base-50 rounded-md transition-colors duration-150 font-medium
-     opacity-70 hover:opacity-100 items-center transition-opacity select-none`;
-    const activeStyles = `text-${selectColor} !opacity-100`;
+    // !bg-current-10 !hover:bg-base-100
+    const activeStyles = style == 'buttons' ? `bg-current-10 !opacity-100` : `text-${selectColor} !opacity-100` 
     
     const tabRefs = useRef([]);
-    // Effect to sync internal state with external `tabs` prop
-    useEffect(() => {
-        if (!isControlled) {
-            setInternalTabs(externalTabs || sampleTabs);
-        }
-    }, [externalTabs, isControlled]);
-
+    
     const [underlineStyle, setUnderlineStyle] = useState({});
     useLayoutEffect(() => {
-        const activeTab = tabs.findIndex(tab => tab.isActive);
+        const activeTab = tabs.findIndex(tab => tab.value === selectedTab);
         if (tabRefs.current[activeTab]) {
             const { offsetLeft, clientWidth } = tabRefs.current[activeTab];
             setUnderlineStyle({
@@ -71,25 +76,29 @@ export default function TabGroup(props) {
                 height: size === 'small' ? '2px' : size === 'large' ? '3px' : '2.5px',
             });
         }
-    }, [tabs, size]); 
+    }, [tabs, size, selectedTab]); 
 
     return (
         <div {...attributes} {...listeners} className={wrapperClasses}
         >
-            <div className={`w-full flex flex-row items-center ${sizeStyles}`}>
+            <div className={`w-full flex flex-row items-center ${sizeStyles} `}>
             {tabs.map((tab, index) => (
                 <div key={index}
-                onClick={(e) => handleTabClick(e, tab.name)}
-                className={`${tabStyles} ${tab.isActive ? activeStyles : ''}`}
+                onClick={(e) => handleTabClick(tab.value)}
+                className={`${tabStyles} ${tab.value == selectedTab ? activeStyles : ''}`}
                 >   
                     <span className='flex flex-row gap-1 whitespace-nowrap items-center'
                     ref={el => tabRefs.current[index] = el}
                     >   
                     {tab.icon && <Icon icon={tab.icon} className='scale-75 -ml-1 stroke-[2px]' />}
-                    {tab.name}</span>
+                    {tab.label}</span>
                 </div>
             ))}
             </div>
+
+            {/* Underline Area */}
+            {style === 'default' && 
+            <>
             <div 
                 className={`absolute bottom-0 left-0 h-px w-full rounded-full
                 ${ underlineAll ? 'bg-base-200' : 'bg-transparent'} `}
@@ -98,19 +107,22 @@ export default function TabGroup(props) {
                 className={`absolute bottom-0 bg-${selectColor} transition-all rounded-sm`}
                 style={underlineStyle}
             ></div>
+            </>
+            }
         </div>
     );
 }
 
 TabGroup.propTypes = {
     tabs: PropTypes.arrayOf(PropTypes.shape({
-        name: PropTypes.string,
+        label: PropTypes.string,
+        value: PropTypes.string,
         icon: PropTypes.oneOf(allIconNames),
-        isActive: PropTypes.bool
     })),
     selectColor: PropTypes.oneOf(['primary', 'accent', 'base-content', 'base-700', 'base-500', 'base-300', 'base-100']),
     onSelect: PropTypes.func,
     size: PropTypes.oneOf(['small', 'medium', 'large']),
+    style: PropTypes.oneOf(['buttons', 'default']),
     underlineAll: PropTypes.bool,
 };
 

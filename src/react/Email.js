@@ -44,8 +44,8 @@ export default function Email(props) {
 
 Email.propTypes = {
     width: PropTypes.oneOf(['stretch', '560', '640', '780', '960']),
-    pageBackground: PropTypes.oneOf(['base-0', 'base-50', 'base-100', 'base-200', 'base-300', 'primary', 'secondary', 'accent']),
-    emailBackground: PropTypes.oneOf(['none', 'base-50', 'base-0', 'base-100', 'base-200', 'base-300', 'primary', 'secondary', 'accent']),
+    pageBackground: PropTypes.oneOf(['base-0', 'base-50', 'base-100', 'base-200', 'base-300', 'primary', 'accent']),
+    emailBackground: PropTypes.oneOf(['none', 'base-50', 'base-0', 'base-100', 'base-200', 'base-300', 'primary', 'accent']),
     hasOutline: PropTypes.bool,
     corners: PropTypes.oneOf(['none', 'sm', 'md', 'lg']),
     

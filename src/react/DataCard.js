@@ -12,7 +12,7 @@ export default function DataCard(props) {
         title = "Metric",
         value = "$10,500",
         changeValue = "+12%",
-        changeColor = 'none',
+        changeColor = null,
         textSize = 'small',
         icon = 'chart-up',
         helpText = null,
@@ -51,7 +51,7 @@ export default function DataCard(props) {
                     <h3 className={`${titleFont} flex flex-row font-semibold `} style={truncateStyle}>
 {value}
                     </h3>
-                    <span className={`${smallerFont} font-medium text-${changeColor}`} style={truncateStyle}>
+                    <span className={`${smallerFont} font-semibold text-${changeColor}`} style={truncateStyle}>
 {changeValue}
                     </span>
             </div>
@@ -72,12 +72,9 @@ DataCard.propTypes = {
     value: PropTypes.string,
     changeValue: PropTypes.string,
     hasOutline: PropTypes.bool,
-    changeColor: PropTypes.oneOf(['none', 'primary', 'primary-content', 'accent', 'accent-content', 'base-content', 'base-500', 'base-700', 'base-900'
-    ,'success-content', 'warning-content', 'warning-content', 'error-content', 'info-content']),
+    changeColor: PropTypes.oneOf(['primary', 'accent', 'base-content', 'success', 'warning', 'error', 'info']),
     textSize: PropTypes.oneOf(['small', 'medium']),
     icon: PropTypes.oneOf(['none', ...allIconNames]),
-    iconColor: PropTypes.oneOf(['none', 'primary', 'primary-content', 'accent', 'accent-content', 'base-content', 'base-500', 'base-700', 'base-900'
-    ,'success-content', 'warning-content', 'warning-content', 'error-content', 'info-content']),
     helpText: PropTypes.string,
 };
 

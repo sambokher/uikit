@@ -120,7 +120,7 @@ BarChartComponent.propTypes = {
     title: PropTypes.string,
     width: PropTypes.oneOf(['auto', 'full', '1/2']),
     height: PropTypes.oneOf(['92px', '120px', '240px', '360px']),
-    barColor: PropTypes.oneOf(['primary', 'accent', 'base-content']),
+    barColor: PropTypes.oneOf(['primary', 'accent', 'base-content', 'base-0']),
     backgroundColor: PropTypes.oneOf(['base-0', 'base-100', 'base-200']),
     emptyState: PropTypes.bool,
     emptyMessage: PropTypes.string,

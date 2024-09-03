@@ -33,7 +33,6 @@ export default function MiniCardHorizontal(props) {
     const imageStyles = useMemo(() => ({
         background: !noImage && `linear-gradient(rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.12)), url(${imageSrc}) no-repeat center center / cover`, 
         backgroundSize: 'cover', 
-        backgroundColor: `color-mix(in srgb, var(--base-content) 20%, transparent)`, 
         minHeight: '100%', 
         minWidth: imageSize, 
         flexShrink: 0
@@ -49,7 +48,7 @@ export default function MiniCardHorizontal(props) {
         className={wrapperClasses} 
         >
         {/* IMAGE */}
-        {<div className={`relative flex flex-shrink-0 aspect-square h-full items-center justify-center ${cornerStyles}`} style={imageStyles}>
+        {<div className={`relative flex flex-shrink-0 aspect-square h-full items-center justify-center bg-current-10 ${cornerStyles}`} style={imageStyles}>
             {noImage && <Icon icon={'image'} defaultIconSet={defaultIconSet} className='flex-shrink-0' />}
         </div>}
         

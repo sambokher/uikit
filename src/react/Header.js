@@ -24,7 +24,7 @@ export default function Header(props) {
       } = props;
     
     const bgStyles = background ?`bg-${background}` : '';
-    const fontColor = (!background || background == 'none') ? '' : background == 'base-900' ? `text-base-0` : background?.startsWith('base') ? 'text-base-content' : `text-${background}-content`
+    const fontColor = (!background || background == 'none') ? '' : (background?.startsWith('base') && background != 'base-content' && background != 'base-700') ? 'text-base-content' : `text-base-0`
     const paddingStyles = `${paddingX ? ` px-${spacingMap[paddingX]}` : ''}${paddingY ? ` py-${spacingMap[paddingY]}` : ''}`;
     const gapStyles = gap ? `gap-${spacingMap[gap]}` : '';
 
@@ -55,7 +55,7 @@ export default function Header(props) {
 
 Header.propTypes = {
     background: PropTypes.oneOfType([
-        PropTypes.oneOf(['base-0', 'base-100', 'base-200', 'base-700', 'base-900']),
+        PropTypes.oneOf(['base-0', 'base-100', 'base-200', 'base-700', 'base-content']),
         PropTypes.string]),
     width: PropTypes.oneOf(['stretch', '780', '960', '1200', '1440']),
     paddingX: PropTypes.oneOf(["6px", "8px", "12px", "16px", "24px", "32px", "48px", '64px']),

@@ -13,7 +13,7 @@ export default function Form(props) {
         paddingY = null,
         gap = null,
 
-        fontColor = "auto",
+        fontColor = null,
         bgImageSrc = null,
         background = null,
         bgOpacity = "100",
@@ -40,8 +40,8 @@ export default function Form(props) {
       } = props;
 
     const bgStyles = background ? `bg-${background}` : '';
-    const autoFontStyle = (!background || background == 'none') ? 'text-inherit' : background == 'base-900' ? `text-base-0` : background?.startsWith('base') ? 'text-base-content' : `text-${background}-content`
-    const fontStyles = fontColor == 'auto' ? autoFontStyle : `text-${fontColor}`
+    const inheritFontStyle = (background == 'none' || !background) ? '' : (background?.startsWith('base') && background != 'base-900') ? `text-base-content` : `text-base-0`;
+    const fontStyles = (fontColor == 'auto' || !fontColor) ? inheritFontStyle : `text-${fontColor}`
     
     const gapStyles = gap ? `gap-${spacingMap[gap]}` : '';
     const paddingStyles = `${paddingX ? ` px-${spacingMap[paddingX]}` : ''}${paddingY ? ` py-${spacingMap[paddingY]}` : ''}`;
@@ -50,7 +50,7 @@ export default function Form(props) {
     const widthStyles = `w-${width} max-w-full ${maxWidth ? `max-w-[${maxWidth}px]` : ''} ${minWidth ? `min-w-[${minWidth}px]` : ''}`;
     const heightStyles = `${height} ${maxHeight ? `max-h-[${maxHeight}px]` : ''} ${minHeight ? `min-h-[${minHeight}px]` : ''}`;
     const fontSize = textSize != 'auto' ? 'text-'+textSize : '';
-    const borderStyles = hasOutline ? 'border border-base-300' : '';
+    const borderStyles = hasOutline ? 'ring-1 ring-inset ring-base-200' : '';
     
     const wrapStyles = `flex-${flexWrap}`;
     const alignItemsStyles = alignItems ? `items-${alignItems}` : '';
@@ -115,7 +115,8 @@ Form.propTypes = {
     display: PropTypes.bool,
     onSubmit: PropTypes.func,
     bgImageSrc: PropTypes.string,
-    fontColor: PropTypes.oneOf(['base-0', 'base-100', 'base-200', 'primary', 'accent', 'base-900', 'base-content', 'auto', 'success-content', 'error-content', 'warning-content', 'info-content']),
+    fontColor: PropTypes.oneOf(['base-0', 'base-100', 'base-200', 'base-300', 'base-500', 'base-700', 'primary', 'accent', 'base-900', 'base-content', 'auto', 
+        'success', 'error', 'warning', 'info', 'success-content', 'error-content', 'warning-content', 'info-content']),
     children: PropTypes.node
 };
 

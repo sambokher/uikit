@@ -31,7 +31,7 @@ export default function FlexBox(props) {
         selfAlign = "auto",
         display = true,
         bgImageSrc = null,
-        fontColor = "auto",
+        fontColor = null,
         children,
         attributes,
         listeners
@@ -42,14 +42,14 @@ export default function FlexBox(props) {
     const widthStyles = `w-${width} max-w-full ${maxWidth ? `max-w-[${maxWidth}px]` : ''} ${minWidth ? `min-w-[${minWidth}px]` : ''}`;
     const heightStyles = `${height} ${maxHeight ? `max-h-[${maxHeight}px]` : ''} ${minHeight ? `min-h-[${minHeight}px]` : ''}`;
     const fontSize = textSize != 'auto' ? 'text-'+textSize : '';
-    const borderStyles = hasOutline ? 'border border-base-300' : '';
+    const borderStyles = hasOutline ? 'ring-1 ring-inset ring-base-200' : '';
     const gapStyles = gap ? `gap-${spacingMap[gap]}` : '';
     const paddingStyles = `${paddingX ? ` px-${spacingMap[paddingX]}` : ''}${paddingY ? ` py-${spacingMap[paddingY]}` : ''}`;
     const wrapStyles = `flex-${flexWrap}`;
     const alignItemsStyles = alignItems ? `items-${alignItems}` : '';
     const justifyContentStyles = justifyContent ? `justify-${justifyContent}` : '';
-    const inheritFontStyle = (background == 'none' || !background) ? 'text-inherit' : background == 'base-900' ? `text-base-0` : background?.startsWith('base') ? 'text-base-content' : `text-${background}-content`
-    const fontStyles = fontColor == 'auto' ? inheritFontStyle : `text-${fontColor}`
+    const inheritFontStyle = (background == 'none' || !background) ? '' : (background?.startsWith('base') && background != 'base-900') ? `text-base-content` : `text-base-0`;
+    const fontStyles = (fontColor == 'auto' || !fontColor) ? inheritFontStyle : `text-${fontColor}`
 
     let classes = `flex ${direction} ${wrapStyles} ${widthStyles} self-${selfAlign} ${fontStyles} ${fontSize} ${bgStyles} ${borderStyles} ${gapStyles} ${paddingStyles} ${cornerStyles} ${alignItemsStyles} ${justifyContentStyles} ${heightStyles}`
     
@@ -86,8 +86,8 @@ FlexBox.propTypes = {
     width: PropTypes.oneOf(["full", "auto", "1/2", "1/3", "1/4", "2/3", '3/4']),
     height: PropTypes.oneOf(['h-full', 'h-1/2', 'h-1/3', 'h-1/4', 'h-2/3', 'h-[integer]px', 'h-auto']),
     
-    paddingX: PropTypes.oneOf(["2px", "4px", "6px", "8px", "10px", "12px", "16px", "24px", "32px", "48px"]),
-    paddingY: PropTypes.oneOf(["2px", "4px", "6px", "8px", "10px", "12px", "16px", "24px", "32px", "48px"]),
+    paddingX: PropTypes.oneOf(["0px", "2px", "4px", "6px", "8px", "10px", "12px", "16px", "24px", "32px", "48px"]),
+    paddingY: PropTypes.oneOf(["0px", "2px", "4px", "6px", "8px", "10px", "12px", "16px", "24px", "32px", "48px"]),
     gap: PropTypes.oneOf(["2px", "4px", "6px", "8px", "10px", "12px", "16px", "24px", "32px", "48px"]),
     
     hasOutline: PropTypes.bool,
@@ -105,7 +105,8 @@ FlexBox.propTypes = {
     display: PropTypes.bool,
     hide_from_ai: PropTypes.bool,
     bgImageSrc: PropTypes.string,
-    fontColor: PropTypes.oneOf(['base-0', 'base-100', 'base-200', 'primary', 'accent', 'base-900', 'base-content', 'auto', 'success-content', 'error-content', 'warning-content', 'info-content']),
+    fontColor: PropTypes.oneOf(['base-0', 'base-100', 'base-200', 'base-300', 'base-500', 'base-700', 'primary', 'accent', 'base-900', 'base-content', 'auto', 
+        'success', 'error', 'warning', 'info', 'success-content', 'error-content', 'warning-content', 'info-content']),
     children: PropTypes.node
 };
 

@@ -8,7 +8,7 @@ export default function StarRatings(props) {
         label = '4.5',
         ratingValue = '90%', // This should be considered whether it should be a percentage string or a numeric value depending on your implementation.
         labelPosition = 'right',
-        color = 'orange-500',
+        color = 'error',
         size = 'sm', // consider making this px value
         attributes,
         listeners
@@ -46,7 +46,7 @@ StarRatings.propTypes = {
     label: PropTypes.string,
     labelPosition: PropTypes.oneOf(['left', 'right']),
     color: PropTypes.oneOfType([
-        PropTypes.oneOf(['info-content', 'primary', 'accent', 'success-content', 'base-content', 'warning-content', 'error-content', 'orange-500']),
+        PropTypes.oneOf(['base-300', 'primary', 'accent', 'info',  'success',  'warning', 'error']),
         PropTypes.string]),
     size: PropTypes.oneOf(['xs', 'sm', 'base', 'lg', ]),
 };

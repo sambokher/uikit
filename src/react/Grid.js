@@ -18,7 +18,7 @@ export default function Grid(props) {
         hasOutline = false,
         width = 'full',
         height = 'auto',
-        fontColor = 'auto',
+        fontColor = null,
         children,
         attributes,
         listeners
@@ -33,8 +33,8 @@ export default function Grid(props) {
     const cornerStyles = corners === 'none' ? '' : `rounded-${corners}`;
     const widthStyles = `w-${width}`;
     const heightStyles = `h-${height}`;
-    const autoFontStyle = (!background || background == 'none') ? 'text-inherit' : background == 'base-900' ? `text-base-0` : background?.startsWith('base') ? 'text-base-content' : `text-${background}-content`
-    const fontStyles = fontColor == 'auto' ? autoFontStyle : `text-${fontColor}`
+    const inheritFontStyle = (background == 'none' || !background) ? '' : (background?.startsWith('base') && background != 'base-900') ? `text-base-content` : `text-base-0`;
+    const fontStyles = (fontColor == 'auto' || !fontColor) ? inheritFontStyle : `text-${fontColor}`
     
     let borderStyles = hasOutline ? 'border border-base-300' : '';
     let classes = `grid ${borderStyles} ${widthStyles} ${bgStyles} ${cornerStyles} ${gapStyles} ${paddingStyles} ${heightStyles} ${fontStyles}`;
@@ -52,7 +52,8 @@ export default function Grid(props) {
 Grid.propTypes = {
     columnCount: PropTypes.number,
     background: PropTypes.oneOf(['base-0', 'base-50', 'base-100', 'base-200', 'primary', 'accent', 'base-900']),
-    fontColor: PropTypes.oneOf(['base-0', 'base-100', 'base-200', 'primary', 'accent', 'base-content', 'auto', 'success-content', 'error-content', 'warning-content', 'info-content']),
+    fontColor: PropTypes.oneOf(['base-0', 'base-100', 'base-200', 'base-300', 'base-500', 'base-700', 'primary', 'accent', 'base-900', 'base-content', 'auto', 
+        'success', 'error', 'warning', 'info', 'success-content', 'error-content', 'warning-content', 'info-content']),
     
     paddingX: PropTypes.oneOf(["2px", "4px", "6px", "8px", "10px", "12px", "16px", "24px", "32px", "48px"]),
     paddingY: PropTypes.oneOf(["2px", "4px", "6px", "8px", "10px", "12px", "16px", "24px", "32px", "48px"]),

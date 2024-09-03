@@ -42,10 +42,10 @@ export default function Select(props) {
             stateStyles = `bg-base-100 opacity-70 cursor-not-allowed ${hasOutline ? 'border border-base-300' : ''}`
             break;
         case 'error':
-            stateStyles = `text-warning-content ${hasOutline ? 'border border-warning-content' : ''}`
+            stateStyles = `text-warning-content ${hasOutline ? 'border border-warning' : ''}`
             break;
         case 'success':
-            stateStyles = `${hasOutline ? 'border border-success-content' : ''}`
+            stateStyles = `text-success-content ${hasOutline ? 'border border-success' : ''}`
             break;
     }
 
@@ -54,7 +54,7 @@ export default function Select(props) {
     const labelTextSize = size == 'small' ? `text-xs` :  size == 'large' ? `text-lg`: `text-sm`;
     const labelClasses = `${bgColor == 'none' ? '': 'text-base-content'} ${labelTextSize} font-medium`
 
-    const messageTextColor = state == 'error' ? stateStyles = 'text-error-content' : state == 'warning' ? stateStyles = 'text-warning-content' : state == 'success' ? stateStyles = 'text-success-content' : 'text-base-content'
+    const messageTextColor = state == 'error' ? 'text-warning' : state == 'success' ? 'text-success' : 'text-base-content'
     const messageClasses = `text-sm ${messageTextColor}`
     const widthStyle = width != 'auto' ? `w-${width}` : size == 'small' ? 'min-w-[120px]' : size == 'large' ? 'min-w-[200px]' : 'min-w-[160px]'
     const gapStyles = size == 'small' ? 'gap-0.5' : size == 'large' ? 'gap-1.5' : 'gap-1'

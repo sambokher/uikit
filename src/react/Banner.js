@@ -29,14 +29,7 @@ export default function Banner(props) {
 
     // BANNER STYLES
     const alertStyles = 'flex flex-row items-start justify-between font-normal transition duration-100';
-    const typeStyleMap = {
-        info: `text-info-content border border-info-content`,
-        error: `text-error-content border border-error-focus bg-error`,
-        base: `text-base-content border border-base-300`,
-        warning: `text-warning-content border border-warning-content`,
-        success: `text-success-content border border-success-content`,
-    };    
-    const typeStyles = typeStyleMap[type] || typeStyleMap['base']
+    const typeStyles = type != 'base' ? `text-${type}-content ring-1 ring-${type} bg-${type}-surface` : `text-base-content ring-1 ring-base-200`
 
     let wrapperClasses = `bg-base-0 text-base px-3 py-2 pb-3 rounded-lg gap-2 flex flex-row items-start justify-start shadow-md mx-auto ${alertStyles} ${typeStyles}`
 
@@ -77,15 +70,16 @@ export default function Banner(props) {
                 <Button 
                     text={primaryAction} 
                     size={'small'}
-                    type={type == 'base' ? 'primary' : type}
+                    color={type == 'base' ? 'base-700' : type}
+                    style={'filled'}
                     marginTop={'8px'}
                 />}
             {secondaryAction && 
                 <Button 
                     text={secondaryAction} 
                     size={'small'}
-                    type={type == 'base' ? 'secondary' : type}
-                    style={'outlined'}
+                    color={type == 'base' ? 'base-200' : type}
+                    style={'light'}
                     marginTop={'8px'}
                 />}
             </div>

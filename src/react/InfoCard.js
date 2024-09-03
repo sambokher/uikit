@@ -35,7 +35,6 @@ export default function InfoCard(props) {
     const imageStyles = useMemo(() => ({
         background: !noImage && `linear-gradient(rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.12)), url(${imageSrc}) no-repeat center center / cover`, 
         backgroundSize: 'cover', 
-        backgroundColor: `color-mix(in srgb, var(--base-content) 20%, transparent)`, 
         aspectRatio: imageAspectRatio
     }), [imageSrc, noImage, imageAspectRatio]);
 
@@ -50,7 +49,7 @@ export default function InfoCard(props) {
         >
 
         {/* IMAGE / THUMBNAIL */}
-        <div className={`relative w-full aspect-square flex items-center justify-center ${cornerStyles}`} style={imageStyles}>
+        <div className={`relative w-full aspect-square flex items-center justify-center bg-current-10 ${cornerStyles}`} style={imageStyles}>
             {noImage && <Icon icon='image' />}
         </div>
         

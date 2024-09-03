@@ -25,18 +25,17 @@ export default function SidebarLink(props) {
         children,
         attributes,
         listeners,
-        defaultIconSet
       } = props;
 
 
     const fontWeightStyles = fontWeight == 'auto' ? 'font-normal' : `font-${fontWeight}`
     
     const sizeStylesMap = {
-        small: usePadding ? `p-1 text-xs` : `py-1 px-0 text-xs`,
-        medium: usePadding ? `p-1.5 text-sm` : `py-1.5 px-0 text-sm`,
-        large: usePadding ? `p-2.5 text-base` : `py-3 px-0 text-base`
-        
+        small: usePadding ? `px-2 py-1 text-xs` : `py-1 px-0 text-xs`,
+        medium: usePadding ? `px-3 py-1.5 text-sm` : `py-1.5 px-0 text-sm`,
+        large: usePadding ? `px-4 py-2.5 text-base` : `py-2.5 px-0 text-base`
     }
+
     const gapStyles = isCollapsed ? 'gap-0' : size == 'small' ? 'gap-2' : size == 'large' ? 'gap-3' : 'gap-2.5' // was 3 for medium
     
     const sizeStyles = sizeStylesMap[size] || sizeStylesMap['medium']
@@ -47,24 +46,22 @@ export default function SidebarLink(props) {
     const borderStyles = `border border-transparent`
     
     const innerGap = size == 'small' ? 'gap-0' : size == 'large' ? 'gap-1.5' : 'gap-1'
-    let wrapperClasses = `transition-all relative group flex flex-col duration-75
+    let wrapperClasses = `transition-all duration-75 relative group flex flex-col duration-75
         ${widthStyle} ${fontWeightStyles} ${innerGap}`
 
     const hoverStyles = 
-    hoverEffect ? isActive ? 'juno-current-color-bg' : 
-'juno-current-color-hover-bg'
-    : isActive ? 'opacity-100'
-: 'opacity-70 hover:opacity-100'
+    hoverEffect ? isActive ? 'bg-current-10' : 'hover:bg-current-10'
+    : isActive ? 'opacity-100' : 'opacity-70' 
     
 
-    let innerClasses = `transition-all relative flex flex-row items-center justify-between cursor-default duration-150 
+    let innerClasses = `transition-all relative flex flex-row items-center justify-between cursor-default duration-75 select-none
         ${hoverStyles} w-full ${sizeStyles} ${cornerStyles} ${borderStyles} ${gapStyles}` 
 
     const iconWidth = size == 'small' ? 'w-4' : size == 'large' ? 'w-6' : 'w-5'
     const IndentElement = <><div className={`flex-shrink-0 ${iconWidth}`}/></>
     const indentValue = parseInt(indentLevel) || 0
 
-    const LeftIconComponent = leftIcon !== 'none' ? <Icon icon={leftIcon?.toLowerCase()} className={`flex-shrink-0  ${iconWidth}`} defaultIconSet={defaultIconSet} /> : null;
+    const LeftIconComponent = leftIcon !== 'none' ? <Icon icon={leftIcon?.toLowerCase()} className={`flex-shrink-0  ${iconWidth}`} /> : null;
 
     const [isOpen, setIsOpen] = useState(displayChildren)
     useEffect(() => {
@@ -93,7 +90,6 @@ export default function SidebarLink(props) {
                 {text}
                 {children?.length > 0 ?
                         <Icon icon={'chevron-down'} 
-                        defaultIconSet={defaultIconSet}
                         onClick={()=>setIsOpen(!isOpen)}
                         className={`flex-shrink-0 text-xs my-auto transition-all ${isCollapsed ? 'opacity-0' : 'opacity-0 group-hover:opacity-60'} transition-all ${isOpen ? 'rotate-180' : 'rotate-0'}`} 
                         />

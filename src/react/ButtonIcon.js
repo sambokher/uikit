@@ -10,7 +10,7 @@ export default function ButtonIcon(props) {
     const {
         icon = 'heart',
         
-        color = 'base',
+        color = 'base-200',
         style = 'light',
         state = 'default',
         
@@ -34,25 +34,27 @@ export default function ButtonIcon(props) {
     const isActive = state == 'active'
 
     /* Filled */
-    const bgColor = color == 'base' ? 'base-200' : (color == 'primary' || color == 'accent') ? color : color+'-content'
-    const textColor = color == 'base' ? 'base-content' : 'base-0'
+    const textColor = color == 'base-200' ? 'base-content' : 'base-0'
     const statusStyles = (isDisabled || isLoading ) ? '' : isActive ? 'brightness-90' : 'hover:brightness-110 active:brightness-90'
-    const filledStyle = `bg-${bgColor} text-${textColor} ${statusStyles}`
+    const filledStyle = `bg-${color} text-${textColor} ${statusStyles}`
 
     /* Outlined */
-    const outlinedColor = color == 'base' ? 'base-700' : (color == 'primary' || color == 'accent') ? color : color+'-content'
     const outlineStatusStyles = (isDisabled || isLoading )  ? '' : isActive ? 'bg-current-10' : 'hover:bg-current-10 active:bg-transparent'
-    const outlinedStyle = `ring-1 ring-inset ring-${outlinedColor} text-${outlinedColor} ${outlineStatusStyles}`
+    const outlinedStyle = `ring-1 ring-inset ring-${color} text-${color} ${outlineStatusStyles}`
 
     /* Light */
-    const lightColor = color == 'base' ? 'base-100' : (color == 'primary' || color == 'accent') ? color+'-content' : color
-    const lightTextColor = (color == 'primary' || color == 'accent') ? color : color+'-content'
+    const lightColor = color == 'base-200' ? 'base-100' : color == 'base-700' ? 'base-500' : color+'-surface'
+    const lightTextColor =  color == 'base-700' ? 'base-0' : color == 'base-200' ? 'base-content' : color+'-content'
     const lightStatusStyles = (isDisabled || isLoading ) ? '' : isActive ? `bg-${lightColor}/75` : `hover:bg-${lightColor}/75`
     const lightStyle = `bg-${lightColor} text-${lightTextColor} ${lightStatusStyles}`
 
     /* Ghost */
     const ghostStatusStyles = (isDisabled || isLoading ) ? '' : isActive ? `bg-current-10` : `hover:bg-current-10`
-    const ghostStyle = `text-${lightTextColor} ${ghostStatusStyles}`
+    const ghostStyle = `text-${color} ${ghostStatusStyles}`
+
+    /* Link */
+    const linkStatusStyles = !(isDisabled || isLoading || isActive)  ? `hover:underline opacity-80 hover:opacity-100` : ''
+    const linkStyle = `text-${color} ${linkStatusStyles}`
 
     const styleMap = {
         filled: filledStyle,
@@ -64,19 +66,21 @@ export default function ButtonIcon(props) {
     let typeStyles = styleMap[style]
      
     const selfAlign = `self-${alignSelf}`
-    const sizeStyles = size == 'small' ? `p-1 text-xs` : size == 'large' ? `p-2 text-base` : `p-1.5 text-sm`;
+    const sizeStyles = size == 'small' ? `h-7 w-7 text-xs` : size == 'large' ? `w-12 h-12 text-base` : `h-9 w-9 text-sm`;
 
 
     const cornerStyles = `${isPill ? `rounded-full` : size == 'small' ? 'rounded' : size == 'large' ? 'rounded-lg' : 'rounded-md'}`
     const marginStyles = marginTop == 'none' ? '' : `mt-${marginTop}`
 
-    let classes = `${hideOnMobile ? 'hidden md:flex' : ''}
+    let classes = `${hideOnMobile ? 'hidden md:flex ' : 'flex'}
+        items-center justify-center
         ${buttonStyles} ${typeStyles} ${sizeStyles} ${cornerStyles} ${selfAlign} ${marginStyles} cursor-pointer
         ${isDisabled ? 'opacity-50 saturate-50 cursor-not-allowed' : ''}`
 
-
-    const IconComponent = icon !== 'none' ? <Icon icon={icon?.toLowerCase()} className={'scale-90'}/> : null;
-    const PlaceHolderIcon = <Icon icon={'heart'} className={'scale-90'} />
+    const iconSize = size == 'small' ? '16px' : size == 'large' ? '24px' : '20px'
+     const iconWidth = size == 'small' ? 'w-4 h-4' : size == 'large' ? 'w-6 h-6' : 'w-5 h-5'
+    const IconComponent = icon !== 'none' ? <Icon icon={icon?.toLowerCase()} size={iconSize} className={`hover:scale-105 transition-all duration-75 ${iconWidth}`} /> : null;
+    const PlaceHolderIcon = <Icon icon={'heart'} size={iconSize} className={`${iconWidth} hover:scale-110 transition-all duration-150`}  />
     const loaderColor = 'current'
 
     return (
@@ -100,7 +104,7 @@ export default function ButtonIcon(props) {
 }
 
 ButtonIcon.propTypes = {
-    color: PropTypes.oneOf(['base', 'primary', 'accent', 'warning', 'info', 'success', 'error']),
+    color: PropTypes.oneOf(['base-200', 'base-700', 'primary', 'accent',  'warning', 'info', 'success', 'error']),
     size: PropTypes.oneOf(['small', 'medium', 'large']),
     style: PropTypes.oneOf(['filled', 'outlined', 'ghost', 'light']),
     state: PropTypes.oneOf(['default', 'disabled', 'loading', 'active']),

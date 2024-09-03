@@ -31,10 +31,10 @@ export default function Search(props) {
             stateStyles = `bg-base-100 opacity-70 cursor-not-allowed ${hasOutline ? 'border border-base-300' : ''}`
             break;
         case 'error':
-            stateStyles = `text-warning-content ${hasOutline ? 'border border-warning-content' : ''}`
+            stateStyles = `text-warning ${hasOutline ? 'border border-warning' : ''}`
             break;
         case 'success':
-            stateStyles = `text-success-content ${hasOutline ? 'border border-success-content' : ''}`
+            stateStyles = `text-success ${hasOutline ? 'border border-success' : ''}`
             break;
     }
     const bgStyles = (bgColor && bgColor !== 'none') ? `bg-${bgColor}` : '';

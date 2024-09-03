@@ -30,7 +30,6 @@ export default function MediaCard(props) {
     const imageStyles = useMemo(() => ({
         background: !noImage && `linear-gradient(rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.12)), url(${imageSrc}) no-repeat center center / cover`,
         backgroundSize: 'cover',
-        backgroundColor: `color-mix(in srgb, var(--base-content) 20%, transparent)`,
         aspectRatio: imageAspectRatio
     }), [imageSrc, noImage, imageAspectRatio]);
 
@@ -46,7 +45,7 @@ export default function MediaCard(props) {
         className={wrapperClasses} style={{maxWidth: width}}>
         
         {/* THUMBNAIL */}
-        <div className={`group relative w-full flex items-center justify-center ${cornerStyles}`} style={imageStyles}>
+        <div className={`group relative w-full flex items-center justify-center bg-current-10 ${cornerStyles}`} style={imageStyles}>
             
             {type == 'mediaGallery' && <>
             {/* ARROWS */}
@@ -93,7 +92,7 @@ MediaCard.propTypes = {
     imageSrc: PropTypes.string,
     imageAspectRatio: PropTypes.oneOf(['2 / 1', '1 / 1', '3 / 2', '4 / 3']),
     textSize: PropTypes.oneOf(['small', 'medium']),
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     icon: PropTypes.oneOf(['none', 'Star', 'MoreVert', 'MoreHoriz', 'Link']),
     description: PropTypes.string,
     type: PropTypes.oneOf(['mediaGallery', 'oneMedia']),

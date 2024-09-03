@@ -10,7 +10,7 @@ export default function Link(props) {
         openInNewWindow = false,
         onClick=()=>{},
         textSize = 'auto',
-        textColor = 'auto',
+        textColor = null,
         lineHeight = 'auto',
         fontWeight = 'auto',
         underline = 'onlyOnHover',
@@ -21,7 +21,7 @@ export default function Link(props) {
       } = props;
 
     const textSizeStyles = textSize != 'auto' && `text-${textSize}`;
-    const textColorStyles = `text-${textColor}`;
+    const textColorStyles = (textColor == 'none' || !textColor) ? `` : `text-${textColor}`
     const lineHeightStyles = lineHeight != 'auto' ? `leading-${lineHeight}` : '';
     const fontWeightStyles = fontWeight != 'auto' ? `font-${fontWeight}` : '';
     const marginBottomStyles = marginBottom ? `mb-${spacingMap[marginBottom]}` : '';
@@ -52,7 +52,7 @@ Link.propTypes = {
     openInNewWindow: PropTypes.bool,
     textSize: PropTypes.oneOf(['auto', 'xs', 'sm', 'base', 'lg', 'xl', '2xl']),
     textColor: PropTypes.oneOfType([
-        PropTypes.oneOf(['auto', 'primary', 'primary-content', 'accent', 'accent-content', 'base-content', 'info-content', 'base-500', 'base-700', 'base-900']),
+        PropTypes.oneOf(['primary', 'primary-content', 'accent', 'accent-content', 'base-0', 'base-50', 'base-100', 'base-content', 'base-500', 'base-700', 'base-900','success-content', 'warning-content', 'error-content', 'info-content']),
         PropTypes.string]),
     lineHeight: PropTypes.oneOf(['auto', 'tight', 'normal', 'relaxed', 'loose']),
     fontWeight: PropTypes.oneOf(['auto', 'hairline', 'thin', 'light', 'normal', 'medium', 'semibold', 'bold', 'extrabold', 'black']),

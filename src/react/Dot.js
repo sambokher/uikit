@@ -33,7 +33,8 @@ export default function Dot(props) {
 
 Dot.propTypes = {
     color: PropTypes.oneOfType([
-        PropTypes.oneOf(['base-0', 'base-100', 'base-200', 'base-300', 'base-content', 'primary', 'accent', 'success', 'warning', 'error', 'info', 'success-content', 'warning-content', 'error-content', 'info-content']),
+        PropTypes.oneOf(['base-0', 'base-100', 'base-200', 'base-300', 'base-content', 'primary', 'accent', 'success', 'warning', 'error', 
+    'info', 'success-surface', 'warning-surface', 'error-surface', 'info-surface']),
         PropTypes.string]),
     marginX: PropTypes.oneOf(['6px', '8px', '12px', '16px', '24px']),
     marginY: PropTypes.oneOf(['6px', '8px', '12px', '16px', '24px']),

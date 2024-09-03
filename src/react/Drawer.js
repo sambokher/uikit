@@ -29,7 +29,7 @@ export default function Drawer(props) {
     const overlayClasses = `absolute top-0 flex flex-col w-full h-full`
 
     // STYLES
-    const bgStyles = bgColor ? `bg-${bgColor}` : '';
+    const bgStyles = bgColor ? `bg-${bgColor} text-base-content` : '';
     const borderStyles = position == 'left' ? 'border-l border-base-300' : 'border-r border-base-300';
     
     const paddingStyles = `${paddingX ? `px-${spacingMap[paddingX]}` : ''} ${paddingY ? `py-${spacingMap[paddingY]}` : ''}`;
@@ -66,7 +66,7 @@ Drawer.propTypes = {
     position: PropTypes.oneOf(['right', 'left']),
     paddingX: PropTypes.oneOf(["0px", "8px", "12px", "16px", "24px", "32px", "48px"]),
     paddingY: PropTypes.oneOf(["0px", "8px", "12px", "16px", "24px", "32px", "48px"]),
-    bgColor: PropTypes.oneOf(['base-0', 'base-50', 'base-100', 'base-200']),
+    bgColor: PropTypes.oneOf(['base-0', 'base-50', 'base-100']),
     border: PropTypes.oneOf(['left', 'right', 'none']),
     gap: PropTypes.oneOf(["0px", "8px", "12px", "16px", "24px", "32px"]),
     alignItems: PropTypes.oneOf(['start', 'end', 'center', 'stretch']),

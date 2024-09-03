@@ -74,7 +74,7 @@ export const iconMap = {
         ionic: 'home-outline', 
         material: 'home',
         heroicons: 'home',
-        iconoir: 'home-alt',
+        iconoir: 'home-simple-door',
     },
     'chevron-left': {
         feather: 'chevron-left',
@@ -193,7 +193,7 @@ export const iconMap = {
         ionic: 'cube-outline',
         material: 'inbox',
         heroicons: 'cube',
-        iconoir: 'box',
+        iconoir: 'box-iso',
     },
     'refresh': {
         feather: 'rotate-cw',
@@ -564,7 +564,7 @@ export const iconMap = {
         feather: 'loader',
         ionic: 'flower-outline',
         material: 'filter-vintage',
-        heroicons: 'flower',
+        heroicons: 'sun',
         iconoir: 'flower',
     },
     'moon' : {
@@ -577,7 +577,7 @@ export const iconMap = {
     'sun': {
         feather: 'sun',
         ionic: 'sunny-outline',
-        material: 'sun',
+        material: 'light-mode',
         heroicons: 'sun',
         iconoir: 'sun-light',
     },
@@ -628,13 +628,13 @@ export const iconMap = {
         ionic: 'logo-stack-overflow',
         material: 'stack-overflow',
         heroicons: 'stack',
-        iconoir: 'stack-overflow',
+        iconoir: 'stackoverflow',
     },
     'layers': {
         feather: 'layers',
         ionic: 'layers-outline',
         material: 'layers',
-        heroicons: 'layers',
+        heroicons: 'square-3-stack-3d',
         iconoir: 'apple-shortcuts',
     },
     'cube': {
@@ -647,9 +647,16 @@ export const iconMap = {
     'sparkles' : {
         feather: 'zap',
         ionic: 'sparkles-outline',
-        material: 'sparkles',
+        material: 'flare',
         heroicons: 'sparkles',
         iconoir: 'sparks',
+    },
+    'flare': {
+        feather: 'zap',
+        ionic: 'flare-outline',
+        material: 'flare',
+        heroicons: 'sparkles',
+        iconoir: 'flare',
     },
     'cursor': {
         feather: 'mouse-pointer',
@@ -661,22 +668,22 @@ export const iconMap = {
     'play': {
         feather: 'play',
         ionic: 'play-outline',
-        material: 'play',
+        material: 'play-arrow',
         heroicons: 'play',
         iconoir: 'play',
     },
     'flash': {
         feather: 'zap',
         ionic: 'flash-outline',
-        material: 'flash',
+        material: 'bolt',
         heroicons: 'lightning-bolt',
         iconoir: 'flash',
     },
     'grid': {
         feather: 'grid',
         ionic: 'grid-outline',
-        material: 'grid',
-        heroicons: 'grid',
+        material: 'grid-view',
+        heroicons: 'view-grid',
         iconoir: 'view-grid',
     },
     'book' :{
@@ -690,8 +697,71 @@ export const iconMap = {
         feather: 'layout',
         ionic: 'grid-outline',
         material: 'layout',
-        heroicons: 'view-grid',
+        heroicons: 'view-columns',
         iconoir: 'layout-left',
     },
-}
+    'tray': {
+        feather: 'grid',
+        ionic: 'grid-outline',
+        material: 'tray',
+        heroicons: 'inbox',
+        iconoir: 'box',
+    },
+    'video': {
+        feather: 'video',
+        ionic: 'videocam-outline',
+        material: 'video',
+        heroicons: 'video-camera',
+        iconoir: 'video',
+    },
+    'shirt': {
+        feather: 't-shirt',
+        ionic: 'shirt-outline',
+        material: 'shirt',
+        heroicons: 't-shirt',
+        iconoir: 'shirt',
+    },
+    't-shirt': {
+        feather: 't-shirt',
+        ionic: 'shirt-outline',
+        material: 'shirt',
+        heroicons: 't-shirt',
+        iconoir: 'shirt',
+    },
+    'colors': {
+        feather: 'droplet',
+        ionic: 'color-palette-outline',
+        material: 'palette',
+        heroicons: 'color-swatch',
+        iconoir: 'color-wheel',
+    },
+    'palette': {
+        feather: 'droplet',
+        ionic: 'color-palette-outline',
+        material: 'palette',
+        heroicons: 'color-swatch',
+        iconoir: 'palette',
+    },
+    'share': {
+        feather: 'share',
+        ionic: 'share-social-outline',
+        material: 'share',
+        heroicons: 'share',
+        iconoir: 'open-new-window',
+    },
+    'sad': {
+        feather: 'frown',
+        ionic: 'sad-outline',
+        material: 'sentiment-dissatisfied',
+        heroicons: 'emoji-sad',
+        iconoir: 'emoji-sad',
+    },
+    "arrows-up-down": {
+        feather: 'move',
+        ionic: 'swap-vertical-outline',
+        material: 'swap-vert',
+        heroicons: 'arrows-expand',
+        iconoir: 'arrow-separate-vertical'
+    }
+}   
 

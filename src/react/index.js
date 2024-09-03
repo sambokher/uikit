@@ -11,6 +11,7 @@ export { default as CollapsibleSidebar } from './CollapsibleSidebar';
 export { default as Sidebar } from './Sidebar';
 export { default as SidebarLink } from './SidebarLink';
 export { default as UserMenu } from './UserMenu';
+export { default as OrgMenu } from './OrgMenu';
 export { default as FlexBox } from './FlexBox';
 export { default as Grid } from './Grid';
 export { default as Module } from './Module';

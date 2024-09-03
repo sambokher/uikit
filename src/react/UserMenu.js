@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types';
 import { Avatar, Tooltip, Heading } from './index.js';
 import { Icon } from './index'
@@ -16,6 +16,7 @@ export default function UserMenu(props) {
         imageSrc = null,
         icon = null,
         isCollapsed,
+        tooltip=true,
         isActive,
         onClick,
         children, 
@@ -26,13 +27,13 @@ export default function UserMenu(props) {
     const [isOpen, setIsOpen] = useState(false)
 
     const sizeStylesMap = {
-        small: `py-1 px-1 text-xs`,
-        medium: `py-1.5 px-1.5 text-sm`,
-        large: `py-3 px-3 text-base`
+        small: `py-1.5 px-1.5 text-xs`,
+        medium: `py-2 px-2.5 text-sm`,
+        large: `py-2.5 px-3.5 text-base`
     }
     const borderStyles = `border border-transparent`
-    const gapStyles = isCollapsed ? 'gap-0' : size == 'small' ? 'gap-1.5' : size == 'large' ? 'gap-3' : 'gap-2'
-    const imageSize = size == 'small' ? '20px' : size == 'medium' ? '28px' : '40px'
+    const gapStyles = isCollapsed ? 'gap-0' : size == 'small' ? 'gap-1.5' : size == 'large' ? 'gap-2.5' : 'gap-2'
+    const imageSize = size == 'small' ? '20px' : size == 'large' ? '28px' : '24px'
     const bgStyles = (isActive || isOpen) ? 'juno-current-color-bg' : 'juno-current-color-hover-bg'
     const cornerStyles = isCollapsed ? 'rounded-full' : size == "small" ? "rounded" : size == "large" ? "rounded-lg" : "rounded-md"
     const widthStyles = isCollapsed ? 'w-auto' : `w-${width}`
@@ -42,6 +43,20 @@ export default function UserMenu(props) {
     const IconComponent = icon ? <Icon icon={icon?.toLowerCase()} className='scale-75 opacity-0 group-hover:opacity-100 hover:scale-90 transition-all cursor-pointer' 
     style={{order: avatarPosition == 'left' ? 1 : -1}}
     /> : null;
+
+
+    const dropdownRef = useRef(null);
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+    }, [dropdownRef])
 
     return (
         <div
@@ -68,16 +83,18 @@ export default function UserMenu(props) {
         {name}
         </div>}
         </div>
-        {isOpen && children?.length > 0 &&
-        <div className={`absolute -bottom-1 translate-y-full right-0 bg-white !bg-base-0 shadow-md p-1.5 border-[0.5px] border-slate-200 !border-base-200 rounded-md z-10
-        flex flex-col items-stretch`}
+        {isOpen && children &&
+        <div 
+        ref={dropdownRef}
+        className={`absolute -bottom-1 translate-y-full right-0 bg-base-0 shadow-md p-1.5 border-[0.5px] border-base-200 rounded-md z-10
+        flex flex-col items-stretch w-full animate-fadeInDown transition-all duration-150`}
         >
             {children}
         </div>}
 
         {!isCollapsed && icon && IconComponent}
         
-        {isCollapsed && name != '' &&
+        {isCollapsed && name != '' && tooltip &&
                 <Tooltip
                     direction={avatarPosition == 'right' ? 'left' : 'right'}
                     size={size == 'small' ? 'small' : 'medium'} 
@@ -93,16 +110,19 @@ export default function UserMenu(props) {
 
 UserMenu.propTypes = {
     color: PropTypes.oneOfType([
-        PropTypes.oneOf(["base-0", 'base-50', "base-100", "base-200", "primary", "accent"]),
+        PropTypes.oneOf(["base-0", "base-100", "base-200", "primary", "accent"]),
         PropTypes.string]),
     size: PropTypes.oneOf(['medium', 'small']),
     avatarPosition: PropTypes.oneOf(['left', 'right']),
-    icon: PropTypes.oneOf(['chevron-right', 'chevron-down', 'chevron-left']),
+    icon: PropTypes.oneOf(['chevron-right', 'chevron-down', 'chevron-left', 'arrows-up-down']),
     avatarType: PropTypes.oneOf(['image', 'initials']),
     width: PropTypes.oneOf(['auto', 'full']),
     isActive: PropTypes.bool,
     isCollapsed: PropTypes.bool,
     imageSrc: PropTypes.string,
     name: PropTypes.string,
+    onClick: PropTypes.func,
+    children: PropTypes.node,
+    tooltip: PropTypes.bool,
 }
 

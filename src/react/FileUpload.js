@@ -32,7 +32,7 @@ export default function FileUpload(props) {
     const [isDragOver, setIsDragOver] = useState(false); // Track if drag is over the drop area
 
     const widthStyle = width != 'auto' ? `w-${width}` : 'w-auto'
-    const borderStyles = hasOutline ?`border border-base-200` : '';
+    const borderStyles = hasOutline ? `border border-current-20` : '';
     const sizeStyles = size == 'small' ? 'gap-0.5 text-xs' : size == 'large' ? 'gap-1.5 text-base' : 'gap-1 text-sm'
     let wrapperClasses = `flex flex-col items-stretch justify-start ${sizeStyles} ${widthStyle} ${borderStyles}`
 
@@ -42,7 +42,7 @@ export default function FileUpload(props) {
     const iconSize = size == 'small' ? '20px' : size == 'large' ? '32px' : '24px'
     const IconComponent = icon !== 'none' ? <Icon icon={icon}  className='flex-shrink-0' size={iconSize}  /> : null;
 
-    const stateStyles = state === 'focused' || isDragOver ? 'bg-base-100 border-accent' : 'bg-base-0 border-base-400';
+    const stateStyles = (state === 'focused' || isDragOver) ? 'bg-accent/20 border-accent' : 'bg-current-10 border-current-20';
     const cornerStyles = corners === 'none' ? '' : `rounded-${corners}`;
     const dropAreaSizeClasses = size === 'small' ? 'p-2 gap-0.5' : size === 'large' ? 'p-3 gap-1.5' : 'p-2 gap-1';
     const dropAreaClasses = `w-full h-full relative border-dashed flex flex-col items-center justify-center ${cornerStyles} ${stateStyles} ${dropAreaSizeClasses}`

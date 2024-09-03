@@ -66,7 +66,7 @@ export default function Tab(props) {
 Tab.propTypes = {
     text: PropTypes.string,
     leftIcon: PropTypes.oneOf(['none', ...allIconNames]),
-    tabColor: PropTypes.oneOf(['primary', 'primary-content', 'accent', 'accent-content', 'base-content', 'base-500', 'base-700', 'base-900']),
+    tabColor: PropTypes.oneOf(['primary', 'accent', 'base-content', 'base-500', 'base-700', 'base-900']),
     state: PropTypes.oneOf(['active', 'inactive']),
     size: PropTypes.oneOf(['small', 'medium', 'large']),
     borderPosition: PropTypes.oneOf(['bottom', 'top', 'left', 'right']),

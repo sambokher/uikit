@@ -37,7 +37,7 @@ export default function Sidebar(props) {
 
     const alignItemsStyles = alignItems ? `items-${alignItems}` : '';
     const justifyContentStyles = justifyContent ? `justify-${justifyContent}` : '';
-    const fontColor = (background == 'none' || !background) ? '' : (background == 'base-900' || background == 'base-700' || background == 'base-content') ? `text-base-0` : background?.startsWith('base') ? 'text-base-content' : `text-${background}-content`
+    const fontColor = (!background || background == 'none') ? '' : (background?.startsWith('base') && background != 'base-content' && background != 'base-700') ? 'text-base-content' : `text-base-0`
     
     let classes = `flex flex-col relative flex-grow-0 z-40 flex-shrink-0 transition-all
     ${paddingStyles} ${fontColor} ${fontSize} ${bgStyles} ${gapStyles} ${alignItemsStyles} ${justifyContentStyles} ${borderStyles} `

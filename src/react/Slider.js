@@ -6,7 +6,7 @@ export default function Slider(props) {
     const {
         width = 'auto',
         label = 'label',
-        barColor = 'info-content',
+        barColor = 'info',
         value = 50, 
         minValue = 0,
         maxValue = 100,
@@ -39,7 +39,8 @@ export default function Slider(props) {
         large: `[&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4`
     }
 
-    const inputRangeStyles = `[&::-webkit-slider-thumb]:appearance-none ${circleSizeMap[size]} [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-base-0 [&::-webkit-slider-thumb]:ring [&::-webkit-slider-thumb]:ring-info-content`
+    // [&::-webkit-slider-thumb]:ring-info [&::-webkit-slider-thumb]:ring-success  [&::-webkit-slider-thumb]:ring-warning [&::-webkit-slider-thumb]:ring-error [&::-webkit-slider-thumb]:ring-accent [&::-webkit-slider-thumb]:ring-primary [&::-webkit-slider-thumb]:ring-base-content
+    const inputRangeStyles = `[&::-webkit-slider-thumb]:appearance-none ${circleSizeMap[size]} [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-base-0 [&::-webkit-slider-thumb]:ring [&::-webkit-slider-thumb]:ring-${barColor}`
     const labelTextSize = size == 'small' ? `text-xs` :  size == 'large' ? `text-lg`: `text-sm`;
     const labelClasses = `${labelTextSize} font-medium`
 
@@ -61,7 +62,7 @@ onChange={handleSliderChange}
                 style={{
                     width: '100%', 
                     height: heightMap[size],
-                    cursor: 'pointer',
+                    cursor: 'ew-resize',
                     background: `linear-gradient(to right, var(--${barColor}) 0%, var(--${barColor}) ${(sliderValue-minValue)/(maxValue-minValue)*100}%,  var(--base-200) ${(sliderValue-minValue)/(maxValue-minValue)*100}%, var(--base-200) 100%)`,
                     appearance: 'none', 
                     borderRadius: 100 
@@ -78,7 +79,7 @@ onChange={handleSliderChange}
 Slider.propTypes = {
     width: PropTypes.oneOf(['auto', '1/2', 'full']),
     label: PropTypes.string,
-    barColor: PropTypes.oneOf(['info-content', 'primary', 'accent', 'success-content', 'base-content', 'warning-content', 'error-content']),
+    barColor: PropTypes.oneOf(['info', 'primary', 'accent', 'success', 'base-content', 'warning', 'error']),
     value: PropTypes.string,
     minValue: PropTypes.number,
     maxValue: PropTypes.number,

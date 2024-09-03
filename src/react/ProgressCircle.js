@@ -6,7 +6,7 @@ export default function ProgressCircle(props) {
     const {
         label = 'label',
         circleRadius = '48px',
-        color = 'info-content',
+        color = 'info',
         progress = '50%',
         showProgressValue = true,
         attributes,
@@ -54,7 +54,7 @@ export default function ProgressCircle(props) {
                 {/* Background circle in light gray */}
                 <circle
                     stroke="currentColor"
-                    style={{ strokeOpacity: 0.08 }}
+                    style={{ strokeOpacity: 0.10 }}
                     fill="transparent"
                     strokeWidth={strokeWidth}
                     strokeDasharray={`${circumference} ${circumference}`}
@@ -98,7 +98,7 @@ export default function ProgressCircle(props) {
 ProgressCircle.propTypes = {
     label: PropTypes.string,
     circleRadius: PropTypes.oneOf(['32px', '48px', '60px', '80px']),
-    color: PropTypes.oneOf(['info-content', 'primary', 'accent', 'success-content', 'base-content', 'warning-content', 'error-content']),
+    color: PropTypes.oneOf([ 'base-300', 'primary', 'accent', 'info', 'success', 'warning', 'error']),
     progress: PropTypes.oneOf(['0%', '10%', '20%', '30%', '40%', '50%', '60%', '70%', '80%', '90%', '100%']),
     showProgressValue: PropTypes.bool,
     children: PropTypes.node

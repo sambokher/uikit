@@ -10,27 +10,28 @@ export default function RadioButton(props) {
         style='standard',
         size='medium', 
         width='auto',
-        onSelect,
+        onChange,
         attributes, listeners } = props
     
-
+    const heightStyle = size == 'small' ? 'h-7' : size == 'large' ? 'h-12' : 'h-9';
     const sizeStyles = size == 'small' ? `gap-1.5 text-xs`: size == 'large' ? `gap-3 text-base` : `gap-2 text-sm`;
-    const paddingStyles = size == 'small' ? `py-1 px-1.5` : size == 'large' ? `py-2 px-3` : `py-1.5 px-2`;
+    const paddingStyles = size == 'small' ? `px-1.5` : size == 'large' ? `px-3` : `px-2`;
         
     const fillColorMap = {
-        'default': `border border-primary`,
-        'warning': `border border-warning-content`,
-        'success': `border border-success-content`,
-        'disabled': 'bg-base-200 border border-base-300'
+        'default': `ring-1 ring-inset ring-primary bg-primary`,
+        'error': `ring-1 ring-inset ring-error-focus bg-error`,
+        'success': `ring-1 ring-inset ring-success-focus bg-success`,
+        'disabled': 'bg-base-200 ring-1 ring-inset ring-base-300'
     };
     
-    const stateStyles = isSelected ? fillColorMap[state] : 'border border-base-300'
-    const borderStyles = isSelected ? `border border-primary` : `border border-base-200`
-    const bgSttyles = isSelected ? `bg-transparent` : `bg-transparent hover:bg-base-100 transition-all duration-75`
+    const stateStyles = isSelected ? fillColorMap[state] : 'ring-1 ring-inset ring-base-300'
+    const borderStyles = isSelected ? `ring-1 ring-inset ring-primary` : `ring-1 ring-inset ring-base-200`
+    const bgSttyles = isSelected ? `bg-primary/10` : `bg-transparent hover:bg-current-5 transition-all duration-75`
     
     const styleMap  = {
         standard: `flex items-start ${sizeStyles} cursor-default w-${width}`, 
-        button: `flex flex-row ${paddingStyles} rounded items-center ${sizeStyles} cursor-pointer w-${width} ${borderStyles} ${bgSttyles}`
+        button: `flex flex-row ${paddingStyles} ${heightStyle} rounded items-center ${sizeStyles} 
+        cursor-pointer w-${width} ${borderStyles} ${bgSttyles} `
     }
 
     let wrapperClasses = styleMap[style] || styleMap['standard']
@@ -54,7 +55,7 @@ export default function RadioButton(props) {
         <div 
         {...attributes} {...listeners} 
             className={wrapperClasses} 
-onClick={onSelect}
+onClick={onChange}
         >
             <div className="relative flex-shrink-0 inline-block">
                 <span className={outerCircleClasses}>

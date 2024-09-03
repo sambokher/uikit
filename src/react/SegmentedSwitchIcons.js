@@ -36,9 +36,7 @@ export default function SegmentedSwitchIcons(props) {
     const optionSizeStyles = size == 'small' ? `p-0.5 border-2 rounded` : size == 'large' ? `p-1.5 border-2 rounded-lg` : `p-0.5 border-2 rounded-md`;
     const optionClasses = `flex flex-row items-center justify-center text-center cursor-pointer border-${bgColor} ${optionSizeStyles} ${textColor}`
     
-    const selectedTextColor = 
-        selectedOptionColor.startsWith('success') || selectedOptionColor.startsWith('info') ? `text-${selectedOptionColor.replace('-content', '')}`
-        : `text-${selectedOptionColor}-content`
+    const selectedTextColor = selectedOptionColor?.startsWith('base') ? `text-base-content` : `!text-base-0`
 
     const selectedOptionClasses = `cursor-pointer text-center bg-${selectedOptionColor} border-${bgColor} ${selectedTextColor} ${optionSizeStyles}`
 
@@ -73,13 +71,11 @@ onClick={()=> handleSelect(index)}
 );  
 }
 
-
-
 SegmentedSwitchIcons.propTypes = {
     width: PropTypes.oneOf(['auto', '1/2', 'full']),
     size: PropTypes.oneOf(['small', 'medium', 'large']),
     bgColor: PropTypes.oneOf(['base-0', 'base-50', 'base-100', 'base-200', 'base-300']),
-    selectedOptionColor: PropTypes.oneOf(['base-0', 'accent', 'primary', 'success-content', 'info-content']),
+    selectedOptionColor: PropTypes.oneOf(['base-0', 'accent', 'primary', 'success', 'info']),
     defaultOption: PropTypes.number,
     options: PropTypes.arrayOf(PropTypes.string),
     hasOutline: PropTypes.bool,

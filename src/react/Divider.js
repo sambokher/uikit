@@ -37,7 +37,7 @@ export default function Divider(props) {
 
 Divider.propTypes = {
     color: PropTypes.oneOf(['base-0', 'base-100', 'base-200', 'base-300', 'base-content', 'primary', 'accent', 'success', 'warning', 'error', 
-    'info', 'success-content', 'warning-content', 'error-content', 'info-content']),
+    'info', 'success-surface', 'warning-surface', 'error-surface', 'info-surface']),
     margins: PropTypes.oneOf(['6px', '8px', '12px', '16px', '24px']),
     direction: PropTypes.oneOf(['horizontal', 'vertical']),
     thickness: PropTypes.oneOf(['0.5px', '1px', '2px', '3px', '4px']),

@@ -9,7 +9,7 @@ export default function Paragraph(props) {
     const {
         text = dummyText,
         textSize = 'auto',
-        textColor = 'auto',
+        textColor = null,
         marginBottom = null, 
         marginTop = null, 
         lineHeight = 'auto',
@@ -21,7 +21,7 @@ export default function Paragraph(props) {
       } = props;
 
     const textSizeStyles = textSize !== 'auto' && `text-${textSize}`
-    const textColorStyles = textColor !== 'auto' &&  `text-${textColor}`
+    const textColorStyles = (textColor == 'none' || !textColor) ? `` : `text-${textColor}`
     const marginBottomStyles = marginBottom ? `mb-${spacingMap[marginBottom]}` : '';
     const marginTopStyles = marginTop ? `mt-${spacingMap[marginTop]}` : '';
     
@@ -49,7 +49,7 @@ Paragraph.propTypes = {
     lineHeight: PropTypes.oneOf(['auto', 'none', 'tight', 'normal', 'relaxed', 'loose']),
     textAlign: PropTypes.oneOf(['auto', 'left', 'right', 'center', 'justify']),
     textColor: PropTypes.oneOfType([
-        PropTypes.oneOf(['auto', 'primary', 'primary-content', 'accent', 'accent-content', 'base-content', 'base-500', 'base-700', 'base-900', 'success-content', 'warning-content', 'error-content', 'info-content']),
+        PropTypes.oneOf(['primary', 'primary-content', 'accent', 'accent-content', 'base-0', 'base-50', 'base-100', 'base-content', 'base-500', 'base-700', 'base-900','success-content', 'warning-content', 'error-content', 'info-content']),
         PropTypes.string]),
     children: PropTypes.node
 };

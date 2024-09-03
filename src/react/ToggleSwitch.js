@@ -5,7 +5,7 @@ export default function ToggleSwitch(props) {
     
     const {
         label = 'toggle label',
-        type = 'standard',
+        type = 'base-300',
         isChecked = false,
         size = 'medium',
         attributes,
@@ -19,42 +19,25 @@ export default function ToggleSwitch(props) {
 
     const sizeStyles = size == 'small' ? `gap-1.5 text-xs` : size == 'large' ? `gap-3 text-base` : `gap-2 text-sm`;
 
-    const typeMap = {
-        'primary': `bg-primary text-primary-content`,
-        'standard': `bg-base-content text-base-content`,
-        'accent': `bg-accent text-accent-content`,
-        'warning': 'bg-warning-content text-warning-content',
-        'success': 'bg-success-content text-success-content',
-        'disabled': 'bg-base-300 text-base-300',
-    };
-
     let wrapperClasses = `flex flex-row items-start ${sizeStyles} cursor-default`
     
     const switchSizeMap = {
-        'small': 'w-7 p-[px]',
-        'medium': 'w-8 p-[px]',
-        'large': 'w-10 p-[px]',
+        'small': 'w-7',
+        'medium': 'w-8',
+        'large': 'w-10',
     }
 
-    const switchStyles = isToggled ? typeMap[type] : `bg-base-300`;
+    const switchStyles = !isToggled ? `bg-current-20` : `bg-${type} text-${type}-content`
     const switchClasses = `relative flex flex-row justify-${isToggled ? 'end' : 'start'} ${switchStyles} ${switchSizeMap[size]} rounded-full items-center select-none transition duration-200 ease-in`
     const labelClasses = `${type == 'disabled' ? 'opacity-60' : ''} cursor-default`
 
-    const borderMap = {
-        'primary': `border-primary`,
-        'standard': `border-base-content`,
-        'accent': `border-accent`,
-        'warning': 'border-warning-content',
-        'success': 'border-success-content',
-        'disabled': 'border-base-300',
-    };
     
     const toggleSize = {
         'small': 18,
         'medium': 21,
         'large': 24
     }
-    const toggleSpanStyle = `${type == 'disabled' ? 'bg-base-200 cursor-not-allowed': 'bg-white'} ${isToggled ? borderMap[type] : 'border-base-300'}  rounded-full shadow transform transition ease-in-out duration-200`    
+    const toggleSpanStyle = `${type == 'disabled' ? 'bg-base-200 cursor-not-allowed': 'bg-base-0'} ${isToggled ? `border-${type}`: 'border-current-20'}  rounded-full shadow transform transition ease-in-out duration-200`    
     
     return (
         <div 
@@ -80,7 +63,7 @@ onClick={() => setIsToggled(!isToggled)}
 }
 
 ToggleSwitch.propTypes = {
-    type: PropTypes.oneOf(['primary', 'standard', 'accent', 'warning', 'disabled', 'success']),
+    type: PropTypes.oneOf(['primary', 'base-300', 'accent', 'warning', 'disabled', 'success']),
     label: PropTypes.string,
     isChecked: PropTypes.bool,
     size: PropTypes.oneOf(['small', 'medium', 'large']),

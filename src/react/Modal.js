@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { ButtonIcon } from './index';
 import { spacingMap } from './helpers.js';
 
+
+
 export default function Modal(props) {
     
     const {
@@ -32,7 +34,7 @@ export default function Modal(props) {
     const gapStyles = gap ? `gap-${spacingMap[gap]}` : '';
 
     const cornerStyles = corners === 'none' ? '' : `rounded-${corners}`;
-    const modalBg = modalBackground ? `bg-${modalBackground} mx-auto` : `mx-auto`;
+    const modalBg = modalBackground ? `bg-${modalBackground} mx-auto text-base-content` : `mx-auto`;
     const borderStyles = `border border-base-200`;
     
     const shadowStyle = {
@@ -61,9 +63,17 @@ export default function Modal(props) {
             animation: 'fadeInUp 100ms ease-in-out',
              }}>
             
-            {closeButton && <div className='absolute right-1 top-1 transition-all rounded-lg'><ButtonIcon icon='close'
-            size="small"
-            type={"ghost"}
+            {closeButton && <div className={`absolute 
+            right-2
+            top-2
+            z-50
+            
+            transition-all rounded-lg`}>
+                <ButtonIcon 
+                    icon='close'
+                    size="small"
+                    color='base-700'
+                    style={"ghost"}
 onClick={onClose}
           /></div>}
             {children}
@@ -74,7 +84,7 @@ onClick={onClose}
 
 
 Modal.propTypes = {
-    modalBackground: PropTypes.oneOf(['base-100', 'base-0']),
+    modalBackground: PropTypes.oneOf(['base-100', 'base-0', 'base-50']),
     backdrop: PropTypes.oneOf(['dark', 'blurred', 'none']),
     width: PropTypes.oneOf(['480px', '640px', '780px', '960px', '1200px']),
     paddingX: PropTypes.oneOf(['0px', '8px', '12px', '16px', '24px', '32px', '48px']),

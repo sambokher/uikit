@@ -34,10 +34,10 @@ export default function InputFile(props) {
             stateStyles = `bg-base-100 opacity-70 cursor-not-allowed ${hasOutline ? 'border border-base-300' : ''}`;
             break;
         case 'error':
-            stateStyles = `text-warning-content ${hasOutline ? 'border border-warning-content' : ''}`;
+            stateStyles = `text-warning-content ${hasOutline ? 'border border-warning' : ''}`;
             break;
         case 'success':
-            stateStyles = `text-success-content ${hasOutline ? 'border border-success-content' : ''}`;
+            stateStyles = `text-success-content ${hasOutline ? 'border border-success' : ''}`;
             break;
     }
     
@@ -47,7 +47,7 @@ export default function InputFile(props) {
     const labelTextSize = size == 'small' ? `text-xs` :  size == 'large' ? `text-lg`: `text-sm`;
     const labelClasses = `${labelTextSize} font-medium`
 
-    const messageTextColor = state == 'error' ? stateStyles = 'text-warning-content' : state == 'success' ? stateStyles = 'text-success-content' : ''
+    const messageTextColor = state == 'error' ? stateStyles = 'text-warning' : state == 'success' ? stateStyles = 'text-success' : ''
     const messageClasses = `text-sm font-sm ${messageTextColor}`
 
     const widthStyle = width != 'auto' ? `w-${width}` : size == 'small' ? 'min-w-[120px]' : size == 'large' ? 'min-w-[200px]' : 'min-w-[160px]'

@@ -35,7 +35,7 @@ export default function Main(props) {
     const alignItemsStyles = alignItems ? `items-${alignItems}` : '';
     const justifyContentStyles = justifyContent ? `justify-${justifyContent}` : '';
     
-    const fontColor = (!background || background == 'none') ? '' : background == 'base-900' ? `text-base-0` : background?.startsWith('base') ? 'text-base-content' : `text-${background}-content`
+    const fontColor = (!background || background == 'none') ? '' : (background?.startsWith('base') && background != 'base-content' && background != 'base-700') ? 'text-base-content' : `text-base-0`
     const alignMain = `items-${selfAlign}`
     const cornerStyles = corners === 'none' ? '' : `rounded-${corners}`;
     
@@ -63,7 +63,7 @@ overflow: 'scroll'
 
 Main.propTypes = {
     background: PropTypes.oneOfType([
-        PropTypes.oneOf(['base-0',  'base-50', 'base-100', 'base-200', 'primary', 'accent', 'base-900']),
+        PropTypes.oneOf(['base-0',  'base-50', 'base-100', 'base-200', 'primary', 'accent', 'base-content']),
         PropTypes.string]),
     width: PropTypes.oneOf(['stretch', '780', '960', '1200', '1440']),
     direction: PropTypes.oneOf(["flex-col", "flex-row"]),

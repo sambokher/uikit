@@ -16,41 +16,64 @@ export default function TextArea(props) {
         placeholder = 'placeholder text',
         label = 'Label',
         helperText = '',
-        value = '',
         maxCharacters = 200,
-        onChange = () => {},
         prefix = '',
         hasCharacterCount = true,
         textAlign = 'left',
         width = 'auto',
         rightIcon = 'none',
         hasOutline = true,
-        defaultIconSet,
+
+        value: externalValue,
+        name,
+        onChange,
+        onBlur=()=>{},
+        onFocus=()=>{},
+
         attributes,
         listeners
       } = props;
     
     const textAreaRef = useRef(null);
-    const [isFocused, setIsFocused] = useState(false);
+
+    const isControlled = externalValue !== undefined // it's controlled outside if it receives value and onChange handler
+    const [internalValue, setInternalValue] = useState(externalValue || '');
+    const value = isControlled ? externalValue : internalValue;
+    
+     // Sync internal state with externalValue when controlled
+    useEffect(() => {
+        setInternalValue(externalValue || ''); // Default to empty string if undefined
+    }, [externalValue]);
+
+    function handleChange(e) {
+        e.stopPropagation();
+        
+        adjustTextAreaHeight(parseFloat(textAreaStyles.lineHeight), maxRows);
+        setCharCount(countCharacters(e.target.value)); 
+
+        if (isControlled) {
+            onChange(e);
+        } else {
+            setInternalValue(e.target.value);
+        }   
+    }
 
 
     const sizeStyles = size == 'small' ? `py-0.5 px-2 gap-1.5 text-xs` : size == 'large' ? `py-2 px-3 gap-3 text-base` : `py-1.5 px-2 gap-3 text-sm`;
     const cornerStyles = size == "small" ? "rounded" : size == "large" ? "rounded-lg" : "rounded-md"
     
 
-    let stateStyles = '';
+    // default
+    let stateStyles = hasOutline ? `ring-1 ring-inset ring-base-200 focus-within:ring-[1.5px] focus-within:ring-accent` : '';
     switch (state) {
-        case 'default':
-            stateStyles = hasOutline ? isFocused ? `border border-accent` : `border border-base-300` : 'border border-transparent'
-            break;
         case 'disabled':
-            stateStyles = `bg-base-100 opacity-70 cursor-not-allowed ${hasOutline ? 'border border-base-300' : ''}`
+            stateStyles = `bg-base-100 opacity-70 cursor-not-allowed ${hasOutline ? 'ring-1 ring-inset ring-base-200' : ''}`
             break;
         case 'error':
-            stateStyles = `text-warning-content ${hasOutline ? 'border border-warning-content' : ''}`
+            stateStyles = `text-warning ${hasOutline ? 'ring-1 ring-inset ring-warning' : ''}`
             break;
         case 'success':
-            stateStyles = `${hasOutline ? 'border border-success-content' : ''}`
+            stateStyles = `text-success ${hasOutline ? 'ring-1 ring-inset ring-success' : ''}`
             break;
     }
 
@@ -62,13 +85,13 @@ export default function TextArea(props) {
     const labelTextSize = size == 'small' ? `text-sm` :  size == 'large' ? `text-lg`: `text-md`;
     const labelClasses = `text-base-content ${labelTextSize} font-medium`
     
-    const messageTextColor = state == 'error' ? stateStyles = 'text-warning-content' : state == 'success' ? stateStyles = 'text-success-content' : ''
-    const messageClasses = `text-sm font-sm ${messageTextColor}`
+    const messageTextColor = state == 'error' ? stateStyles = 'text-warning' : state == 'success' ? stateStyles = 'text-success' : ''
+    const messageClasses = size == 'large' ? `text-base  ${messageTextColor}` : `text-sm ${messageTextColor}`
     const widthStyle = width != 'auto' ? `w-${width}` : size == 'small' ? 'min-w-[120px]' : size == 'large' ? 'min-w-[200px]' : 'min-w-[160px]'
 
     let wrapperClasses = `flex flex-col gap-1 ${widthStyle}`
 
-    const RightIconComponent = rightIcon !== 'none' ? <Icon icon={rightIcon?.toLowerCase()} defaultIconSet={defaultIconSet} className='flex-shrink-0 flex-grow-0 -mr-1 self-start'/> : null;
+    const RightIconComponent = rightIcon !== 'none' ? <Icon icon={rightIcon?.toLowerCase()} className='flex-shrink-0 flex-grow-0 -mr-1 self-start'/> : null;
 
     // Code to auto-resize the textarea
     const lineHeight = size == 'small' ? 1 : size == 'large' ? 1.5 : 1.25
@@ -99,13 +122,8 @@ export default function TextArea(props) {
     const countCharacters = (text) => { return text.length || 0 }
     const [ charCount, setCharCount ] = useState(countCharacters(value.length));
 
-    function handleChange(e) {
-        adjustTextAreaHeight(parseFloat(textAreaStyles.lineHeight), maxRows);
-        setCharCount(countCharacters(e.target.value)); 
-        onChange(e.target.value);
-    }
+    const textColor = (state == 'disabled' || state == 'default') ? 'text-base-content' : `text-${state}-content`
     
-
     return (
         <div
         {...attributes} {...listeners} 
@@ -118,17 +136,18 @@ export default function TextArea(props) {
             {prefix}
             
             <textarea
-            type='text'
             ref={textAreaRef}
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
             disabled={state == 'disabled'}
             className={`flex-grow text-${textAlign} border-transparent focus:outline-none focus:ring-0 font-medium resize-none placeholder:font-normal
-            placeholder-base-500 text-base-content bg-transparent w-full ${state == 'disabled' && 'cursor-not-allowed'}`}
+            placeholder-base-500 ${textColor} bg-transparent w-full ${state == 'disabled' && 'cursor-not-allowed'}`}
             value={value}
             style={textAreaStyles}
             placeholder={placeholder}
-            onChange={e => handleChange(e)}
+            
+onBlur={onBlur}
+onChange={handleChange}
+onFocus={onFocus}
+            
             />  
             {RightIconComponent}
             </div>

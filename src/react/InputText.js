@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Icon } from './index'
 import { iconMap } from './iconMap'
 
 const allIconNames = Object.keys(iconMap) || []
+
+
+
 
 export default function InputText(props) {
     
@@ -16,25 +19,43 @@ export default function InputText(props) {
         helperText = '',
         rightIcon = 'none',
         leftIcon = 'none',
-        value = '',
         prefix = '',
         suffix = '',
         textAlign = 'left',
         width = 'auto',
-        onFocus=()=>{},
         hasOutline = true,
-        attributes,
-        listeners,
+        
+        value: externalValue,
         name,
         type,
         onChange,
-        onBlur,
+        onBlur=()=>{},
+        onFocus=()=>{},
+
+        attributes,
+        listeners,
       } = props;
 
     
-    const isControlled = value !== undefined && onChange !== undefined;
-    const [internalValue, setInternalValue] = useState(value);
+    const isControlled = externalValue !== undefined // it's controlled outside if it receives value and onChange handler
+    const [internalValue, setInternalValue] = useState(externalValue || '');
+    const value = isControlled ? externalValue : internalValue;
     
+     // Sync internal state with externalValue when controlled
+    useEffect(() => {
+        setInternalValue(externalValue || ''); // Default to empty string if undefined
+    }, [externalValue]);
+
+    function handleChange(e) {
+        e.stopPropagation();
+        
+        if (isControlled) {
+            onChange(e);
+        } else {
+            setInternalValue(e.target.value);
+        }
+    }
+
     // const sizeStyles = size == 'small' ? `py-1 px-2 gap-1.5` : size == 'large' ? `py-2 px-3 gap-3` : `py-1.5 px-2 gap-3`;
     const paddingX = size == 'small' ? `px-2` : size == 'large' ? `px-3` : `px-2.5`;
     const gapUnit = size == 'small' ? 1.5 : size == 'large' ? 2.5 : 2
@@ -50,25 +71,24 @@ export default function InputText(props) {
             stateStyles = `bg-base-100 opacity-70 cursor-not-allowed ${hasOutline ? 'ring-1 ring-inset ring-base-200' : ''}`
             break;
         case 'error':
-            stateStyles = `text-warning-content ${hasOutline ? 'ring-1 ring-inset ring-warning-content' : ''}`
+            stateStyles = `text-warning ${hasOutline ? 'ring-1 ring-inset ring-warning' : ''}`
             break;
         case 'success':
-            stateStyles = `text-success-content ${hasOutline ? 'ring-1 ring-inset ring-success-content' : ''}`
+            stateStyles = `text-success ${hasOutline ? 'ring-1 ring-inset ring-success' : ''}`
             break;
     }
     
-    const bgStyles = (bgColor && bgColor !== 'none') ? `bg-${bgColor} ${!hasOutline && 'brightness-95'}` : '';
+    const bgStyles = (bgColor && bgColor !== 'none') ? `bg-${bgColor} ${!hasOutline && 'focus-within:brightness-95'}` : '';
     
-    
-    let inputWrapper = `w-full relative flex flex-row items-center ${paddingX} ${textSize} ${cornerStyles} ${bgStyles} ${stateStyles} `
-
+    const heightStyle = size == 'small' ? 'h-7' : size == 'large' ? 'h-12' : 'h-9';
+    let inputWrapper = `w-full relative flex flex-row items-center ${heightStyle} ${paddingX} ${textSize} ${cornerStyles} ${bgStyles} ${stateStyles} `
 
     
     const labelTextSize = size == 'small' ? `text-xs` :  size == 'large' ? `text-lg`: `text-sm`;
     const labelClasses = `text-base-content ${labelTextSize} font-medium`
 
-    const messageTextColor = state == 'error' ? stateStyles = 'text-warning-content' : state == 'success' ? stateStyles = 'text-success-content' : ''
-    const messageClasses = size == 'large' ? `text-sm  ${messageTextColor}` : `text-xs ${messageTextColor}`
+    const messageTextColor = state == 'error' ? stateStyles = 'text-warning' : state == 'success' ? stateStyles = 'text-success' : ''
+    const messageClasses = size == 'large' ? `text-base  ${messageTextColor}` : `text-sm ${messageTextColor}`
     const widthStyle = width != 'auto' ? `w-${width}` : size == 'small' ? '' : size == 'large' ? 'min-w-[200px]' : 'min-w-[160px]'
     
     
@@ -85,6 +105,7 @@ export default function InputText(props) {
     // pr-0.5 pr-1 pr-1.5 pr-2 pr-2.5 pl-0.5 pl-1 pl-1.5 pl-2 pl-2.5
     // ml-0.5 ml-1 ml-1.5 ml-2 ml-2.5 mr-0.5 mr-1 mr-1.5 mr-2 mr-2.5
 
+    const textColor = (state == 'disabled' || state == 'default') ? 'text-base-content' : `text-${state}-content`
     return (
         <div
         {...attributes} {...listeners} 
@@ -101,12 +122,14 @@ export default function InputText(props) {
             <input
             type={type}
             name={name}
-            onBlur={() => onBlur()}
-            onChange={(e) => onChange(e)}
+onBlur={onBlur}
+onChange={handleChange}
+onFocus={onFocus}
+            
 disabled={state == 'disabled'}
-            onFocus={() => onFocus()}
-            className={`block w-full text-${textAlign} ${paddingY} border-0 border-transparent focus:outline-none focus:ring-0 font-medium placeholder:font-normal
-            placeholder-base-500 text-base-content ${state == 'disabled' && 'cursor-not-allowed'} ${inputPaddingX}`}
+            
+            className={`w-full text-${textAlign} ${paddingY} border-0 border-transparent focus:outline-none focus:ring-0 font-medium placeholder:font-normal
+            placeholder-base-500 bg-transparent ${textColor} ${state == 'disabled' && 'cursor-not-allowed'} ${inputPaddingX}`}
             value={value}
             placeholder={placeholder}
             />  
@@ -115,9 +138,7 @@ disabled={state == 'disabled'}
             </span>
             {RightIconComponent}
             </div>
-            {helperText && <span
-            className={messageClasses}
-            >
+            {helperText && <span className={messageClasses}>
 {helperText}
             </span>}    
         </div>

@@ -5,15 +5,6 @@ import { iconMap } from './iconMap'
 
 const allIconNames = Object.keys(iconMap) || []
 
-
-/**
- * Button compffonent that renders a.. button.
- *
- * @param {Object} props - The props object.
- * @param {string} props.text - The text to display insfide the button.
- * @param {'default', 'disabled', 'loading', 'active'} [props.state] - STATE?
- * @returns {JSX.Element} The rendered button componen!t.
- */
 export default function Button(props) {
     
     const {
@@ -21,7 +12,7 @@ export default function Button(props) {
         rightIcon = 'none',
         text = 'Button',
         
-        color = 'base',
+        color = 'base-200',
         style = 'light',
 
         size = 'medium',
@@ -40,29 +31,27 @@ export default function Button(props) {
     const isActive = state == 'active'
 
     /* Filled */
-    const bgColor = color == 'base' ? 'base-200' : (color == 'primary' || color == 'accent') ? color : color+'-content'
-    const textColor = color == 'base' ? 'base-content' : 'base-0'
+    const textColor = color == 'base-200' ? 'base-content' : 'base-0'
     const statusStyles = (isDisabled || isLoading ) ? '' : isActive ? 'brightness-90' : 'hover:brightness-110 active:brightness-90'
-    const filledStyle = `bg-${bgColor} text-${textColor} ${statusStyles}`
+    const filledStyle = `bg-${color} text-${textColor} ${statusStyles}`
 
     /* Outlined */
-    const outlinedColor = color == 'base' ? 'base-700' : (color == 'primary' || color == 'accent') ? color : color+'-content'
     const outlineStatusStyles = (isDisabled || isLoading )  ? '' : isActive ? 'bg-current-10' : 'hover:bg-current-10 active:bg-transparent'
-    const outlinedStyle = `ring-1 ring-inset ring-${outlinedColor} text-${outlinedColor} ${outlineStatusStyles}`
+    const outlinedStyle = `ring-1 ring-inset ring-${color} text-${color} ${outlineStatusStyles}`
 
     /* Light */
-    const lightColor = color == 'base' ? 'base-100' : (color == 'primary' || color == 'accent') ? color+'-content' : color
-    const lightTextColor = (color == 'primary' || color == 'accent') ? color : color+'-content'
+    const lightColor = color == 'base-200' ? 'base-100' : color == 'base-700' ? 'base-500' : color+'-surface'
+    const lightTextColor =  color == 'base-700' ? 'base-0' : color == 'base-200' ? 'base-content' : color+'-content'
     const lightStatusStyles = (isDisabled || isLoading ) ? '' : isActive ? `bg-${lightColor}/75` : `hover:bg-${lightColor}/75`
     const lightStyle = `bg-${lightColor} text-${lightTextColor} ${lightStatusStyles}`
 
     /* Ghost */
     const ghostStatusStyles = (isDisabled || isLoading ) ? '' : isActive ? `bg-current-10` : `hover:bg-current-10`
-    const ghostStyle = `text-${lightTextColor} ${ghostStatusStyles}`
+    const ghostStyle = `text-${color} ${ghostStatusStyles}`
 
     /* Link */
     const linkStatusStyles = !(isDisabled || isLoading || isActive)  ? `hover:underline opacity-80 hover:opacity-100` : ''
-    const linkStyle = `text-${lightTextColor} ${linkStatusStyles}`
+    const linkStyle = `text-${color} ${linkStatusStyles}`
     
     const fontStyles = `font-medium` 
     
@@ -76,19 +65,21 @@ export default function Button(props) {
     let typeStyles = styleMap[style]
     
     
-    let sizeStyles = `py-2 px-3 gap-3 text-sm`;  // default size
-    sizeStyles = size == 'small' ? `py-1 px-1.5 gap-1 text-xs` : size == 'large'  ? `py-3 px-4 gap-4 text-base` : sizeStyles
+    let sizeStyles = `h-9 px-2.5 gap-2 text-sm`;  // default size
+    sizeStyles = size == 'small' ? `h-7 px-1.5 gap-1 text-xs` : size == 'large'  ? `h-12 px-3 gap-2.5 text-base` : sizeStyles
 
     const widthStyle = width == 'auto' ? `w-auto` : `w-${width}`
     const cornerStyles = size == "small" ? "rounded" : size == "large" ? "rounded-lg" : "rounded-md"
     
     let classes = `${hideOnMobile ? 'hidden md:flex' : ''}
-        relative flex flex-row items-center transition-all box-border cursor-pointer justify-between 
+        relative flex flex-row items-center transition-all duration-75 box-border cursor-pointer justify-between 
         ${fontStyles} ${typeStyles} ${sizeStyles} ${cornerStyles} ${widthStyle}
         ${isDisabled ? 'opacity-50 saturate-50 !cursor-not-allowed' : ''}`
     
-     const LeftIconComponent = leftIcon !== 'none' ? <Icon icon={leftIcon?.toLowerCase()} className={'scale-90'}/> : null;
-     const RightIconComponent = rightIcon !== 'none' ? <Icon icon={rightIcon?.toLowerCase()}  className={'scale-[0.8]'}/> : null;
+     const iconSize = size == 'small' ? '16px' : size == 'large' ? '24px' : '20px'
+     const iconWidth = size == 'small' ? 'w-4 h-4' : size == 'large' ? 'w-6 h-6' : 'w-5 h-5'
+     const LeftIconComponent = leftIcon !== 'none' ? <Icon icon={leftIcon?.toLowerCase()} size={iconSize} className={`scale-90 ${iconWidth}`} /> : null;
+     const RightIconComponent = rightIcon !== 'none' ? <Icon icon={rightIcon?.toLowerCase()} size={iconSize} className={`scale-[0.8] ${iconWidth}`} /> : null;
 
     const loaderColor = 'current'
 
@@ -128,7 +119,7 @@ Button.propTypes = {
     width: PropTypes.oneOf(["auto", "1/2", "full"]),
     text: PropTypes.string,
     state: PropTypes.oneOf(['default', 'disabled', 'loading', 'active']),
-    color: PropTypes.oneOf(['base', 'primary', 'accent', 'warning', 'info', 'success', 'error']),
+    color: PropTypes.oneOf(['base-200', 'base-700', 'primary', 'accent', 'warning', 'info', 'success', 'error']),
     style: PropTypes.oneOf(['filled', 'outlined', 'ghost', 'link', 'light']),
     size: PropTypes.oneOf(['small', 'medium', 'large']),
     leftIcon: PropTypes.oneOf(['none', ...allIconNames]),

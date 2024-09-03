@@ -33,7 +33,6 @@ export default function FolderCard(props) {
     const imageStyles = useMemo(() => ({
         background: !noImage && `linear-gradient(rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.12)), url(${thumbnailImageSrc}) no-repeat center center / cover`, 
         backgroundSize: 'cover', 
-        backgroundColor: `color-mix(in srgb, var(--primary) 20%, transparent)`, 
         aspectRatio: thumbnailAspectRatio
     }), [thumbnailImageSrc, noImage, thumbnailAspectRatio]);
 
@@ -49,7 +48,7 @@ export default function FolderCard(props) {
         className={wrapperClasses} style={{maxWidth: width}}
         >
         {/* THUMBNAIL */}
-        <div className={`relative group w-full aspect-square flex items-center justify-center ${cornerStyles}`} style={imageStyles}>
+        <div className={`relative group w-full aspect-square flex items-center justify-center bg-current-10 ${cornerStyles}`} style={imageStyles}>
             {noImage && <Icon icon={'folder'} defaultIconSet={defaultIconSet} className='flex-shrink-0' />}
         </div>
         
